@@ -1,0 +1,38 @@
+* {
+  font-family: Avenir;
+  font-weight: 500;
+  line-height: 1.1em;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  --placeholder: hsl(0, 0%, 67%);
+  --primary-color: hsl(0, 0%, 100%);
+  --secondary-color: hsl(0, 0%, 80%);
+  --dark-bg: hsl(0, 0%, 30%);
+  --light-bg: hsl(0, 0%, 81%);
+
+  color: var(--primary-color);
+  background-color: var(--dark-bg);
+}
+
+img {
+  display: block;
+}
+
+p {
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+.indent {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
