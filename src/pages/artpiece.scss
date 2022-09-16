@@ -4,23 +4,24 @@
 
   .art-piece-title {
     font-size: 4.2vw;
+    margin-bottom: 1vw;
   }
 
   .collection-title {
     font-size: 1.5vw;
     font-style: italic;
     font-weight: 350;
-    margin-top: 0.25vw;
-    margin-bottom: 1.2vw;
+    margin-bottom: 0.15vw;
   }
 
   .full-image {
     display: flex;
 
     img {
-      width: 58%;
+      width: 74%;
     }
     .image-desc {
+      font-size: 1vw;
       margin-top: 20vh;
       margin-left: 2vw;
     }

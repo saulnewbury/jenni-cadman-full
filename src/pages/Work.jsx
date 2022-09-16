@@ -1,13 +1,13 @@
 import React from 'react'
 import { collections } from '../data/collections'
 import styles from './work.module.scss'
-import Layout from '../components/shared/Layout'
 import Menu from '../components/shared/menu/Menu'
+import AnimatePage from '../components/shared/AnimatePage'
 import { BsArrowDown } from 'react-icons/bs'
 
 const Work = () => {
   return (
-    <Layout title="Work">
+    <AnimatePage>
       {collections.map(cln => {
         const { subFolder, date, desc, featuredImage, id, imagesData, title } =
           cln
@@ -39,7 +39,7 @@ const Work = () => {
           </div>
         )
       })}
-    </Layout>
+    </AnimatePage>
   )
 }
 

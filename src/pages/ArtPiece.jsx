@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { collections } from '../data/collections'
-import Layout from '../components/shared/Layout'
 import Menu from '../components/shared/menu/Menu'
+import AnimatePage from '../components/shared/AnimatePage'
 import './artpiece.scss'
 
 const ArtPiece = () => {
   const { pathname } = useLocation()
-  // console.log(pathname)
+
   const { slug } = useParams()
   useEffect(() => {
-    window.scrollTo(0, 0)
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 500)
   }, [pathname])
 
   // filter collection which has title that is the same as slug.
@@ -26,10 +28,10 @@ const ArtPiece = () => {
   console.log(`./images/${subFolder}/${imageMain}.jpg`)
 
   return (
-    <Layout title="Art Piece">
+    <AnimatePage>
       <main className="art-piece">
-        <h1 className="art-piece-title">{title}</h1>
         <h2 className="collection-title">{clnTitle}</h2>
+        <h1 className="art-piece-title">{title}</h1>
         <div className="full-image">
           <img src={`../images/${subFolder}/${imageMain}.jpg`} alt={altText} />
           <div className="image-desc">
@@ -51,7 +53,7 @@ const ArtPiece = () => {
         </div>
         <Menu imagesData={imagesData} />
       </main>
-    </Layout>
+    </AnimatePage>
   )
 }
 
