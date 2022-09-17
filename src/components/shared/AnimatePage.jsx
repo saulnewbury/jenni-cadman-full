@@ -10,6 +10,11 @@ const animations = {
 }
 
 const AnimatePage = ({ children }) => {
+   React.useEffect(() => {
+     if (window.history.scrollRestoration)
+       window.history.scrollRestoration = 'manual'
+   }, [])
+
   return (
     <motion.div
       variants={animations}

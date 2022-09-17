@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react'
-import { useParams, useLocation, Link } from 'react-router-dom'
+import React from 'react'
+import { useParams, Link } from 'react-router-dom'
 import { collections } from '../data/collections'
 import Menu from '../components/shared/menu/Menu'
 import AnimatePage from '../components/shared/AnimatePage'
 import './artpiece.scss'
 
 const ArtPiece = () => {
-  const { pathname } = useLocation()
-
   const { slug } = useParams()
-  useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0)
-    }, 500)
-  }, [pathname])
 
   // filter collection which has title that is the same as slug.
   const cln = collections.filter(cln => {

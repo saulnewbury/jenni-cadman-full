@@ -11,7 +11,7 @@ function App() {
   const location = useLocation()
   return (
     <Layout>
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence exitBeforeEnter onExitComplete={goToTop}>
         <Routes key={location.pathname} location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
@@ -22,6 +22,12 @@ function App() {
       </AnimatePresence>
     </Layout>
   )
+
+  function goToTop() {
+    // Called when exit animation complete; scrolls to the top of the new (or
+    // previous) 'page'.
+    window.scrollTo(0,0)
+  }
 }
 
 export default App
