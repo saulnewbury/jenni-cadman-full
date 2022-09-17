@@ -1,0 +1,67 @@
+.collection {
+  // max-width: 2000px;
+  margin: auto;
+  padding-left: 15vw;
+  padding-right: 15vw;
+
+  .header {
+    display: flex;
+
+    img {
+      width: 50%;
+      height: auto;
+    }
+
+    .title-info {
+      /* background-color: blue; */
+      width: 100%;
+
+      .wrapper {
+        margin-top: 30vh;
+
+        .date,
+        .title {
+          margin-left: 3vw;
+        }
+
+        .date {
+          font-size: 2.5vw;
+          margin-bottom: 10px;
+        }
+
+        .title {
+          width: 100%;
+          font-size: 4.6vw;
+        }
+
+        .arrowDownContainer {
+          width: 100%;
+          height: 13vw;
+          /* background-color: red; */
+          position: relative;
+
+          .icon {
+            width: 6vw;
+            height: 6vw;
+            position: absolute;
+            left: 40%;
+            bottom: 0;
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
+
+  .description {
+    width: 85%;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+
+    p {
+      color: var(--secondary-color);
+      font-size: 1.4vw;
+      font-weight: 500;
+    }
+  }
+}

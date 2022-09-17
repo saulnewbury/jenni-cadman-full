@@ -10,10 +10,10 @@ const animations = {
 }
 
 const AnimatePage = ({ children }) => {
-   React.useEffect(() => {
-     if (window.history.scrollRestoration)
-       window.history.scrollRestoration = 'manual'
-   }, [])
+  React.useEffect(() => {
+    if (window.history.scrollRestoration)
+      window.history.scrollRestoration = 'manual'
+  }, [])
 
   return (
     <motion.div
@@ -29,3 +29,9 @@ const AnimatePage = ({ children }) => {
 }
 
 export default AnimatePage
+
+// The history object has a scrollRestoration object on new browsers.
+// It will be truthy. If it doesn't exist it will be falsy.
+// If the former (if it exist) we set it to 'manual'. This stops automatic scroll position restore.
+
+// 'if' used in order to avoid setting a variable that doesn't exist.

@@ -44,7 +44,7 @@ const ArtPiece = () => {
             />
           </div>
         </div>
-        <Link to="/work">Back to work</Link>
+        {/* <Link to="/work">Back to work</Link> */}
         <Menu imagesData={imagesData} />
       </main>
     </AnimatePage>
