@@ -3,6 +3,7 @@ import Work from './pages/Work'
 import NotFound from './pages/NotFound'
 import ArtPiece from './pages/ArtPiece'
 import Layout from './components/shared/Layout'
+import Home from './pages/Home'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 
@@ -12,6 +13,7 @@ function App() {
     <Layout>
       <AnimatePresence exitBeforeEnter>
         <Routes key={location.pathname} location={location}>
+          <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<ArtPiece />} />
           <Route path="*" element={<NotFound />} />
