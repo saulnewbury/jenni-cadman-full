@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, Link } from 'react-router-dom'
 import { collections } from '../data/collections'
 import Menu from '../components/shared/menu/Menu'
 import AnimatePage from '../components/shared/AnimatePage'
@@ -30,14 +30,14 @@ const ArtPiece = () => {
   return (
     <AnimatePage>
       <main className="art-piece">
-        <h2 className="collection-title">{clnTitle}</h2>
         <h1 className="art-piece-title">{title}</h1>
+        <h2 className="collection-title">{clnTitle}</h2>
         <div className="full-image">
           <img src={`../images/${subFolder}/${imageMain}.jpg`} alt={altText} />
           <div className="image-desc">
             <p className="collection-date">{desc.year}</p>
             <p className="medium">{desc.medium}</p>
-            <p className="size"></p>
+            <p className="size">{desc.size}</p>
             {desc.mount && <p className="mount">{desc.mount}</p>}
             <p className="price">{desc.price}</p>
           </div>
@@ -51,6 +51,7 @@ const ArtPiece = () => {
             />
           </div>
         </div>
+        <Link to="/work">Back to work</Link>
         <Menu imagesData={imagesData} />
       </main>
     </AnimatePage>

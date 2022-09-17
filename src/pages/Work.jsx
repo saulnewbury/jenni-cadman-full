@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { collections } from '../data/collections'
 import styles from './work.module.scss'
 import Menu from '../components/shared/menu/Menu'
@@ -6,6 +7,14 @@ import AnimatePage from '../components/shared/AnimatePage'
 import { BsArrowDown } from 'react-icons/bs'
 
 const Work = () => {
+  // const { pathname } = useLocation()
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     window.scrollTo(0, 0)
+  //   }, 500)
+  // }, [pathname])
+
   return (
     <AnimatePage>
       {collections.map(cln => {
