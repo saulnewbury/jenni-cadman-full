@@ -4,14 +4,25 @@ import NotFound from './pages/NotFound'
 import ArtPiece from './pages/ArtPiece'
 import Layout from './components/shared/Layout'
 import Home from './pages/Home'
+import { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 
 function App() {
   const location = useLocation()
+  const lastPos = useRef(new Map())
+
+  useEffect(() => {
+    const savePos = ev => {
+      lastPos.current.set(location.key, window.scrollY)
+    }
+    document.addEventListener('scroll', savePos)
+    return () => document.removeEventListener('scroll', savePos)
+  })
+
   return (
     <Layout>
-      <AnimatePresence exitBeforeEnter onExitComplete={goToTop}>
+      <AnimatePresence exitBeforeEnter onExitComplete={goToLast}>
         <Routes key={location.pathname} location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
@@ -23,10 +34,10 @@ function App() {
     </Layout>
   )
 
-  function goToTop() {
+  function goToLast() {
     // Called when exit animation complete; scrolls to the top of the new (or
     // previous) 'page'.
-    window.scrollTo(0,0)
+    window.scrollTo(0,lastPos.current.get(location.key) || 0)
   }
 }
 
