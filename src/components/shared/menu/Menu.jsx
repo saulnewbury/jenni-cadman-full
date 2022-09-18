@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
@@ -9,6 +9,30 @@ const Menu = ({ imagesData }) => {
   const clnSelector = subFolder
   const prevTarget = useRef()
   const timer = useRef()
+  const menuContainer = useRef()
+
+  // instrinsic size.
+
+  useEffect(() => {
+    let mm = gsap.matchMedia()
+    mm.add('(max-width: 950px)', () => {
+      const elements = [
+        ...menuContainer.current.querySelectorAll('.image-wrapper')
+      ]
+      elements.forEach(ele => {
+        const str = gsap.getProperty(ele, 'width', 'vw')
+        const value = +str.substring(0, str.indexOf('v'))
+
+        if (value <= 4.4) {
+          gsap.set(ele, { width: '41.7969px' })
+          console.log('small')
+        } else {
+          gsap.set(ele, { width: '190px' })
+          console.log('large')
+        }
+      })
+    })
+  }, [])
 
   // MOUSEENTER
   const handleMouseEnter = target => {
@@ -49,6 +73,7 @@ const Menu = ({ imagesData }) => {
     clearTimeout(timer.current)
   }
 
+  // Change title text to corrolate with expanded image
   function changeText(target) {
     const container = target.parentElement.firstChild
     const pDescreet = container.nextElementSibling
@@ -62,7 +87,7 @@ const Menu = ({ imagesData }) => {
 
   // RETURN
   return (
-    <div className="menu menu-container indent">
+    <div ref={menuContainer} className="menu menu-container indent">
       <div className="menu-item-title-container">
         <p className="menu-item-title">{images[0].title}</p>
       </div>
