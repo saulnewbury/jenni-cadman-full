@@ -6,31 +6,42 @@ import './menu.scss'
 
 const Menu = ({ imagesData }) => {
   const { subFolder, images } = imagesData
+  // use subFolder as selector to constrain querySelectorAll to corrosponding collection
   const clnSelector = subFolder
   const prevTarget = useRef()
   const timer = useRef()
   const menuContainer = useRef()
+  const sizes = useRef({ large: '20vw', small: '4.4vw' })
 
   // instrinsic size.
 
   useEffect(() => {
     let mm = gsap.matchMedia()
     mm.add('(max-width: 950px)', () => {
-      const elements = [
-        ...menuContainer.current.querySelectorAll('.image-wrapper')
-      ]
+      const elements = menuContainer.current.querySelectorAll('.image-wrapper')
+      const newSizes = { large: '190px', small: '41.7969px' }
       elements.forEach(ele => {
-        const str = gsap.getProperty(ele, 'width', 'vw')
-        const value = +str.substring(0, str.indexOf('v'))
-
-        if (value <= 4.4) {
-          gsap.set(ele, { width: '41.7969px' })
-          console.log('small')
+        if (ele.dataset.size === 'small') {
+          gsap.set(ele, { width: newSizes.small })
         } else {
-          gsap.set(ele, { width: '190px' })
-          console.log('large')
+          gsap.set(ele, { width: newSizes.large })
         }
       })
+      sizes.current = newSizes
+
+      return () => {
+        const elements =
+          menuContainer.current.querySelectorAll('.image-wrapper')
+        const newSizes = { large: '20vw', small: '4.4vw' }
+        elements.forEach(ele => {
+          if (ele.dataset.size === 'small') {
+            gsap.set(ele, { width: newSizes.small })
+          } else {
+            gsap.set(ele, { width: newSizes.large })
+          }
+        })
+        sizes.current = newSizes
+      }
     })
   }, [])
 
@@ -38,11 +49,9 @@ const Menu = ({ imagesData }) => {
   const handleMouseEnter = target => {
     // Dims contracted elements (applies only to the first interaction with a given menu).
     if (gsap.getProperty(`.${clnSelector}`, 'opacity') === 1) {
-      const elements = [...document.querySelectorAll(`.${clnSelector}`)]
+      const elements = menuContainer.current.querySelectorAll(`.${clnSelector}`)
       elements.forEach(ele => {
-        const str = gsap.getProperty(ele, 'width', 'vw')
-        const value = +str.substring(0, str.indexOf('v'))
-        if (value <= 4.4) {
+        if (ele.dataset.size === 'small') {
           gsap.to(ele, { opacity: 0.4 })
         }
       })
@@ -58,8 +67,10 @@ const Menu = ({ imagesData }) => {
       // Set title text to corrospond with expanded target element
       changeText(target)
       if (prevTarget.current === target) return
-      gsap.to(target, { width: '20vw', opacity: 1 })
-      gsap.to(prevTarget.current, { width: '4.4vw', opacity: 0.4 })
+      gsap.to(target, { width: sizes.current.large, opacity: 1 })
+      gsap.to(prevTarget.current, { width: sizes.current.small, opacity: 0.4 })
+      target.dataset.size = 'large'
+      prevTarget.current.dataset.size = 'small'
       prevTarget.current = target
     }, 200)
   }
@@ -76,11 +87,11 @@ const Menu = ({ imagesData }) => {
   // Change title text to corrolate with expanded image
   function changeText(target) {
     const container = target.parentElement.firstChild
-    const pDescreet = container.nextElementSibling
+    const pDiscreet = container.nextElementSibling
     const p = container.firstChild
     const titleText = target.getAttribute('data-title')
-    pDescreet.textContent = titleText
-    pDescreet.style.display = 'none'
+    pDiscreet.textContent = titleText
+    pDiscreet.style.display = 'none'
     p.textContent = titleText
     // setFontSize(p, container, titleText)
   }
@@ -95,6 +106,7 @@ const Menu = ({ imagesData }) => {
       <Link
         to={`/work/${images[0].title.replace(/\s+/g, '-').toLowerCase()}`}
         ref={prevTarget}
+        data-size="large"
         data-title={images[0].title}
         className={`${clnSelector} image-wrapper first-image-wrapper`}
         onMouseEnter={e => {
@@ -116,6 +128,7 @@ const Menu = ({ imagesData }) => {
             to={`/work/${image.title.replace(/\s+/g, '-').toLowerCase()}`}
             key={index}
             data-title={image.title}
+            data-size="small"
             className={`${clnSelector} image-wrapper`}
             onMouseEnter={e => {
               handleMouseEnter(e.currentTarget)
@@ -138,21 +151,15 @@ const Menu = ({ imagesData }) => {
 
 export default Menu
 
-// first time render function calls there is no dom.
-// on Mount creates dom from jsx and then exits.
+// The first time render function calls there is no dom.
+// Mounting creates dom from jsx and then exits.
 // It wont get called again until state changes.
 // All the use effect functions get called after render function gets finished and returned.
-
-// create a reference (use ref) instead of query selector.
 
 // Query selecter must be inside a useEffect
 
 // render function then effects
 // Layout.
-
-// Partial increase of opacity without delay
-// const str = gsap.getProperty(target, 'width', 'vw')
-// const value = +str.substring(0, str.indexOf('v'))
 
 // console.log(value)
 
@@ -180,6 +187,6 @@ export default Menu
 //   return Math.round(num / 5) * 5
 // }
 
-// Whenever you want to jump to another react route, you specify it as absolute unless you want it relative. (if you don't know use absolute).
+// Whenever you want to jump to another react route, you specify it as absolute path unless you want it relative. (if you don't know use absolute).
 
 // Probably use relative when you want to go up a level relative to where you are. Back to collection from artpiece, for instance.
