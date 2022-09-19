@@ -5,7 +5,7 @@ const Layout = ({ children, title }) => {
   return (
     <div>
       <div className={styles.topbar + ' indent'}>
-        <span>Jenni Cadman &nbsp;&#124;&nbsp;</span>
+        <span>Jenni Cadman</span>
         <span> {title}</span>
       </div>
       <main>{children}</main>

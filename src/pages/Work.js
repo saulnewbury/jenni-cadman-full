@@ -25,9 +25,9 @@ const Work = () => {
                 <div className="wrapper">
                   <h4 className="date">{date}</h4>
                   <h2 className="title">{title}</h2>
-                  <div className="arrow-down-container">
+                  {/* <div className="arrow-down-container">
                     <BsArrowDown className="icon" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
