@@ -4,7 +4,7 @@ import { collections } from '../data/collections'
 import './work.scss'
 import Menu from '../components/shared/menu/Menu'
 import AnimatePage from '../components/shared/AnimatePage'
-import { BsArrowDown } from 'react-icons/bs'
+// import { BsArrowDown } from 'react-icons/bs'
 
 const Work = () => {
   return (

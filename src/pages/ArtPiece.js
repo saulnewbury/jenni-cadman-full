@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { collections } from '../data/collections'
 import Menu from '../components/shared/menu/Menu'
 import AnimatePage from '../components/shared/AnimatePage'
-import gsap from 'gsap'
+// import gsap from 'gsap'
 import './artpiece.scss'
 
 const ArtPiece = () => {
@@ -66,7 +66,7 @@ const ArtPiece = () => {
     <AnimatePage>
       <main className="art-piece">
         <div className="container">
-          {/* <h2 className="collection-title">{clnTitle}</h2> */}
+          <h2 className="collection-title">{clnTitle}</h2>
           <h1 className="art-piece-title">{title}</h1>
           <div className="full-image">
             <img
