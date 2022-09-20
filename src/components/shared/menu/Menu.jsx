@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import './menu.scss'
@@ -13,11 +12,10 @@ const Menu = ({ imagesData }) => {
   const menuContainer = useRef()
   const sizes = useRef({ large: '20vw', small: '4.4vw' })
 
-  // instrinsic size.
-
   useEffect(() => {
-    // Small Screens
     let mm = gsap.matchMedia()
+
+    // Small Screens
 
     mm.add('(max-width: 950px)', () => {
       const elements = menuContainer.current.querySelectorAll('.image-wrapper')
@@ -46,47 +44,42 @@ const Menu = ({ imagesData }) => {
       }
     })
 
-    // mm.add('(min-width: 951px)', () => {
-    //   const elements = menuContainer.current.querySelectorAll('.image-wrapper')
-    //   const newSizes = { large: '20vw', small: '4.4vw' }
-    //   elements.forEach(ele => {
-    //     if (ele.dataset.size === 'small') {
-    //       gsap.set(ele, { width: newSizes.small })
-    //     } else {
-    //       gsap.set(ele, { width: newSizes.large })
-    //     }
-    //   })
-    //   sizes.current = newSizes
-    // })
-
     // Large Screen
 
-    // mm.add('(min-width: 2148px)', () => {
-    //   const elements = menuContainer.current.querySelectorAll('.image-wrapper')
-    //   const newSizes = { large: '429.594px', small: '94.5078px' }
-    //   elements.forEach(ele => {
-    //     if (ele.dataset.size === 'small') {
-    //       gsap.set(ele, { width: newSizes.small })
-    //     } else {
-    //       gsap.set(ele, { width: newSizes.large })
-    //     }
-    //   })
-    //   sizes.current = newSizes
+    mm.add('(min-width: 2148px)', () => {
+      const elements = menuContainer.current.querySelectorAll('.image-wrapper')
+      const newSizes = { large: '429.594px', small: '94.5078px' }
+      elements.forEach(ele => {
+        if (ele.dataset.size === 'small') {
+          gsap.set(ele, { width: newSizes.small })
+        } else {
+          gsap.set(ele, { width: newSizes.large })
+        }
+      })
+      sizes.current = newSizes
 
-    //   return () => {
-    //     const elements =
-    //       menuContainer.current.querySelectorAll('.image-wrapper')
-    //     const newSizes = { large: '20vw', small: '4.4vw' }
-    //     elements.forEach(ele => {
-    //       if (ele.dataset.size === 'small') {
-    //         gsap.set(ele, { width: newSizes.small })
-    //       } else {
-    //         gsap.set(ele, { width: newSizes.large })
-    //       }
-    //     })
-    //     sizes.current = newSizes
-    //   }
-    // })
+      return () => {
+        const elements =
+          menuContainer.current.querySelectorAll('.image-wrapper')
+        const newSizes = { large: '20vw', small: '4.4vw' }
+        elements.forEach(ele => {
+          if (ele.dataset.size === 'small') {
+            gsap.set(ele, { width: newSizes.small })
+          } else {
+            gsap.set(ele, { width: newSizes.large })
+          }
+        })
+        sizes.current = newSizes
+      }
+    })
+
+    // Return (cleanup)
+    // gets called whenever react would widh to undo it
+    // calls undo before do
+    // called on unmount
+    return () => {
+      mm.revert()
+    }
   }, [])
 
   // MOUSEENTER
@@ -188,7 +181,6 @@ const Menu = ({ imagesData }) => {
           </Link>
         )
       })}
-      <Outlet />
     </div>
   )
 }
