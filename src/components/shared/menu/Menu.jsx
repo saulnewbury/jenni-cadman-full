@@ -17,8 +17,9 @@ const Menu = ({ imagesData }) => {
 
   useEffect(() => {
     // Small Screens
-    let mmSmall = gsap.matchMedia()
-    mmSmall.add('(max-width: 950px)', () => {
+    let mm = gsap.matchMedia()
+
+    mm.add('(max-width: 950px)', () => {
       const elements = menuContainer.current.querySelectorAll('.image-wrapper')
       const newSizes = { large: '190px', small: '41.7969px' }
       elements.forEach(ele => {
@@ -45,9 +46,22 @@ const Menu = ({ imagesData }) => {
       }
     })
 
+    // mm.add('(min-width: 951px)', () => {
+    //   const elements = menuContainer.current.querySelectorAll('.image-wrapper')
+    //   const newSizes = { large: '20vw', small: '4.4vw' }
+    //   elements.forEach(ele => {
+    //     if (ele.dataset.size === 'small') {
+    //       gsap.set(ele, { width: newSizes.small })
+    //     } else {
+    //       gsap.set(ele, { width: newSizes.large })
+    //     }
+    //   })
+    //   sizes.current = newSizes
+    // })
+
     // Large Screen
-    // let mmLarge = gsap.matchMedia()
-    // mmLarge.add('(min-width: 2148px)', () => {
+
+    // mm.add('(min-width: 2148px)', () => {
     //   const elements = menuContainer.current.querySelectorAll('.image-wrapper')
     //   const newSizes = { large: '429.594px', small: '94.5078px' }
     //   elements.forEach(ele => {
