@@ -10,12 +10,11 @@
 
   .menu-item-title-container {
     width: 50vw;
-    bottom: 1.2vw;
     position: absolute;
-    left: 20px;
+    bottom: 12%;
+    left: 1.6vw;
     z-index: 5;
     display: flex;
-    height: 10vw;
     align-items: center;
     pointer-events: none;
 
@@ -59,11 +58,27 @@
   .menu {
     height: 304px;
     width: max-content;
+
+    .menu-item-title-container {
+      width: 475px;
+      bottom: 10%;
+
+      p {
+        font-size: 43.7px;
+        width: 399px;
+      }
+    }
   }
 }
 
 @media screen and (min-width: 2148px) {
-  .menu-container {
+  .menu {
     height: 687.359px;
+
+    .menu-item-title-container {
+      p {
+        font-size: 98.808px;
+      }
+    }
   }
 }
