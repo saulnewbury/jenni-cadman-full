@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { collections } from '../data/collections'
 import Menu from '../components/shared/menu/Menu'
 import AnimatePage from '../components/shared/AnimatePage'
@@ -8,45 +8,6 @@ import './artpiece.scss'
 
 const ArtPiece = () => {
   const { slug } = useParams()
-  // const [dimensions, setDimensions] = useState({
-  //   height: window.innerHeight,
-  //   width: window.innerWidth
-  // })
-
-  // useEffect(() => {
-  //   let resizeId
-  //   function doneResizing() {
-  //     setDimensions({
-  //       height: window.innerHeight,
-  //       width: window.innerWidth
-  //     })
-  //   }
-
-  //   function resize() {
-  //     clearTimeout(resizeId)
-  //     resizeId = setTimeout(doneResizing, 300)
-  //   }
-
-  //   window.addEventListener('resize', resize)
-
-  //   return () => {
-  //     window.addEventListener('resize', resize)
-  //   }
-  // }, [])
-
-  // if (dimensions.width > dimensions.height) {
-  //   gsap.to('.container', {
-  //     marginLeft: '12vw',
-  //     marginRight: '12vw',
-  //     duration: 0.2
-  //   })
-  // } else {
-  //   gsap.to('.container', {
-  //     marginLeft: '-2vh',
-  //     marginRight: '2vh',
-  //     duration: 0.2
-  //   })
-  // }
 
   // filter collection which has title that is the same as slug.
   const cln = collections.filter(cln => {
@@ -66,7 +27,7 @@ const ArtPiece = () => {
     <AnimatePage>
       <main className="art-piece">
         <div className="container">
-          <h2 className="collection-title">{clnTitle}</h2>
+          {/* <h2 className="collection-title">{clnTitle}</h2> */}
           <h1 className="art-piece-title">{title}</h1>
           <div className="full-image">
             <img
@@ -91,7 +52,7 @@ const ArtPiece = () => {
             </div>
           </div>
         </div>
-        {/* <Link to="/work">Back to work</Link> */}
+        <Link to="/work">Back to work</Link>
         <Menu imagesData={imagesData} />
       </main>
     </AnimatePage>
@@ -99,3 +60,43 @@ const ArtPiece = () => {
 }
 
 export default ArtPiece
+
+// const [dimensions, setDimensions] = useState({
+//   height: window.innerHeight,
+//   width: window.innerWidth
+// })
+
+// useEffect(() => {
+//   let resizeId
+//   function doneResizing() {
+//     setDimensions({
+//       height: window.innerHeight,
+//       width: window.innerWidth
+//     })
+//   }
+
+//   function resize() {
+//     clearTimeout(resizeId)
+//     resizeId = setTimeout(doneResizing, 300)
+//   }
+
+//   window.addEventListener('resize', resize)
+
+//   return () => {
+//     window.addEventListener('resize', resize)
+//   }
+// }, [])
+
+// if (dimensions.width > dimensions.height) {
+//   gsap.to('.container', {
+//     marginLeft: '12vw',
+//     marginRight: '12vw',
+//     duration: 0.2
+//   })
+// } else {
+//   gsap.to('.container', {
+//     marginLeft: '-2vh',
+//     marginRight: '2vh',
+//     duration: 0.2
+//   })
+// }
