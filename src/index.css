@@ -32,9 +32,17 @@ p {
   color: var(--primary-color);
 }
 
+/* Indent acts upon menu */
 .indent {
   margin-left: 5vw;
   margin-right: 5vw;
+}
+
+@media screen and (max-width: 700px) {
+  .indent {
+    /* margin left corrosponds to value in Menu.jsx */
+    margin-left: 41.7969px;
+  }
 }
 
 .motion-div {

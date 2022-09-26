@@ -4,6 +4,7 @@ import NotFound from './pages/NotFound'
 import ArtPiece from './pages/ArtPiece'
 import Layout from './components/shared/Layout'
 import Home from './pages/Home'
+import Test from './pages/Test'
 import { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
@@ -29,6 +30,7 @@ function App() {
         <Routes key={location.pathname} location={location}>
           {/* These each set up a matcher between a location and the component to show where that component is at. They tell Routes which component to inject when a certain route is active */}
           <Route path="/" element={<Home />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<ArtPiece />} />
           <Route path="*" element={<NotFound />} />

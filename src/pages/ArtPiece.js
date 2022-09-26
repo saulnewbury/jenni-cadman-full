@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { collections } from '../data/collections'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import Menu from '../components/shared/menu/Menu'
 import AnimatePage from '../components/shared/AnimatePage'
 // import gsap from 'gsap'
@@ -52,8 +53,14 @@ const ArtPiece = () => {
             </div>
           </div>
         </div>
-        <Link to="/work">Back to work</Link>
+
+        {/* <div className="indent"> */}
+        <Link className="back-to-work" to="/work">
+          <AiOutlineArrowLeft className="icon" />
+          <p>Back to WORK</p>
+        </Link>
         <Menu imagesData={imagesData} />
+        {/* </div> */}
       </main>
     </AnimatePage>
   )

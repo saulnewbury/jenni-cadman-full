@@ -10,7 +10,7 @@ const Menu = ({ imagesData }) => {
   const prevTarget = useRef()
   const timer = useRef()
   const menuContainer = useRef()
-  const sizes = useRef({ large: '20vw', small: '4.4vw' })
+  const sizes = useRef({ wide: '20vw', narrow: '4.4vw' })
 
   useEffect(mediaQueries, [])
 
@@ -20,7 +20,7 @@ const Menu = ({ imagesData }) => {
     if (gsap.getProperty(`.${clnSelector}`, 'opacity') === 1) {
       const elements = menuContainer.current.querySelectorAll(`.${clnSelector}`)
       elements.forEach(ele => {
-        if (ele.dataset.size === 'small') {
+        if (ele.dataset.size === 'narrow') {
           gsap.to(ele, { opacity: 0.4 })
         }
       })
@@ -36,10 +36,10 @@ const Menu = ({ imagesData }) => {
       // Set title text to corrospond with expanded target element
       changeText(target)
       if (prevTarget.current === target) return
-      gsap.to(target, { width: sizes.current.large, opacity: 1 })
-      gsap.to(prevTarget.current, { width: sizes.current.small, opacity: 0.4 })
-      target.dataset.size = 'large'
-      prevTarget.current.dataset.size = 'small'
+      gsap.to(target, { width: sizes.current.wide, opacity: 1 })
+      gsap.to(prevTarget.current, { width: sizes.current.narrow, opacity: 0.4 })
+      target.dataset.size = 'wide'
+      prevTarget.current.dataset.size = 'narrow'
       prevTarget.current = target
     }, 200)
   }
@@ -67,7 +67,7 @@ const Menu = ({ imagesData }) => {
 
   // RETURN
   return (
-    <div ref={menuContainer} className="menu menu-container indent">
+    <div ref={menuContainer} className="menu">
       <div className="menu-item-title-container">
         <p className="menu-item-title">{images[0].title}</p>
       </div>
@@ -75,7 +75,7 @@ const Menu = ({ imagesData }) => {
       <Link
         to={`/work/${images[0].title.replace(/\s+/g, '-').toLowerCase()}`}
         ref={prevTarget}
-        data-size="large"
+        data-size="wide"
         data-title={images[0].title}
         className={`${clnSelector} image-wrapper first-image-wrapper`}
         onMouseEnter={e => {
@@ -94,11 +94,11 @@ const Menu = ({ imagesData }) => {
       {images.slice(1).map((image, index) => {
         return (
           <Link
+            className={`${clnSelector} image-wrapper rest`}
             to={`/work/${image.title.replace(/\s+/g, '-').toLowerCase()}`}
             key={index}
             data-title={image.title}
-            data-size="small"
-            className={`${clnSelector} image-wrapper`}
+            data-size="narrow"
             onMouseEnter={e => {
               handleMouseEnter(e.currentTarget)
             }}
@@ -120,28 +120,26 @@ const Menu = ({ imagesData }) => {
     let mm = gsap.matchMedia()
 
     mm.add('(max-width: 950px)', () => {
-      const newSizes = { large: '190px', small: '41.7969px' }
+      const newSizes = { wide: '190px', narrow: '41.7969px' }
       changeSizes(newSizes)
 
       return () => {
-        const newSizes = { large: '20vw', small: '4.4vw' }
+        const newSizes = { wide: '20vw', narrow: '4.4vw' }
         changeSizes(newSizes)
       }
     })
 
     mm.add('(min-width: 2148px)', () => {
-      const newSizes = { large: '429.594px', small: '94.5078px' }
+      const newSizes = { wide: '429.594px', narrow: '94.5078px' }
       changeSizes(newSizes)
 
       return () => {
-        const newSizes = { large: '20vw', small: '4.4vw' }
+        const newSizes = { wide: '20vw', narrow: '4.4vw' }
         changeSizes(newSizes)
       }
     })
 
-    // Return (cleanup)
-    // calls undo before do
-    // called on unmount
+    // Return (cleanup) / calls undo before do / called on unmount
     return () => {
       mm.kill()
     }
@@ -150,10 +148,10 @@ const Menu = ({ imagesData }) => {
   function changeSizes(newSizes) {
     const elements = menuContainer.current.querySelectorAll('.image-wrapper')
     elements.forEach(ele => {
-      if (ele.dataset.size === 'small') {
-        gsap.set(ele, { width: newSizes.small })
+      if (ele.dataset.size === 'narrow') {
+        gsap.set(ele, { width: newSizes.narrow })
       } else {
-        gsap.set(ele, { width: newSizes.large })
+        gsap.set(ele, { width: newSizes.wide })
       }
     })
     sizes.current = newSizes

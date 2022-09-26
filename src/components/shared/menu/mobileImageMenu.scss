@@ -1,0 +1,30 @@
+.outer-container {
+  width: 100vw;
+  height: max-content;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.mobile-image-menu {
+  background-color: green;
+  position: absolute;
+  width: 100%;
+}
+
+.image-item {
+  display: inline-block;
+  // padding-left: 0.2vw;
+  // padding-right: 0.2vw;
+  height: 100%;
+  width: 7.1428571429%;
+}
+
+.placeholder-image {
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
+.prev .placeholder-image {
+  background-color: aquamarine;
+}

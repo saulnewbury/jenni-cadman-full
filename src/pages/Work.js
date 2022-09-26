@@ -31,11 +31,13 @@ const Work = () => {
                 </div>
               </div>
             </div>
-            <div className="description indent">
+            <div className="description">
               <p>{desc}</p>
             </div>
+            {/* <div className="indent"> */}
             {/* Menu */}
             <Menu imagesData={imagesData} />
+            {/* </div> */}
           </div>
         )
       })}
