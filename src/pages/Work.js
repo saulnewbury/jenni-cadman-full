@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import gsap from 'gsap'
 import { collections } from '../data/collections'
-// import styles from './work.module.scss'
 import './work.scss'
 import Menu from '../components/shared/menu/Menu'
+import MobileImageMenu from '../components/shared/menu/MobileImageMenu'
 import AnimatePage from '../components/shared/AnimatePage'
+
 // import { BsArrowDown } from 'react-icons/bs'
 
 const Work = () => {
+  const [isHoverDevice, setIsHoverDevice] = useState(false)
+
+  useEffect(() => {
+    let mm = gsap.matchMedia()
+
+    mm.add(`(hover: hover)`, () => {
+      setIsHoverDevice(true)
+    })
+
+    return () => {
+      mm.kill()
+    }
+  })
+
   return (
     <AnimatePage>
       {collections.map(cln => {
@@ -36,7 +52,12 @@ const Work = () => {
             </div>
             {/* <div className="indent"> */}
             {/* Menu */}
-            <Menu imagesData={imagesData} />
+            {isHoverDevice ? (
+              <Menu imagesData={imagesData} />
+            ) : (
+              <Menu imagesData={imagesData} />
+            )}
+
             {/* </div> */}
           </div>
         )

@@ -10,7 +10,7 @@ const MobileImageMenu = () => {
   const sizes = useRef()
   const idPos1 = useRef(0)
   const itemsInViewport = useRef()
-  const prevTarget = useRef(1)
+  const prevTarget = useRef()
 
   useEffect(() => {
     const arr = container.current.querySelectorAll('.image-item')
@@ -40,14 +40,19 @@ const MobileImageMenu = () => {
       const width = 100 / 14
       setUp(numOfItems, width)
     })
-
-    mm.add('(min-width: 900px) and (max-width: 1199px)', () => {
+    mm.add('(min-width: 1100px) and (max-width: 1199px)', () => {
+      // 14 items
+      const numOfItems = 13
+      const width = 100 / 13
+      setUp(numOfItems, width)
+    })
+    mm.add('(min-width: 1000px) and (max-width: 1099px)', () => {
       // 12 items
       const numOfItems = 12
       const width = 100 / 12
       setUp(numOfItems, width)
     })
-    mm.add('(min-width: 700px) and (max-width: 899px)', () => {
+    mm.add('(min-width: 900px) and (max-width: 999px)', () => {
       // 10 items
       const numOfItems = 10
       const width = 100 / 10
@@ -78,7 +83,10 @@ const MobileImageMenu = () => {
   }
 
   function setUp(numOfItems, width) {
-    // store idx of item at position 1
+    // reset: map prevTarget to first image item in the array
+    prevTarget.current = container.current.querySelectorAll('.image-item')[0]
+
+    // reset: map position one to first id
     idPos1.current = 0
 
     // store the number of items in the viewport
@@ -91,7 +99,7 @@ const MobileImageMenu = () => {
     gsap.set(container.current, { width: `${width * 14}%` })
 
     // container height
-    const value = `${width * 5}vw`
+    const value = `${width * 6}vw`
     gsap.set('.mobile-image-menu', { height: value })
     gsap.set('.outer-container', { height: value })
 
@@ -116,6 +124,7 @@ const MobileImageMenu = () => {
   }
 
   function handleClick(target) {
+    console.log(prevTarget.current)
     // exit function if clicking on item already selected
     if (prevTarget.current === target) return
 
@@ -142,7 +151,6 @@ const MobileImageMenu = () => {
     // FORWARD
     if (!isInverse) {
       // get position 2 (offset)
-      // console.log(`Pos1: ${idPos1.current}`)
       const pos2 = idPos1.current + 1
 
       // Work out items not in view
@@ -170,7 +178,7 @@ const MobileImageMenu = () => {
         idPos1.current = +target.dataset.id - 1
       }
     } else {
-      // BACKWARDS
+      // INVERSE
       const last = idPos1.current + (itemsInViewport.current - 1) // 5 + 5 = 10 (id: 9)
       const pen = last - 1 // 8
       const itemsOutside = last - (itemsInViewport.current - 1) // 9 - 4 = 3
