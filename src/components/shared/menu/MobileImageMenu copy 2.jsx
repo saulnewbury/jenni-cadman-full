@@ -8,8 +8,6 @@ const MobileImageMenu = () => {
   const container = useRef()
   const rendered = useRef(false)
   const sizes = useRef()
-  const idPos1 = useRef(0)
-  const itemsInViewport = useRef()
   const prevTarget = useRef(1)
 
   useEffect(() => {
@@ -23,7 +21,7 @@ const MobileImageMenu = () => {
 
   function initialState(arr) {
     const width = 100 / 14
-    setUp(width)
+    setDimensions(width)
     // container position
     gsap.set(container.current, { left: `${width}vw` })
     // width of selected item
@@ -36,40 +34,34 @@ const MobileImageMenu = () => {
 
     mm.add('(min-width: 1200px)', () => {
       // 14 items
-      const numOfItems = 14
       const width = 100 / 14
-      setUp(numOfItems, width)
+      setDimensions(width)
     })
 
     mm.add('(min-width: 900px) and (max-width: 1199px)', () => {
       // 12 items
-      const numOfItems = 12
       const width = 100 / 12
-      setUp(numOfItems, width)
+      setDimensions(width)
     })
     mm.add('(min-width: 700px) and (max-width: 899px)', () => {
       // 10 items
-      const numOfItems = 10
       const width = 100 / 10
-      setUp(numOfItems, width)
+      setDimensions(width)
     })
     mm.add('(min-width: 500px) and (max-width: 699px)', () => {
       // 8 items
-      const numOfItems = 8
       const width = 100 / 8
-      setUp(numOfItems, width)
+      setDimensions(width)
     })
     mm.add('(min-width: 200px) and (max-width: 499px)', () => {
       // 6 items
-      const numOfItems = 6
       const width = 100 / 6
-      setUp(numOfItems, width)
+      setDimensions(width)
     })
     mm.add('(max-width: 199px)', () => {
       // 4 items
-      const numOfItems = 4
       const width = 100 / 4
-      setUp(numOfItems, width)
+      setDimensions(width)
     })
 
     return () => {
@@ -77,117 +69,112 @@ const MobileImageMenu = () => {
     }
   }
 
-  function setUp(numOfItems, width) {
-    // store idx of item at position 1
-    idPos1.current = 0
-
-    // store the number of items in the viewport
-    itemsInViewport.current = numOfItems - 3
-
-    // reset container position
-    gsap.set(container.current, { left: 0 })
-
+  function setDimensions(width) {
     // container width
     gsap.set(container.current, { width: `${width * 14}%` })
-
     // container height
     const value = `${width * 5}vw`
     gsap.set('.mobile-image-menu', { height: value })
     gsap.set('.outer-container', { height: value })
-
+    // container position
+    // gsap.set(container.current, { left: `${width}vw` })
+    gsap.set(container.current, { left: 0 })
     // item padding
     gsap.set('.image-item', {
       paddingLeft: `${width / 80}vw`,
       paddingRight: `${width / 80}vw`
     })
-
-    // set items' widths; wide and narrow
     sizes.current = { narrow: `${width}`, wide: `${width * 4}` }
     const elements = container.current.querySelectorAll('.image-item')
-    elements.forEach((ele, idx) => {
-      if (idx === 0) {
-        gsap.set(ele, { width: `${sizes.current.wide}vw` })
-        ele.dataset.size = 'wide'
-      } else {
+    elements.forEach(ele => {
+      if (ele.dataset.size === 'narrow') {
         gsap.set(ele, { width: `${sizes.current.narrow}vw` })
-        ele.dataset.size = 'narrow'
+      } else {
+        gsap.set(ele, { width: `${sizes.current.wide}vw` })
       }
     })
   }
 
   function handleClick(target) {
-    // exit function if clicking on item already selected
+    // change sizes
     if (prevTarget.current === target) return
-
-    // expand target element
     gsap.to(target, { width: `${sizes.current.wide}vw` })
-
-    // shrink previously selected element
     gsap.to(prevTarget.current, { width: `${sizes.current.narrow}vw` })
-
-    // reset data-size attribute
     target.dataset.size = 'wide'
     prevTarget.current.dataset.size = 'narrow'
-
-    // Create flag to deterning regular or inverse calculation.
-    const isInverse =
-      +prevTarget.current.dataset.id < +target.dataset.id ? false : true
-
+    // console.log(prevTarget.current.dataset.id)
+    let isInverse
+    if (+prevTarget.current.dataset.id < +target.dataset.id) {
+      isInverse = false
+    } else {
+      isInverse = true
+    }
     containerPosition(target, isInverse)
     prevTarget.current = target
   }
 
   // POSITIONING
   function containerPosition(target, isInverse) {
-    // FORWARD
-    if (!isInverse) {
-      // get position 2 (offset)
-      // console.log(`Pos1: ${idPos1.current}`)
-      const pos2 = idPos1.current + 1
+    const id = +target.dataset.id
 
-      // Work out items not in view
-      const idLastInView = idPos1.current + itemsInViewport.current - 1
-      const elements = container.current.querySelectorAll('.image-item')
-      const itemsTotal = elements.length - 1 // -1 to adjust for starting at zero
-      const itemsOutside = itemsTotal - idLastInView
-
-      // get difference to travel
-      const diff =
-        +target.dataset.id - pos2 < itemsOutside
-          ? +target.dataset.id - pos2
-          : itemsOutside
-
-      // add difference to existing position
-      gsap.to(container.current, {
-        left: `-${(diff + idPos1.current) * sizes.current.narrow}vw`
-      })
-
-      if (diff === itemsOutside) {
-        // when there are no more items outside length minus itemsInView will give the item at first position
-        idPos1.current = elements.length - itemsInViewport.current
-      } else {
-        // update isPos1.current to index of item now at position 1
-        idPos1.current = +target.dataset.id - 1
+    console.log(id)
+    // check if there are items outside of the viewport
+    const elements = container.current.querySelectorAll('.image-item')
+    let itemsOutsideViewport = 0
+    elements.forEach(ele => {
+      const rect = ele.getBoundingClientRect()
+      if (!isInverse && rect.right > window.innerWidth) {
+        itemsOutsideViewport += 1
+      } else if (isInverse && rect.right - 5 < 0) {
+        itemsOutsideViewport += 1
       }
+    })
+
+    // combined width of items outside
+    const width = sizes.current.narrow
+    const offset = elements.length - 1
+
+    // Set up values to move
+    const difference = () => {
+      if (!isInverse) {
+        return id - 2
+      } else {
+        // return offset - id > itemsOutsideViewport ? itemsOutsideViewport : offset - id
+        return offset - id
+      }
+    }
+
+    // 9 - 4 = 5
+    // 9 - 5 = 4
+
+    console.log(`Items not in view: ${itemsOutsideViewport}`)
+    console.log(`diff: ${difference()}`)
+
+    const position = gsap.getProperty(container.current, 'left', '%')
+    const value = +position.toString().slice(1, -1)
+
+    // let pos
+
+    if (itemsOutsideViewport === 0) {
+      console.log('do nothing')
+    } else if (itemsOutsideViewport < difference() && !isInverse) {
+      gsap.to(container.current, {
+        left: `-${value + itemsOutsideViewport * width}%`
+      })
+    } else if (!isInverse) {
+      gsap.to(container.current, {
+        left: `-${difference() * width}%`
+      })
     } else {
-      // BACKWARDS
-      const last = idPos1.current + (itemsInViewport.current - 1) // 5 + 5 = 10 (id: 9)
-      const pen = last - 1 // 8
-      const itemsOutside = last - (itemsInViewport.current - 1) // 9 - 4 = 3
-      const diff =
-        pen - +target.dataset.id < itemsOutside
-          ? pen - +target.dataset.id
-          : itemsOutside
-
+      const val =
+        itemsOutsideViewport < difference()
+          ? itemsOutsideViewport
+          : difference()
+      console.log(`val: ${val}`)
       gsap.to(container.current, {
-        left: `-${(itemsOutside - diff) * sizes.current.narrow}vw`
+        // left: `${-value - -difference() * width}%`
+        left: `${-width * itemsOutsideViewport - -val * width}%`
       })
-
-      if (diff === itemsOutside) {
-        idPos1.current = 0
-      } else {
-        idPos1.current = idPos1.current - diff
-      }
     }
   }
 
@@ -198,28 +185,24 @@ const MobileImageMenu = () => {
           className="image-item prev"
           ref={prevTarget}
           data-size="wide"
-          data-id="0"
+          data-id="1"
           onClick={e => {
             handleClick(e.currentTarget)
           }}
         >
-          <div className="placeholder-image">
-            <p className="num">0</p>
-          </div>
+          <div className="placeholder-image"></div>
         </div>
         {arr.slice(1).map((ele, idx) => (
           <div
             className="image-item"
             data-size="narrow"
-            data-id={idx + 1}
+            data-id={idx + 2}
             onClick={e => {
               handleClick(e.currentTarget)
             }}
             key={idx}
           >
-            <div className="placeholder-image">
-              <p className="num">{idx + 1}</p>
-            </div>
+            <div className="placeholder-image"></div>
           </div>
         ))}
       </div>
