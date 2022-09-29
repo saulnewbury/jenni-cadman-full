@@ -4,7 +4,7 @@ import styles from './layout.module.scss'
 const Layout = ({ children }) => {
   return (
     <div>
-      <div className={styles.topbar + ' indent'}>
+      <div className={styles.topbar}>
         <span>Jenni Cadman</span>
         <span>Work</span>
       </div>

@@ -34,37 +34,37 @@ const MobileImageMenu = () => {
   function mediaQueries() {
     let mm = gsap.matchMedia()
 
-    mm.add('(min-width: 1200px)', () => {
+    mm.add('(min-width: 1050px)', () => {
       // 14 items
       const numOfItems = 14
       const width = 100 / 14
       setUp(numOfItems, width)
     })
-    mm.add('(min-width: 1100px) and (max-width: 1199px)', () => {
+    mm.add('(min-width: 870px) and (max-width: 1049px)', () => {
       // 14 items
       const numOfItems = 13
       const width = 100 / 13
       setUp(numOfItems, width)
     })
-    mm.add('(min-width: 1000px) and (max-width: 1099px)', () => {
+    mm.add('(min-width: 690px) and (max-width: 869px)', () => {
       // 12 items
       const numOfItems = 12
       const width = 100 / 12
       setUp(numOfItems, width)
     })
-    mm.add('(min-width: 900px) and (max-width: 999px)', () => {
+    mm.add('(min-width: 510px) and (max-width: 689px)', () => {
       // 10 items
       const numOfItems = 10
       const width = 100 / 10
       setUp(numOfItems, width)
     })
-    mm.add('(min-width: 500px) and (max-width: 699px)', () => {
+    mm.add('(min-width: 330px) and (max-width: 509px)', () => {
       // 8 items
       const numOfItems = 8
       const width = 100 / 8
       setUp(numOfItems, width)
     })
-    mm.add('(min-width: 200px) and (max-width: 499px)', () => {
+    mm.add('(min-width: 200px) and (max-width: 329px)', () => {
       // 6 items
       const numOfItems = 6
       const width = 100 / 6

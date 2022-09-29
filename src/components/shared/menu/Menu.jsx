@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import './menu.scss'
+import gsapCore from 'gsap/gsap-core'
 
 const Menu = ({ imagesData }) => {
   const { subFolder, images } = imagesData
@@ -119,22 +120,57 @@ const Menu = ({ imagesData }) => {
   function mediaQueries() {
     let mm = gsap.matchMedia()
 
-    mm.add('(max-width: 950px)', () => {
-      const newSizes = { wide: '190px', narrow: '41.7969px' }
+    mm.add('(max-width: 1040px)', () => {
+      const newSizes = {
+        wide: '25.962vw',
+        narrow: '5.673vw',
+        height: '41.538vw',
+        titleWidth: '59.231vw',
+        fontSize: '5.962vw'
+      }
+      changeSizes(newSizes)
+    })
+
+    mm.add('(min-width: 1041px) and (max-width: 1340px)', () => {
+      const newSizes = {
+        wide: '270px',
+        narrow: '59.3984px',
+        height: '432.406px',
+        titleWidth: '616.4px',
+        fontSize: '62.002px'
+      }
       changeSizes(newSizes)
 
       return () => {
-        const newSizes = { wide: '20vw', narrow: '4.4vw' }
+        const newSizes = {
+          wide: '20vw',
+          narrow: '4.4vw',
+          height: '32vw',
+          titleWidth: '46vw',
+          fontSize: '4.627vw'
+        }
         changeSizes(newSizes)
       }
     })
 
     mm.add('(min-width: 2148px)', () => {
-      const newSizes = { wide: '429.594px', narrow: '94.5078px' }
+      const newSizes = {
+        wide: '429.594px',
+        narrow: '94.5078px',
+        height: '687.039px',
+        titleWidth: '902px',
+        fontSize: '98.808px'
+      }
       changeSizes(newSizes)
 
       return () => {
-        const newSizes = { wide: '20vw', narrow: '4.4vw' }
+        const newSizes = {
+          wide: '20vw',
+          narrow: '4.4vw',
+          height: '32vw',
+          titleWidth: '46vw',
+          fontSize: '4.626vw'
+        }
         changeSizes(newSizes)
       }
     })
@@ -146,6 +182,11 @@ const Menu = ({ imagesData }) => {
   }
 
   function changeSizes(newSizes) {
+    gsap.set('.menu-item-title', {
+      width: newSizes.titleWidth,
+      fontSize: newSizes.fontSize
+    })
+    gsap.set('.menu', { height: newSizes.height })
     const elements = menuContainer.current.querySelectorAll('.image-wrapper')
     elements.forEach(ele => {
       if (ele.dataset.size === 'narrow') {

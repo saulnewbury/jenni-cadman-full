@@ -9,19 +9,19 @@ import AnimatePage from '../components/shared/AnimatePage'
 // import { BsArrowDown } from 'react-icons/bs'
 
 const Work = () => {
-  const [isHoverDevice, setIsHoverDevice] = useState(false)
+  const [isHoverDevice, setIsHoverDevice] = useState(true)
 
   useEffect(() => {
     let mm = gsap.matchMedia()
 
-    mm.add(`(hover: hover)`, () => {
+    mm.add('(hover: hover)', () => {
       setIsHoverDevice(true)
     })
 
     return () => {
       mm.kill()
     }
-  })
+  }, [])
 
   return (
     <AnimatePage>
@@ -55,9 +55,8 @@ const Work = () => {
             {isHoverDevice ? (
               <Menu imagesData={imagesData} />
             ) : (
-              <Menu imagesData={imagesData} />
+              <MobileImageMenu imagesData={imagesData} />
             )}
-
             {/* </div> */}
           </div>
         )

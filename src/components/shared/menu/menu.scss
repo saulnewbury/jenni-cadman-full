@@ -1,6 +1,7 @@
 // Menu
 .menu {
   height: 32vw;
+  margin-left: 5vw;
   margin-bottom: 150px;
   position: relative;
 
@@ -10,6 +11,8 @@
 
   .menu-item-title-container {
     width: 50vw;
+    width: 80%;
+    width: max-content;
     position: absolute;
     bottom: 12%;
     left: 1.6vw;
@@ -19,7 +22,7 @@
     pointer-events: none;
 
     p {
-      width: 42vw;
+      width: 46vw;
       text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
       margin: 0;
       line-height: 1;
@@ -54,20 +57,27 @@
   }
 }
 
+@media screen and (max-width: 1340px) {
+  .menu {
+    height: 432px;
+    width: max-content;
+  }
+}
+
 @media screen and (max-width: 950px) {
   .menu {
-    height: 304px;
-    width: max-content;
-
     .menu-item-title-container {
-      width: 475px;
-      bottom: 10%;
-
       p {
         font-size: 43.7px;
         width: 399px;
       }
     }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .menu {
+    margin-left: 0;
   }
 }
 
