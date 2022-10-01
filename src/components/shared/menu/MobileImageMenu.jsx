@@ -5,6 +5,7 @@ import gsap from 'gsap'
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 const MobileImageMenu = () => {
+  console.log('run')
   const container = useRef()
   const rendered = useRef(false)
   const sizes = useRef()
@@ -18,7 +19,7 @@ const MobileImageMenu = () => {
       initialState(arr)
     }
     rendered.current = true
-    mediaQueries(arr)
+    return mediaQueries(arr)
   }, [])
 
   function initialState(arr) {
@@ -33,47 +34,28 @@ const MobileImageMenu = () => {
 
   function mediaQueries() {
     let mm = gsap.matchMedia()
+    let min, max
+    for (let index = 6; index <= 50; index++) {
+      if (index <= 17) {
+        min = Math.floor((index / 3) * 200)
+        max = Math.floor(((index + 1) / 3) * 200 - 1)
+      } else {
+        min = Math.floor((index / 2.1) * 200)
+        max = Math.floor(((index + 1) / 2.1) * 200 - 1)
+      }
+      console.log(min, max)
+      mm.add(`(min-width: ${min}px)`, () => {
+        // console.log(index)
+        const numOfItems = index
+        const width = 100 / index
+        setUp(numOfItems, width)
+      })
+    }
 
-    mm.add('(min-width: 1050px)', () => {
-      // 14 items
-      const numOfItems = 14
-      const width = 100 / 14
-      setUp(numOfItems, width)
-    })
-    mm.add('(min-width: 870px) and (max-width: 1049px)', () => {
-      // 14 items
-      const numOfItems = 13
-      const width = 100 / 13
-      setUp(numOfItems, width)
-    })
-    mm.add('(min-width: 690px) and (max-width: 869px)', () => {
-      // 12 items
-      const numOfItems = 12
-      const width = 100 / 12
-      setUp(numOfItems, width)
-    })
-    mm.add('(min-width: 510px) and (max-width: 689px)', () => {
-      // 10 items
-      const numOfItems = 10
-      const width = 100 / 10
-      setUp(numOfItems, width)
-    })
-    mm.add('(min-width: 330px) and (max-width: 509px)', () => {
-      // 8 items
-      const numOfItems = 8
-      const width = 100 / 8
-      setUp(numOfItems, width)
-    })
-    mm.add('(min-width: 200px) and (max-width: 329px)', () => {
+    mm.add(`(max-width: 399px)`, () => {
       // 6 items
       const numOfItems = 6
       const width = 100 / 6
-      setUp(numOfItems, width)
-    })
-    mm.add('(max-width: 199px)', () => {
-      // 4 items
-      const numOfItems = 4
-      const width = 100 / 4
       setUp(numOfItems, width)
     })
 
@@ -109,7 +91,7 @@ const MobileImageMenu = () => {
       paddingRight: `${width / 80}vw`
     })
 
-    // set items' widths; wide and narrow
+    // set items' widths (wide and narrow)
     sizes.current = { narrow: `${width}`, wide: `${width * 4}` }
     const elements = container.current.querySelectorAll('.image-item')
     elements.forEach((ele, idx) => {

@@ -20,10 +20,6 @@ const ArtPiece = () => {
   const { subFolder, title: clnTitle, imagesData } = cln[0]
   const { title, imageDetail, imageMain, altText, desc } = obj[0]
 
-  console.log(`./images/${subFolder}/${imageMain}.jpg`)
-
-  // if content is larger than
-
   return (
     <AnimatePage>
       <main className="art-piece">
@@ -53,14 +49,14 @@ const ArtPiece = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="indent"> */}
-        <Link className="back-to-work" to="/work">
-          <AiOutlineArrowLeft className="icon" />
-          <p>Back to WORK</p>
-        </Link>
-        <Menu imagesData={imagesData} />
-        {/* </div> */}
+        <div className="art-piece-menu-container">
+          <Link className="back-to-work" to="/work">
+            <AiOutlineArrowLeft className="icon" />
+            <p>Back to WORK</p>
+          </Link>
+          {/* <h2>Conversations With My Mother</h2> */}
+          <Menu imagesData={imagesData} />
+        </div>
       </main>
     </AnimatePage>
   )

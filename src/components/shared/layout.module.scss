@@ -6,8 +6,13 @@
   margin-top: 2.6vw;
   margin-bottom: 2.9vw;
   font-size: 1.25rem;
+  font-weight: 100;
   display: flex;
   justify-content: space-between;
+}
+
+.topbar * {
+  font-weight: 400;
 }
 
 @media screen and (max-width: 1799px) {
@@ -18,11 +23,31 @@
   }
 }
 
+@media screen and (max-width: 1500px) {
+  .topbar {
+    margin-bottom: 43.5px;
+  }
+}
+
 @media screen and (max-width: 975px) {
   .topbar {
     margin-top: 25.35px;
-    margin-bottom: 28.275px;
+    // margin-bottom: 28.275px;
     // font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .topbar {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .topbar {
+    font-size: 18px;
+    margin-left: 3.5vw;
+    margin-right: 3.5vw;
   }
 }
 

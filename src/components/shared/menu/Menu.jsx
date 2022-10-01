@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import './menu.scss'
-import gsapCore from 'gsap/gsap-core'
 
 const Menu = ({ imagesData }) => {
   const { subFolder, images } = imagesData

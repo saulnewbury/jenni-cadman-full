@@ -9,7 +9,7 @@ import AnimatePage from '../components/shared/AnimatePage'
 // import { BsArrowDown } from 'react-icons/bs'
 
 const Work = () => {
-  const [isHoverDevice, setIsHoverDevice] = useState(true)
+  const [isHoverDevice, setIsHoverDevice] = useState(false)
 
   useEffect(() => {
     let mm = gsap.matchMedia()
@@ -29,35 +29,37 @@ const Work = () => {
         const { subFolder, date, desc, featuredImage, id, imagesData, title } =
           cln
         return (
-          <div key={id} className="collection">
-            <div className="header">
-              <img
-                width="2000"
-                height="3008"
-                src={`images/${subFolder}/${featuredImage.name}.jpg`}
-                alt={featuredImage.altText}
-              />
-              <div className="title-info">
-                <div className="wrapper">
-                  <h4 className="date">{date}</h4>
-                  <h2 className="title">{title}</h2>
-                  {/* <div className="arrow-down-container">
+          <div key={id}>
+            <div className="collection">
+              <div className="header">
+                {/* <div className="image-container"> */}
+                <img
+                  width="2000"
+                  height="3008"
+                  src={`images/${subFolder}/${featuredImage.name}.jpg`}
+                  alt={featuredImage.altText}
+                />
+                {/* </div> */}
+                <div className="title-info">
+                  <div className="wrapper">
+                    <h4 className="date">{date}</h4>
+                    <h2 className="title">{title}</h2>
+                    {/* <div className="arrow-down-container">
                     <BsArrowDown className="icon" />
                   </div> */}
+                  </div>
                 </div>
               </div>
+              <div className="description">
+                <p>{desc}</p>
+              </div>
             </div>
-            <div className="description">
-              <p>{desc}</p>
-            </div>
-            {/* <div className="indent"> */}
             {/* Menu */}
             {isHoverDevice ? (
               <Menu imagesData={imagesData} />
             ) : (
               <MobileImageMenu imagesData={imagesData} />
             )}
-            {/* </div> */}
           </div>
         )
       })}

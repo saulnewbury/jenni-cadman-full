@@ -54,9 +54,31 @@
 
 // MEDIA QUERIES
 
+@media screen and (max-width: 1440px) {
+  .collection {
+    .header {
+      img {
+        width: 479.516px;
+      }
+      .title-info {
+        .wrapper {
+          margin-top: 342.922px;
+          .date {
+            font-size: 36px;
+          }
+          .title {
+            font-size: 64.8px;
+            width: 571.539px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1165px) {
   .collection {
-    margin-left: 0;
+    // margin-left: 0;
     .description {
       margin-right: 5vw;
     }
@@ -73,36 +95,57 @@
   }
 }
 
-@media screen and (max-width: 1099px) {
-  // .collection {
-  //   margin-left: 5vw;
-  //   margin-right: 5vw;
-  // }
-}
-
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1130px) {
   .collection {
     .header {
       img {
-        width: 299.125px;
+        width: 42.435vw;
       }
       .title-info {
-        width: 481.945px;
-
         .wrapper {
-          margin-top: 213.914px;
+          margin-top: 30.347vw;
           .date {
-            font-size: 21.275px;
+            font-size: 3.186vw;
           }
           .title {
-            width: 337.352px;
-            font-size: 38.25px;
+            font-size: 5.735vw;
+            width: 50.579vw;
           }
         }
       }
     }
   }
 }
+
+// @media screen and (max-width: 1030px) {
+//   .collection {
+//     margin-right: 0;
+//     .header {
+//       flex-direction: column;
+
+//       img {
+//         width: 333.5px;
+//         width: 90vw;
+//       }
+//       .title-info {
+//         .wrapper {
+//           margin-top: 40px;
+
+//           .date {
+//             font-size: 30.682px;
+//           }
+//           .title {
+//             width: 471.256px;
+//             font-size: 51.646px;
+//           }
+//         }
+//       }
+//     }
+//     .description {
+//       margin-bottom: 40px;
+//     }
+//   }
+// }
 
 @media screen and (max-width: 700px) {
   .collection {
@@ -115,6 +158,7 @@
 
 @media screen and (max-width: 666px) {
   .collection {
+    margin-right: 0;
     .header {
       flex-direction: column;
 
@@ -122,8 +166,6 @@
         width: 333.5px;
       }
       .title-info {
-        // width: 52.501vw;
-
         .wrapper {
           margin-top: 40px;
 
