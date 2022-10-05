@@ -10,13 +10,14 @@ body {
   margin: 0;
   padding: 0;
   --placeholder: hsl(0, 0%, 67%);
-  --primary-color: hsl(0, 0%, 100%);
-  --secondary-color: hsl(0, 0%, 80%);
+  --primary-color: hsl(0, 0%, 24%);
+  --secondary-color: hsl(0, 0%, 21%);
   --dark-bg: hsl(0, 0%, 30%);
-  --light-bg: hsl(0, 0%, 81%);
+  /* --light-bg: hsl(0, 0%, 81%); */
+  --light-bg: hsl(0, 0%, 100%);
 
   color: var(--primary-color);
-  background-color: var(--dark-bg);
+  background-color: var(--light-bg);
 }
 
 img {

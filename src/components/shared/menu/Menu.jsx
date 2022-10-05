@@ -12,6 +12,10 @@ const Menu = ({ imagesData }) => {
   const menuContainer = useRef()
   const sizes = useRef({ wide: '20vw', narrow: '4.4vw' })
 
+  // useEffect(() => {
+  //   changeSizes(sizes.current)
+  // })
+
   useEffect(mediaQueries, [])
 
   // MOUSEENTER
@@ -21,7 +25,7 @@ const Menu = ({ imagesData }) => {
       const elements = menuContainer.current.querySelectorAll(`.${clnSelector}`)
       elements.forEach(ele => {
         if (ele.dataset.size === 'narrow') {
-          gsap.to(ele, { opacity: 0.4 })
+          gsap.to(ele, { opacity: 0.7 })
         }
       })
     }
@@ -37,7 +41,7 @@ const Menu = ({ imagesData }) => {
       changeText(target)
       if (prevTarget.current === target) return
       gsap.to(target, { width: sizes.current.wide, opacity: 1 })
-      gsap.to(prevTarget.current, { width: sizes.current.narrow, opacity: 0.4 })
+      gsap.to(prevTarget.current, { width: sizes.current.narrow, opacity: 0.7 })
       target.dataset.size = 'wide'
       prevTarget.current.dataset.size = 'narrow'
       prevTarget.current = target
@@ -49,7 +53,7 @@ const Menu = ({ imagesData }) => {
     // Exit function if the next element the mouse enters is the one it just left.
     // Dim previous target element and kill timer.
     if (prevTarget.current === target) return
-    gsap.to(target, { opacity: 0.4 })
+    gsap.to(target, { opacity: 0.7 })
     clearTimeout(timer.current)
   }
 
@@ -119,7 +123,17 @@ const Menu = ({ imagesData }) => {
   function mediaQueries() {
     let mm = gsap.matchMedia()
 
-    mm.add('(max-width: 1040px)', () => {
+    mm.add('(max-width: 899px', () => {
+      const newSizes = {
+        wide: '233.656px',
+        narrow: '51.0547px',
+        height: '373.836px',
+        titleWidth: '533.664px',
+        fontSize: '53.7176px'
+      }
+      changeSizes(newSizes)
+    })
+    mm.add('(min-width: 900px) and (max-width: 1040px)', () => {
       const newSizes = {
         wide: '25.962vw',
         narrow: '5.673vw',
@@ -129,7 +143,6 @@ const Menu = ({ imagesData }) => {
       }
       changeSizes(newSizes)
     })
-
     mm.add('(min-width: 1041px) and (max-width: 1340px)', () => {
       const newSizes = {
         wide: '270px',

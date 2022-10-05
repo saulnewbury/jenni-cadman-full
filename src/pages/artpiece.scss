@@ -71,7 +71,7 @@
       margin-bottom: 2vw;
       margin-left: 10vw;
       text-decoration: none;
-      color: white;
+      color: var(--primary-color);
       display: flex;
       align-items: center;
 
@@ -114,6 +114,16 @@
             max-height: 75vw;
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1145px) {
+  .art-piece {
+    .art-piece-menu-container {
+      .back-to-work {
+        margin-left: 5vw;
       }
     }
   }

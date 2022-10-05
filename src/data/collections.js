@@ -4,7 +4,8 @@ export const collections = [
     subFolder: 'veronica',
     date: 2021,
     featuredImage: {
-      name: 'veronica-3-detail',
+      name: 'collection-conversations-with-my-mother',
+      // name: 'veronica-3-detail',
       altText: 'portrait of veronica 3'
     },
     title: 'Conversations With My Mother',
@@ -20,9 +21,9 @@ export const collections = [
           altText: 'portrait of veronica 1',
           desc: {
             year: 2021,
-            medium: 'Rayon and cotton threads on linen',
+            medium: 'Rayon and cotton threads on linen.',
             size: '41 x 31 x 2cms',
-            mount: 'Stretched over a wooden frame',
+            mount: 'Stretched over a wooden frame.',
             price: 'NFS'
           }
         },
@@ -34,9 +35,9 @@ export const collections = [
           altText: 'portrait of veronica 2',
           desc: {
             year: 2021,
-            medium: 'Rayon and cotton threads on linen',
+            medium: 'Rayon and cotton threads on linen.',
             size: '41 x 31 x 2cms',
-            mount: 'Stretched over a wooden frame',
+            mount: 'Stretched over a wooden frame.',
             price: 'NFS'
           }
         },
@@ -48,7 +49,7 @@ export const collections = [
           altText: 'portrait of veronica 3',
           desc: {
             year: 2021,
-            medium: 'Rayon and cotton threads on calico',
+            medium: 'Rayon and cotton threads on calico.',
             size: '41 x 30cms',
             price: 'NFS'
           }
@@ -61,7 +62,7 @@ export const collections = [
           altText: 'portrait of veronica 4',
           desc: {
             year: 2021,
-            medium: 'Rayon and cotton threads on calico',
+            medium: 'Rayon and cotton threads on calico.',
             size: '42 x 30cms',
             price: 'NFS'
           }
@@ -74,9 +75,9 @@ export const collections = [
           altText: 'portrait of veronica 5',
           desc: {
             year: 2021,
-            medium: 'Rayon and cotton threads on linen',
+            medium: 'Rayon and cotton threads on linen.',
             size: '32 x 37 x 2.2cms',
-            mount: 'Mounted in tray frame',
+            mount: 'Mounted in tray frame.',
             price: 'NFS'
           }
         },
@@ -88,9 +89,9 @@ export const collections = [
           altText: 'portrait of veronica 6',
           desc: {
             year: 2021,
-            medium: 'Rayon and cotton threads on linen',
+            medium: 'Rayon and cotton threads on linen.',
             size: '32 x 37 x 2.2cms',
-            mount: 'Mounted in tray frame',
+            mount: 'Mounted in tray frame.',
             price: 'NFS'
           }
         },
@@ -102,9 +103,9 @@ export const collections = [
           altText: 'portrait of veronica 7',
           desc: {
             year: 2021,
-            medium: 'Rayon and cotton threads on linen',
+            medium: 'Rayon and cotton threads on linen.',
             size: '32 x 37 x 2.2cms',
-            mount: 'Mounted in tray frame',
+            mount: 'Mounted in tray frame.',
             price: 'NFS'
           }
         },
@@ -116,9 +117,9 @@ export const collections = [
           altText: 'portrait of mother I',
           desc: {
             year: 2021,
-            medium: 'Monotype printed on Fabriano 250 gsm acid free paper',
+            medium: 'Monotype printed on Fabriano 250 gsm acid free paper.',
             size: '29.7 x 42cms',
-            mount: 'Mounted in tray frame',
+            mount: 'Mounted in tray frame.',
             price: 'NFS'
           }
         },
@@ -130,9 +131,9 @@ export const collections = [
           altText: 'portrait of mother II',
           desc: {
             year: 2021,
-            medium: 'Monotype printed on Fabriano 250 gsm acid free paper',
+            medium: 'Monotype printed on Fabriano 250 gsm acid free paper.',
             size: '29.7 x 42cms',
-            mount: 'Mounted in tray frame',
+            mount: 'Mounted in tray frame.',
             price: 'NFS'
           }
         }
@@ -162,7 +163,7 @@ export const collections = [
             year: 2012,
             medium: 'Rayon threads free-machined on calico.',
             size: '81 x 65cms',
-            mount: 'Stretched and framed, unglazed',
+            mount: 'Stretched and framed, unglazed.',
             price: '£650 SOLD'
           }
         },
@@ -176,7 +177,7 @@ export const collections = [
             year: 2010,
             medium: 'Rayon and cotton threads free-machined onto calico.',
             size: '20.5 X 15.5cms',
-            mount: 'Framed under glass',
+            mount: 'Framed under glass.',
             price: 'ARTIST COLLECTION'
           }
         },
@@ -190,7 +191,7 @@ export const collections = [
             year: 2010,
             medium: 'Rayon and cotton threads free-machined onto calico.',
             size: '20.5 X 15.5cms',
-            mount: 'Framed under glass',
+            mount: 'Framed under glass.',
             price: '£225'
           }
         },
@@ -204,7 +205,7 @@ export const collections = [
             year: 2010,
             medium: 'Rayon and cotton threads free-machined onto calico.',
             size: '20.5 X 15.5cms',
-            mount: 'Framed under glass',
+            mount: 'Framed under glass.',
             price: '£225'
           }
         },
@@ -218,7 +219,7 @@ export const collections = [
             year: 2010,
             medium: 'Rayon and cotton threads free-machined onto calico.',
             size: '20.5 X 15.5cms',
-            mount: 'Framed under glass',
+            mount: 'Framed under glass.',
             price: '£225'
           }
         },
@@ -233,7 +234,7 @@ export const collections = [
             medium:
               'Rayon and cotton threads free-machined onto mixed fabrics.',
             size: '43 X 30cms',
-            mount: 'Framed under glass',
+            mount: 'Framed under glass.',
             price: '£600 SOLD'
           }
         }

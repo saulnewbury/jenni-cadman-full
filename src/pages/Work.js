@@ -32,14 +32,14 @@ const Work = () => {
           <div key={id}>
             <div className="collection">
               <div className="header">
-                {/* <div className="image-container"> */}
-                <img
-                  width="2000"
-                  height="3008"
-                  src={`images/${subFolder}/${featuredImage.name}.jpg`}
-                  alt={featuredImage.altText}
-                />
-                {/* </div> */}
+                <div className="image-container">
+                  <img
+                    width="2000"
+                    height="3008"
+                    src={`images/${subFolder}/${featuredImage.name}.jpg`}
+                    alt={featuredImage.altText}
+                  />
+                </div>
                 <div className="title-info">
                   <div className="wrapper">
                     <h4 className="date">{date}</h4>
