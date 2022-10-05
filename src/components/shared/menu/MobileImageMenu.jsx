@@ -1,56 +1,34 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './mobileImageMenu.scss'
 import gsap from 'gsap'
 
 const MobileImageMenu = ({ imagesData }) => {
   const { subFolder, images } = imagesData
-  console.log('run')
+
+  const [numOfItems, setNumOfItems] = useState(6)
+  const [current, setCurrent] = useState(0)
+  const [leftMost, setLeftMost] = useState(0)
+
   const outerContainer = useRef()
   const container = useRef()
-  const rendered = useRef(false)
-  const sizes = useRef()
-  const idPos1 = useRef(0)
-  const itemsInViewport = useRef()
-  const prevTarget = useRef()
 
-  useEffect(() => {
-    const itemsArray = container.current.querySelectorAll('.image-item')
-    if (!rendered.current) {
-      initialState(itemsArray)
-    }
-    rendered.current = true
-    return mediaQueries(itemsArray)
-  }, [])
+  useEffect(mediaQueries, [])
 
-  function initialState(itemsArray) {
-    const width = 100 / 14
-    setUp(width)
-    // container position
-    gsap.set(container.current, { left: `${width}vw` })
-    // width of selected item
-    gsap.set(itemsArray[0], { width: `${width * 4}%` })
-    itemsArray[0].dataset.size = 'wide'
-  }
+  const calcValues = setUp(numOfItems)
 
   function mediaQueries() {
     let mm = gsap.matchMedia()
-    for (let index = 6; index <= 14; index++) {
-      // let min = Math.floor((index / 3.5) * 200)
+    for (let index = 7; index <= 14; index++) {
       let min = (index / 3.5) * 200
       console.log(min)
 
       mm.add(`(min-width: ${min}px)`, () => {
-        const numOfItems = index
-        const width = 100 / index
-        setUp(numOfItems, width)
+        setNumOfItems(index)
       })
     }
-    mm.add(`(max-width: 341px)`, () => {
-      // 6 items
-      const numOfItems = 6
-      const width = 100 / 6
-      setUp(numOfItems, width)
+    mm.add(`(max-width: 399px)`, () => {
+      setNumOfItems(6) // 6 items
     })
 
     return () => {
@@ -58,83 +36,54 @@ const MobileImageMenu = ({ imagesData }) => {
     }
   }
 
-  function setUp(numOfItems, width) {
-    // reset: map prevTarget to first image item in the array
-    prevTarget.current = container.current.querySelectorAll('.image-item')[0]
+  function setUp(numOfItems) {
+    const result = {}
 
-    // reset: map position one to first id
-    idPos1.current = 0
+    const width = 100 / numOfItems
 
-    // store the number of items in the viewport
-    itemsInViewport.current = numOfItems - 3
+    // reset container position to 0, width to 14 one-hundredths, and height
+    result.container = {
+      width: `${width * 14}%`,
+      height: `${width * 6.5}vw`
+    }
+    result.padding = `${width / 50}vw`
 
-    // reset container position
-    gsap.set(container.current, { left: 0 })
+    result.left = `${-leftMost * width}vw`
 
-    // container width
-    gsap.set(container.current, { width: `${width * 14}%` })
-
-    // container height
-    const value = `${width * 6.5}vw`
-    gsap.set('.mobile-image-menu', { height: value })
-    gsap.set('.outer-container', { height: value })
-
-    // item padding
-    gsap.set('.image-item', {
-      paddingLeft: `${width / 50}vw`,
-      paddingRight: `${width / 50}vw`
-    })
-
-    // set items' widths (wide and narrow)
-    sizes.current = { narrow: `${width}`, wide: `${width * 4}` }
-    const elements = container.current.querySelectorAll('.image-item')
-    elements.forEach((ele, idx) => {
-      if (idx === 0) {
-        gsap.set(ele, { width: `${sizes.current.wide}vw` })
-        ele.dataset.size = 'wide'
-      } else {
-        gsap.set(ele, { width: `${sizes.current.narrow}vw` })
-        ele.dataset.size = 'narrow'
-      }
-    })
+    // set each item's widths (wide and narrow)
+    result.narrow = width
+    result.wide = width * 4
+    return result
   }
 
   function handleClick(e) {
     e.preventDefault()
     const target = e.currentTarget
-    changeText(target)
+    const prevTarget = container.current.children[current]
+
     // exit function if clicking on item already selected
-    if (prevTarget.current === target) return
+    if (prevTarget === target) return
 
     // expand target element (and set to full opacity)
-    gsap.to(target, { width: `${sizes.current.wide}vw`, opacity: 1 })
+    gsap.to(target, { width: `${calcValues.wide}vw`, opacity: 1 })
 
     // shrink previously selected element (and set opacity)
-    gsap.to(prevTarget.current, {
-      width: `${sizes.current.narrow}vw`
+    gsap.to(prevTarget, {
+      width: `${calcValues.narrow}vw`,
+      onComplete: () => {
+        setCurrent(target.dataset.id)
+      }
     })
 
     const elements = container.current.querySelectorAll('.image-item')
     elements.forEach(ele => {
-      ele !== target && gsap.to(ele, { opacity: 0.7 })
+      ele !== target && gsap.to(ele, { opacity: 0.7 }) // REMEMBER THIS
     })
 
-    // reset data-size attribute
-    target.dataset.size = 'wide'
-    prevTarget.current.dataset.size = 'narrow'
-
     // Create flag to determine regular or inverse calculation.
-    const isInverse =
-      +prevTarget.current.dataset.id < +target.dataset.id ? false : true
+    const isInverse = current > +target.dataset.id
 
     containerPosition(target, isInverse)
-    prevTarget.current = target
-  }
-
-  function changeText(target) {
-    const p = outerContainer.current.firstChild.firstChild
-    const titleText = target.getAttribute('data-title')
-    p.textContent = titleText
   }
 
   // POSITIONING
@@ -142,12 +91,11 @@ const MobileImageMenu = ({ imagesData }) => {
     // FORWARD
     if (!isInverse) {
       // get position 2 (offset)
-      const pos2 = idPos1.current + 1
+      const pos2 = leftMost + 1
 
       // Work out items not in view
-      const idLastInView = idPos1.current + itemsInViewport.current - 1
-      const elements = container.current.querySelectorAll('.image-item')
-      const itemsTotal = elements.length - 1 // -1 to adjust for starting at zero
+      const idLastInView = leftMost + numOfItems - 1
+      const itemsTotal = images.length - 1 // -1 to adjust for starting at zero
       const itemsOutside = itemsTotal - idLastInView
 
       // get difference to travel
@@ -158,68 +106,57 @@ const MobileImageMenu = ({ imagesData }) => {
 
       // add difference to existing position
       gsap.to(container.current, {
-        left: `-${(diff + idPos1.current) * sizes.current.narrow}vw`
+        left: `-${(diff + leftMost) * calcValues.narrow}vw`,
+        onComplete: () => setLeftMost(leftMost + diff)
       })
-
-      if (diff === itemsOutside) {
-        // when there are no more items outside length minus itemsInView will give the item at first position
-        idPos1.current = elements.length - itemsInViewport.current
-      } else {
-        // update isPos1.current to index of item now at position 1
-        idPos1.current = +target.dataset.id - 1
-      }
     } else {
       // INVERSE
-      const last = idPos1.current + (itemsInViewport.current - 1) // 5 + 5 = 10 (id: 9)
+      const last = leftMost + (numOfItems - 1) // 5 + 5 = 10 (id: 9)
       const pen = last - 1 // 8
-      const itemsOutside = last - (itemsInViewport.current - 1) // 9 - 4 = 3
+      const itemsOutside = last - (numOfItems - 1) // 9 - 4 = 3
       const diff =
         pen - +target.dataset.id < itemsOutside
           ? pen - +target.dataset.id
           : itemsOutside
 
       gsap.to(container.current, {
-        left: `-${(itemsOutside - diff) * sizes.current.narrow}vw`
+        left: `-${(itemsOutside - diff) * calcValues.narrow}vw`,
+        onComplete: () => setLeftMost(leftMost - diff)
       })
-
-      if (diff === itemsOutside) {
-        idPos1.current = 0
-      } else {
-        idPos1.current = idPos1.current - diff
-      }
     }
   }
-
   return (
-    <div ref={outerContainer} className="outer-container">
+    <div
+      ref={outerContainer}
+      className="outer-container"
+      style={calcValues.container}
+    >
       <div className="mobile-menu-item-title-container">
-        <p className="mobile-menu-item-title">{images[0].title}</p>
+        <p className="mobile-menu-item-title">{images[current].title}</p>
       </div>
-      <div ref={container} className="mobile-image-menu">
-        <Link
-          to={`/work/${images[0].title.replace(/\s+/g, '-').toLowerCase()}`}
-          className="image-item prev"
-          ref={prevTarget}
-          data-title={images[0].title}
-          data-size="wide"
-          data-id="0"
-          onClick={e => {
-            handleClick(e)
-          }}
-        >
-          <img
-            className="slice"
-            src={`images/${subFolder}/${images[0].imageDetail}.jpg`}
-            alt={images[0].alt}
-          />
-        </Link>
-        {images.slice(1).map((image, idx) => (
+      <div
+        ref={container}
+        className="mobile-image-menu"
+        style={{
+          left: calcValues.left,
+          height: calcValues.container.height
+        }}
+      >
+        {images.map((image, idx) => (
           <Link
             to={`/work/${image.title.replace(/\s+/g, '-').toLowerCase()}`}
             className="image-item"
+            style={{
+              paddingLeft: calcValues.padding,
+              paddingRight: calcValues.padding,
+              height: calcValues.container.height,
+              width: `${
+                idx === current ? calcValues.wide : calcValues.narrow
+              }vw`
+            }}
             data-title={image.title}
-            data-size="narrow"
-            data-id={idx + 1}
+            data-size={idx === current ? 'wide' : 'narrow'}
+            data-id={idx}
             onClick={e => {
               handleClick(e)
             }}
