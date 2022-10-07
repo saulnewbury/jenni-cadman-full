@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './mobileImageMenu.scss'
 import gsap from 'gsap'
+import { BsArrowUpRight } from 'react-icons/bs'
 
 const MobileImageMenu = ({ imagesData }) => {
   const { subFolder, images } = imagesData
@@ -95,18 +96,20 @@ const MobileImageMenu = ({ imagesData }) => {
     const result = {}
 
     const width = 100 / numOfItems
+
     if (isFixed) {
+      const pixWidth = (width * 914.2857142857142) / 100
       result.container = {
         width: `${width * 14}%`,
-        height: `${(width * 6.5 * 914.2857142857142) / 100}px`
+        height: `${pixWidth * 6.5}px`
       }
-      result.padding = `${((width / 50) * 914.2857142857142) / 100}px`
+      result.padding = `${pixWidth / 50}px`
 
-      result.left = `-${(leftMost * width * 914.2857142857142) / 100}px`
+      result.left = `-${leftMost * pixWidth}px`
 
       // set each item's widths (wide and narrow)
-      result.narrow = `${(width * 914.2857142857142) / 100}px`
-      result.wide = `${(width * 4 * 914.2857142857142) / 100}px`
+      result.narrow = `${pixWidth}px`
+      result.wide = `${pixWidth * 4}px`
     } else {
       // reset container position to 0, width to 14 one-hundredths, and height
       result.container = {
@@ -178,11 +181,17 @@ const MobileImageMenu = ({ imagesData }) => {
       <div className="mobile-menu-item-title-container">
         <p className="mobile-menu-item-title">{images[current].title}</p>
       </div>
-      <Link
+      {/* <Link
         to={`/work/${images[current].title.replace(/\s+/g, '-').toLowerCase()}`}
         className="view-artpiece-button"
       >
         See Artwork
+      </Link> */}
+      <Link
+        to={`/work/${images[current].title.replace(/\s+/g, '-').toLowerCase()}`}
+        className="view-artpiece-button"
+      >
+        <BsArrowUpRight className="arrow" />
       </Link>
       <div
         ref={container}

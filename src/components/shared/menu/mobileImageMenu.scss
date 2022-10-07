@@ -1,14 +1,14 @@
 .outer-container {
   width: 100vw;
   height: max-content;
-  overflow-x: hidden;
   position: relative;
   margin-bottom: 10vw;
 
   .mobile-menu-item-title-container {
     width: max-content;
     position: absolute;
-    bottom: 12%;
+    // top: 80vw;
+    bottom: 15%;
     margin-left: 11.5vw;
     z-index: 5;
     display: flex;
@@ -29,13 +29,25 @@
     position: absolute;
     display: inline-block;
     text-decoration: none;
-    color: white;
-    background-color: rgba(121, 121, 121, 0.848);
-    border-radius: 1000px;
-    padding: 0.7em 1em;
-    bottom: 1vw;
-    left: 10px;
+    color: rgb(71, 71, 71);
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.344);
+    width: 18vw;
+    height: 20vw;
+    bottom: 10vw;
+    left: 20px;
+    transform: rotate(90deg);
     z-index: 1;
+
+    .arrow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 6vw;
+      height: 6vw;
+      transform: translate(-50%, -50%) rotate(-80deg);
+    }
   }
 
   .mobile-image-menu {
@@ -124,7 +136,8 @@
     }
     .view-artpiece-button {
       font-size: 4.1vw;
-      bottom: 2vw;
+      // top: 55vw;
+      bottom: -3vw;
     }
   }
 }
