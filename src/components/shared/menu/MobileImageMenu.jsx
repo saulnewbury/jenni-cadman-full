@@ -9,12 +9,12 @@ const MobileImageMenu = ({ imagesData }) => {
   const [numOfItems, setNumOfItems] = useState(1)
   const [current, setCurrent] = useState(0)
   const [leftMost, setLeftMost] = useState(0)
+  const [isFixed, setIsFixed] = useRef()
 
   const outerContainer = useRef()
   const container = useRef()
   const lastCurrent = useRef(current)
   const lastLeft = useRef(leftMost)
-  const isFixed = useRef()
 
   const calcValues = setUp(numOfItems)
 
@@ -59,7 +59,7 @@ const MobileImageMenu = ({ imagesData }) => {
       setNumOfItems(15)
       setCurrent(0)
       setLeftMost(0)
-      isFixed.current = true
+      setIsFixed(true)
     })
 
     for (let index = 7; index <= 14; index++) {
@@ -73,7 +73,7 @@ const MobileImageMenu = ({ imagesData }) => {
         setNumOfItems(index)
         setCurrent(0)
         setLeftMost(0)
-        isFixed.current = false
+        setIsFixed(false)
       })
     }
     mm.add(`(max-width: 399px)`, () => {
@@ -81,7 +81,7 @@ const MobileImageMenu = ({ imagesData }) => {
       setNumOfItems(6) // 6 items
       setCurrent(0)
       setLeftMost(0)
-      isFixed.current = false
+      setIsFixed(false)
     })
 
     return () => {
@@ -93,7 +93,7 @@ const MobileImageMenu = ({ imagesData }) => {
     const result = {}
 
     const width = 100 / numOfItems
-    if (isFixed.current) {
+    if (isFixed) {
       result.container = {
         width: `${width * 14}%`,
         height: `${((width * 6.5) / 931) * 100}px`
