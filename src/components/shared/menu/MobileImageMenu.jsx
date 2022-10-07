@@ -9,7 +9,7 @@ const MobileImageMenu = ({ imagesData }) => {
   const [numOfItems, setNumOfItems] = useState(1)
   const [current, setCurrent] = useState(0)
   const [leftMost, setLeftMost] = useState(0)
-  const [isFixed, setIsFixed] = useRef()
+  const [isFixed, setIsFixed] = useState(false)
 
   const outerContainer = useRef()
   const container = useRef()
@@ -43,10 +43,12 @@ const MobileImageMenu = ({ imagesData }) => {
   // Animate the change in container position when the leftmost item changes.
   useLayoutEffect(() => {
     if (leftMost !== lastLeft.current) {
+      const value = calcValues.narrow.slice(0, -2) //  assuming units are two characters
+      const units = calcValues.narrow.slice(-2)
       gsap.fromTo(
         container.current,
-        { left: `-${lastLeft.current * calcValues.narrow}vw` },
-        { left: `-${leftMost * calcValues.narrow}vw` }
+        { left: `-${lastLeft.current * value}${units}` },
+        { left: `-${leftMost * value}${units}` }
       )
       lastLeft.current = leftMost
     }
@@ -55,20 +57,20 @@ const MobileImageMenu = ({ imagesData }) => {
   function mediaQueries() {
     let mm = gsap.matchMedia()
 
-    mm.add(`(min-width: 931px)`, () => {
+    mm.add(`(min-width: ${(16 / 3.5) * 200}px)`, () => {
       setNumOfItems(15)
       setCurrent(0)
       setLeftMost(0)
       setIsFixed(true)
     })
 
-    for (let index = 7; index <= 14; index++) {
+    for (let index = 7; index <= 15; index++) {
       let min = (index / 3.5) * 200,
-        max = index < 14 ? ((index + 1) / 3.5) * 200 - 1 : 0
+        max = ((index + 1) / 3.5) * 200 - 1
 
-      const minmax =
-        `(min-width: ${min}px)` + (max > 0 ? ` and (max-width: ${max}px)` : '')
-      mm.add(minmax, () => {
+      console.log(max, `${(16 / 3.5) * 200}`)
+
+      mm.add(`(min-width: ${min}px) and (max-width: ${max}px)`, () => {
         console.log('MQ', index)
         setNumOfItems(index)
         setCurrent(0)
@@ -197,9 +199,7 @@ const MobileImageMenu = ({ imagesData }) => {
               paddingLeft: calcValues.padding,
               paddingRight: calcValues.padding,
               height: calcValues.container.height,
-              width: `${
-                idx === current ? calcValues.wide : calcValues.narrow
-              }vw`,
+              width: `${idx === current ? calcValues.wide : calcValues.narrow}`,
               opacity: idx === current ? 1.0 : 0.4
             }}
             data-title={image.title}
