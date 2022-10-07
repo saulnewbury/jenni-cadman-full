@@ -14,6 +14,7 @@ export const collections = [
       subFolder: 'veronica',
       images: [
         {
+          id: 1,
           title: 'Veronica I',
           imagePath: 'veronica-i',
           imageMain: 'veronica-1',
@@ -28,6 +29,7 @@ export const collections = [
           }
         },
         {
+          id: 2,
           title: 'Veronica II',
           imagePath: 'veronica-ii',
           imageMain: 'veronica-2',
@@ -42,6 +44,7 @@ export const collections = [
           }
         },
         {
+          id: 3,
           title: 'Veronica III',
           imagePath: 'veronica-iii',
           imageMain: 'veronica-3',
@@ -55,6 +58,7 @@ export const collections = [
           }
         },
         {
+          id: 4,
           title: 'Veronica IV',
           imagePath: 'veronica-iv',
           imageMain: 'veronica-4',
@@ -68,6 +72,7 @@ export const collections = [
           }
         },
         {
+          id: 5,
           title: 'Veronica V',
           imagePath: 'veronica-v',
           imageMain: 'veronica-5',
@@ -82,6 +87,7 @@ export const collections = [
           }
         },
         {
+          id: 6,
           title: 'Veronica VI',
           imagePath: 'veronica-vi',
           imageMain: 'veronica-6',
@@ -96,6 +102,7 @@ export const collections = [
           }
         },
         {
+          id: 7,
           title: 'Veronica VII',
           imagePath: 'veronica-vii',
           imageMain: 'veronica-7',
@@ -110,6 +117,7 @@ export const collections = [
           }
         },
         {
+          id: 8,
           title: 'Portrait of Mother I',
           imagePath: 'portrait-of-mother-i',
           imageMain: 'portrait-of-mother-1',
@@ -124,6 +132,7 @@ export const collections = [
           }
         },
         {
+          id: 9,
           title: 'Portrait of Mother II',
           imagePath: 'portrait-of-mother-ii',
           imageMain: 'portrait-of-mother-2',
@@ -154,6 +163,7 @@ export const collections = [
       subFolder: 'deer-park-1',
       images: [
         {
+          id: 1,
           title: 'A Walk in the Park',
           imagePath: 'a-walk-in-the-park',
           imageMain: 'a-walk-in-the-park',
@@ -168,6 +178,7 @@ export const collections = [
           }
         },
         {
+          id: 2,
           title: 'Deer in Conversation',
           imagePath: 'deer-in-conversation',
           imageMain: 'deer-in-conversation',
@@ -182,6 +193,7 @@ export const collections = [
           }
         },
         {
+          id: 3,
           title: 'Grazing',
           imagePath: 'grazing',
           imageMain: 'grazing',
@@ -196,6 +208,7 @@ export const collections = [
           }
         },
         {
+          id: 4,
           title: 'Teasel by the Stream',
           imagePath: 'teasel-by-the-stream',
           imageMain: 'teasel-by-the-stream',
@@ -210,6 +223,7 @@ export const collections = [
           }
         },
         {
+          id: 5,
           title: 'Every Cloud has a Silver Lining',
           imagePath: 'every-cloud-has-a-silver-lining',
           imageMain: 'every-cloud-has-a-silver-lining',
@@ -224,6 +238,7 @@ export const collections = [
           }
         },
         {
+          id: 6,
           title: 'Embracing a Colourful World',
           imagePath: 'embracing-a-colourful-world',
           imageMain: 'embracing-a-colourful-world',

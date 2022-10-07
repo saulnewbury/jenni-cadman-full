@@ -6,8 +6,6 @@
   margin-bottom: 10vw;
 
   .mobile-menu-item-title-container {
-    width: 50vw;
-    width: 80%;
     width: max-content;
     position: absolute;
     bottom: 12%;
@@ -19,7 +17,6 @@
 
     p {
       color: white;
-      width: 46vw;
       width: 100%;
       text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
       margin: 0;
@@ -27,6 +24,20 @@
       font-size: 4.6vw;
     }
   }
+
+  .view-artpiece-button {
+    position: absolute;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: rgba(121, 121, 121, 0.848);
+    border-radius: 1000px;
+    padding: 0.7em 1em;
+    bottom: 1vw;
+    left: 10px;
+    z-index: 1;
+  }
+
   .mobile-image-menu {
     overflow: hidden;
     position: absolute;
@@ -111,6 +122,10 @@
         font-size: 12vw;
       }
     }
+    .view-artpiece-button {
+      font-size: 4.1vw;
+      bottom: 2vw;
+    }
   }
 }
 
@@ -125,6 +140,10 @@
         font-size: 9.8vw;
       }
     }
+    .view-artpiece-button {
+      font-size: 3.7vw;
+      bottom: 1.4vw;
+    }
   }
 }
 
@@ -137,6 +156,11 @@
       .mobile-menu-item-title {
         font-size: 9vw;
       }
+    }
+
+    .view-artpiece-button {
+      font-size: 3.2vw;
+      left: 2.6vw;
     }
   }
 }
@@ -151,6 +175,9 @@
         font-size: 9vw;
       }
     }
+    .view-artpiece-button {
+      font-size: 2.8vw;
+    }
   }
 }
 
@@ -161,8 +188,11 @@
       width: 74vw;
 
       .mobile-menu-item-title {
-        font-size: 8vw;
+        font-size: 8.8vw;
       }
+    }
+    .view-artpiece-button {
+      font-size: 2.5vw;
     }
   }
 }
@@ -174,8 +204,30 @@
       width: 65vw;
 
       .mobile-menu-item-title {
-        font-size: 7vw;
+        font-size: 8vw;
       }
+    }
+    .view-artpiece-button {
+      font-size: 2.3vw;
+      bottom: 1.3vw;
+      left: 2.8vw;
+    }
+  }
+}
+
+@media screen and (min-width: 685px) {
+  .outer-container {
+    .mobile-menu-item-title-container {
+      width: 65vw;
+
+      .mobile-menu-item-title {
+        font-size: 6.5vw;
+      }
+    }
+    .view-artpiece-button {
+      font-size: 2.1vw;
+      bottom: 1.3vw;
+      left: 2.8vw;
     }
   }
 }
@@ -186,6 +238,11 @@
     .mobile-menu-item-title-container {
       margin-left: 5vw;
     }
+    .view-artpiece-button {
+      font-size: 2vw;
+      bottom: 1vw;
+      left: 5vw;
+    }
   }
 }
 
@@ -193,11 +250,17 @@
 @media screen and (min-width: 800px) {
   .outer-container {
     .mobile-menu-item-title-container {
-      width: 53vw;
+      width: 55vw;
 
       .mobile-menu-item-title {
-        font-size: 5.8vw;
+        font-size: 6vw;
       }
+    }
+
+    .view-artpiece-button {
+      font-size: 1.9vw;
+      bottom: 0.8vw;
+      left: 5vw;
     }
   }
 }
@@ -207,6 +270,11 @@
     .mobile-menu-item-title-container {
       margin-left: 6vw;
     }
+    .view-artpiece-button {
+      font-size: 1.8vw;
+      bottom: 0.9vw;
+      left: 6vw;
+    }
   }
 }
 
@@ -214,30 +282,37 @@
   .outer-container {
     .mobile-menu-item-title-container {
       margin-left: 10vw;
+      font-size: 55.86px;
+      width: 520px;
+    }
+    .view-artpiece-button {
+      font-size: 16px;
+      bottom: 10px;
+      left: 10vw;
     }
   }
 }
 
 // 17 narrow widths
-@media screen and (min-width: 971px) {
-  .outer-container {
-    .mobile-menu-item-title-container {
-      width: 46vw;
+// @media screen and (min-width: 971px) {
+//   .outer-container {
+//     .mobile-menu-item-title-container {
+//       width: 54vw;
 
-      .mobile-menu-item-title {
-        font-size: 5vw;
-      }
-    }
-    .mobile-image-menu {
-      .image-item[data-size='narrow'] {
-        width: 66.5px;
-      }
-      .image-item[data-size='wide'] {
-        width: 265.992px;
-      }
-    }
-  }
-}
+//       .mobile-menu-item-title {
+//         font-size: 5.8vw;
+//       }
+//     }
+//     .mobile-image-menu {
+//       .image-item[data-size='narrow'] {
+//         width: 66.5px;
+//       }
+//       .image-item[data-size='wide'] {
+//         width: 265.992px;
+//       }
+//     }
+//   }
+// }
 
 @media screen and (min-width: 1146px) {
   .outer-container {

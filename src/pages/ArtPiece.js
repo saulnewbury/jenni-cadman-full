@@ -10,7 +10,7 @@ import './artpiece.scss'
 const ArtPiece = () => {
   const { slug } = useParams()
 
-  // filter collection which has title that is the same as slug.
+  // get collection which includes a title that is the same as slug.
   const cln = collections.filter(cln => {
     return cln.imagesData.images.some(obj => obj.imagePath === slug)
   })
