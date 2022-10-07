@@ -178,6 +178,7 @@ const MobileImageMenu = ({ imagesData }) => {
       className="outer-container"
       style={calcValues.container}
     >
+      <div className="overlay"></div>
       <div className="mobile-menu-item-title-container">
         <p className="mobile-menu-item-title">{images[current].title}</p>
       </div>

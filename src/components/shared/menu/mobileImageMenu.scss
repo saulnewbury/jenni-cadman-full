@@ -4,15 +4,25 @@
   position: relative;
   margin-bottom: 10vw;
 
+  .overlay {
+    position: absolute;
+    height: 50vw;
+    width: 100%;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      0deg,
+      rgba(66, 66, 66, 0) 0%,
+      rgba(58, 58, 58, 0.787) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+
   .mobile-menu-item-title-container {
     width: max-content;
     position: absolute;
-    // top: 80vw;
-    bottom: 15%;
     margin-left: 11.5vw;
     z-index: 5;
-    display: flex;
-    align-items: center;
     pointer-events: none;
 
     p {
@@ -33,10 +43,10 @@
     background-color: rgb(255, 255, 255);
     border-radius: 50%;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.344);
-    width: 18vw;
-    height: 20vw;
+    width: 14vw;
+    height: 18vw;
     bottom: 10vw;
-    left: 20px;
+    left: 79vw;
     transform: rotate(90deg);
     z-index: 1;
 
@@ -128,8 +138,8 @@
 @media screen and (min-width: 0px) {
   .outer-container {
     .mobile-menu-item-title-container {
+      top: 4vw;
       width: 90vw;
-
       .mobile-menu-item-title {
         font-size: 12vw;
       }
@@ -137,7 +147,7 @@
     .view-artpiece-button {
       font-size: 4.1vw;
       // top: 55vw;
-      bottom: -3vw;
+      bottom: 4vw;
     }
   }
 }
@@ -146,6 +156,7 @@
 @media screen and (min-width: 400px) {
   .outer-container {
     .mobile-menu-item-title-container {
+      top: 4vw;
       width: 98vw;
       margin-left: 3vw;
 
