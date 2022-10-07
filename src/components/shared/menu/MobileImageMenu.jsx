@@ -98,15 +98,15 @@ const MobileImageMenu = ({ imagesData }) => {
     if (isFixed) {
       result.container = {
         width: `${width * 14}%`,
-        height: `${((width * 6.5) / 931) * 100}px`
+        height: `${(width * 6.5 * 914.2857142857142) / 100}px`
       }
-      result.padding = `${((width * 50) / 931) * 100}px`
+      result.padding = `${((width / 50) * 914.2857142857142) / 100}px`
 
-      result.left = `-${((leftMost * width) / 931) * 100}px`
+      result.left = `-${(leftMost * width * 914.2857142857142) / 100}px`
 
       // set each item's widths (wide and narrow)
-      result.narrow = `${(width / 931) * 100}px`
-      result.wide = `${((width * 4) / 931) * 100}px`
+      result.narrow = `${(width * 914.2857142857142) / 100}px`
+      result.wide = `${(width * 4 * 914.2857142857142) / 100}px`
     } else {
       // reset container position to 0, width to 14 one-hundredths, and height
       result.container = {
