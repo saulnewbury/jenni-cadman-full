@@ -25,17 +25,33 @@ const MobileImageMenu = ({ imagesData }) => {
   // users don't see a flash of the target state (set by React render).
   useLayoutEffect(() => {
     if (current !== lastCurrent.current) {
+      console.log(lastCurrent.current)
       const prevTarget = container.current.children[lastCurrent.current]
       const newTarget = container.current.children[current]
+      const n = gsap.utils.selector(newTarget)
+      const p = gsap.utils.selector(prevTarget)
+
       gsap.fromTo(
         prevTarget,
-        { width: `${calcValues.wide}`, opacity: 1.0 },
-        { width: `${calcValues.narrow}`, opacity: 0.4 }
+        { width: `${calcValues.wide}` },
+        { width: `${calcValues.narrow}` }
+      )
+      gsap.fromTo(p('img'), { opacity: 1.0 }, { opacity: 0.7 })
+      gsap.fromTo(
+        p('.overlay-container'),
+        { width: `${calcValues.wide}` },
+        { width: `${calcValues.narrow}` }
       )
       gsap.fromTo(
         newTarget,
-        { width: `${calcValues.narrow}`, opacity: 0.4 },
-        { width: `${calcValues.wide}`, opacity: 1.0 }
+        { width: `${calcValues.narrow}` },
+        { width: `${calcValues.wide}` }
+      )
+      gsap.fromTo(n('img'), { opacity: 0.7 }, { opacity: 1.0 })
+      gsap.fromTo(
+        n('.overlay-container'),
+        { width: `${calcValues.narrow}` },
+        { width: `${calcValues.wide}` }
       )
       lastCurrent.current = current
     }
@@ -68,8 +84,6 @@ const MobileImageMenu = ({ imagesData }) => {
     for (let index = 7; index <= 15; index++) {
       let min = (index / 3.5) * 200,
         max = ((index + 1) / 3.5) * 200 - 1
-
-      console.log(max, `${(16 / 3.5) * 200}`)
 
       mm.add(`(min-width: ${min}px) and (max-width: ${max}px)`, () => {
         console.log('MQ', index)
@@ -178,16 +192,9 @@ const MobileImageMenu = ({ imagesData }) => {
       className="outer-container"
       style={calcValues.container}
     >
-      <div className="overlay"></div>
       <div className="mobile-menu-item-title-container">
         <p className="mobile-menu-item-title">{images[current].title}</p>
       </div>
-      {/* <Link
-        to={`/work/${images[current].title.replace(/\s+/g, '-').toLowerCase()}`}
-        className="view-artpiece-button"
-      >
-        See Artwork
-      </Link> */}
       <Link
         to={`/work/${images[current].title.replace(/\s+/g, '-').toLowerCase()}`}
         className="view-artpiece-button"
@@ -209,8 +216,7 @@ const MobileImageMenu = ({ imagesData }) => {
               paddingLeft: calcValues.padding,
               paddingRight: calcValues.padding,
               height: calcValues.container.height,
-              width: `${idx === current ? calcValues.wide : calcValues.narrow}`,
-              opacity: idx === current ? 1.0 : 0.4
+              width: `${idx === current ? calcValues.wide : calcValues.narrow}`
             }}
             data-title={image.title}
             data-size={idx === current ? 'wide' : 'narrow'}
@@ -220,9 +226,22 @@ const MobileImageMenu = ({ imagesData }) => {
             }}
             key={idx}
           >
+            <div
+              className="overlay-container"
+              style={{
+                paddingLeft: calcValues.padding,
+                paddingRight: calcValues.padding,
+                width: idx === current ? calcValues.wide : calcValues.narrow
+              }}
+            >
+              <div className="overlay"></div>
+            </div>
             <img
               src={`/images/${subFolder}/${image.imageDetail}.jpg`}
               alt={image.alt}
+              style={{
+                opacity: idx === current ? 1.0 : 0.7
+              }}
             />
           </div>
         ))}

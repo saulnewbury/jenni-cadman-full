@@ -4,21 +4,6 @@
   position: relative;
   margin-bottom: 10vw;
 
-  .overlay {
-    position: absolute;
-    bottom: 0vw;
-    height: 30vw;
-    width: 100%;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-      0deg,
-      rgba(32, 32, 32, 0.679) 0%,
-      rgba(66, 66, 66, 0) 100%
-    );
-    pointer-events: none;
-    z-index: 1;
-  }
-
   .mobile-menu-item-title-container {
     width: max-content;
     position: absolute;
@@ -70,12 +55,33 @@
     .image-item {
       padding-left: 0.1vw;
       padding-right: 0.1vw;
+      position: relative;
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border: rgb(132, 132, 132) 0.01vw solid;
+      }
+
+      .overlay-container {
+        padding-left: 0.1vw;
+        padding-right: 0.1vw;
+        position: absolute;
+        height: 50%;
+        pointer-events: none;
+        left: 0;
+        z-index: 2;
+
+        .overlay {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            0deg,
+            rgb(0 0 0 / 0%) 0%,
+            rgb(0 0 0 / 39%) 100%
+          );
+        }
       }
     }
   }
@@ -139,15 +145,16 @@
 @media screen and (min-width: 0px) {
   .outer-container {
     .mobile-menu-item-title-container {
-      bottom: 7vw;
-
+      top: 4vw;
+      width: 90vw;
       .mobile-menu-item-title {
-        font-size: 5vw;
+        font-size: 12vw;
       }
     }
     .view-artpiece-button {
       font-size: 4.1vw;
-      bottom: 2vw;
+      // top: 55vw;
+      bottom: 4vw;
     }
   }
 }
