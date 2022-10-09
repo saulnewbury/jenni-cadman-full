@@ -1,6 +1,7 @@
 .outer-container {
   width: 100vw;
   height: max-content;
+  left: 0;
   position: relative;
   margin-bottom: 10vw;
 
@@ -32,7 +33,7 @@
     width: 14vw;
     height: 18vw;
     bottom: 10vw;
-    left: 79vw;
+    right: 5.5vw;
     transform: rotate(90deg);
     z-index: 1;
 
@@ -68,7 +69,7 @@
         padding-left: 0.1vw;
         padding-right: 0.1vw;
         position: absolute;
-        height: 50%;
+        height: 80%;
         pointer-events: none;
         left: 0;
         z-index: 2;
@@ -79,7 +80,7 @@
           background: linear-gradient(
             0deg,
             rgb(0 0 0 / 0%) 0%,
-            rgb(0 0 0 / 39%) 100%
+            rgb(0 0 0 / 30%) 100%
           );
         }
       }
@@ -122,10 +123,6 @@
     .mobile-image-menu {
       margin-left: 3vw;
     }
-
-    .mobile-menu-item-title-container {
-      margin-left: 3vw;
-    }
   }
 }
 
@@ -145,7 +142,8 @@
 @media screen and (min-width: 0px) {
   .outer-container {
     .mobile-menu-item-title-container {
-      top: 4vw;
+      margin-left: 4vw;
+      top: 8vw;
       width: 90vw;
       .mobile-menu-item-title {
         font-size: 12vw;
@@ -159,16 +157,16 @@
   }
 }
 
-// 7 items
+// 7 narrow widths
 @media screen and (min-width: 400px) {
   .outer-container {
     .mobile-menu-item-title-container {
       top: 4vw;
-      width: 98vw;
+      width: 90vw;
       margin-left: 3vw;
 
       .mobile-menu-item-title {
-        font-size: 9.8vw;
+        font-size: 9vw;
       }
     }
     .view-artpiece-button {
@@ -183,15 +181,22 @@
   .outer-container {
     .mobile-menu-item-title-container {
       width: 91vw;
+      width: 416.773px;
 
       .mobile-menu-item-title {
         font-size: 9vw;
+        font-size: 43px;
       }
     }
 
     .view-artpiece-button {
-      font-size: 3.2vw;
-      left: 2.6vw;
+      // font-size: 3.2vw; no text
+      width: 63px;
+      height: 81px;
+      .arrow {
+        width: 27.3px;
+        height: 27.3px;
+      }
     }
   }
 }
@@ -200,14 +205,16 @@
 @media screen and (min-width: 514px) {
   .outer-container {
     .mobile-menu-item-title-container {
-      width: 82vw;
+      // width: 82vw;
 
       .mobile-menu-item-title {
-        font-size: 9vw;
+        // font-size: 9vw;
       }
     }
     .view-artpiece-button {
-      font-size: 2.8vw;
+      // font-size: 2.8vw; no text
+      width: 63px;
+      height: 81px;
     }
   }
 }
@@ -215,11 +222,12 @@
 // 10 narrow widths
 @media screen and (min-width: 571px) {
   .outer-container {
+    width: unset;
     .mobile-menu-item-title-container {
       width: 74vw;
 
       .mobile-menu-item-title {
-        font-size: 8.8vw;
+        font-size: 46px;
       }
     }
     .view-artpiece-button {
@@ -241,7 +249,7 @@
     .view-artpiece-button {
       font-size: 2.3vw;
       bottom: 1.3vw;
-      left: 2.8vw;
+      left: 4vw;
     }
   }
 }
@@ -272,7 +280,7 @@
     .view-artpiece-button {
       font-size: 2vw;
       bottom: 1vw;
-      left: 5vw;
+      left: 6vw;
     }
   }
 }

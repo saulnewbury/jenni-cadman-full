@@ -74,7 +74,14 @@ const MobileImageMenu = ({ imagesData }) => {
   function mediaQueries() {
     let mm = gsap.matchMedia()
 
-    mm.add(`(min-width: ${(16 / 3.5) * 200}px)`, () => {
+    mm.add(`(min-width: 1400px)`, () => {
+      setNumOfItems(27)
+      setCurrent(0)
+      setLeftMost(0)
+      setIsFixed(false)
+    })
+
+    mm.add(`(min-width: ${(16 / 3.5) * 200}px) and (max-width: 1399px)`, () => {
       setNumOfItems(15)
       setCurrent(0)
       setLeftMost(0)
@@ -95,7 +102,7 @@ const MobileImageMenu = ({ imagesData }) => {
     }
     mm.add(`(max-width: 399px)`, () => {
       console.log('MQ', 6)
-      setNumOfItems(6) // 6 items
+      setNumOfItems(6) // 6 narrow widths
       setCurrent(0)
       setLeftMost(0)
       setIsFixed(false)
@@ -110,6 +117,10 @@ const MobileImageMenu = ({ imagesData }) => {
     const result = {}
 
     const width = 100 / numOfItems
+
+    // btn position
+    // images.length + 3 * narrow width
+    // if viewable items is less than images.length then viewable items else images .length + 3
 
     if (isFixed) {
       const pixWidth = (width * 914.2857142857142) / 100
@@ -190,7 +201,7 @@ const MobileImageMenu = ({ imagesData }) => {
     <div
       ref={outerContainer}
       className="outer-container"
-      style={calcValues.container}
+      style={{ height: calcValues.container.height }}
     >
       <div className="mobile-menu-item-title-container">
         <p className="mobile-menu-item-title">{images[current].title}</p>
@@ -206,7 +217,8 @@ const MobileImageMenu = ({ imagesData }) => {
         className="mobile-image-menu"
         style={{
           left: calcValues.left,
-          height: calcValues.container.height
+          height: calcValues.container.height,
+          width: calcValues.container.width
         }}
       >
         {images.map((image, idx) => (
