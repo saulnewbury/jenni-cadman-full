@@ -19,7 +19,6 @@ const MobileImageMenu = ({ imagesData }) => {
   const windowWidth = useRef(0)
 
   const calcValues = setUp(numOfItems)
-  console.log(calcValues)
 
   useEffect(mediaQueries, [])
 
@@ -27,7 +26,6 @@ const MobileImageMenu = ({ imagesData }) => {
   // users don't see a flash of the target state (set by React render).
   useLayoutEffect(() => {
     if (current !== lastCurrent.current) {
-      console.log(lastCurrent.current)
       const prevTarget = container.current.children[lastCurrent.current]
       const newTarget = container.current.children[current]
       const n = gsap.utils.selector(newTarget)
@@ -77,14 +75,14 @@ const MobileImageMenu = ({ imagesData }) => {
     let mm = gsap.matchMedia()
 
     mm.add(`(min-width: 2121px)`, () => {
-      setNumOfItems(26)
+      setNumOfItems(9) // 23
       setCurrent(0)
       setLeftMost(0)
       setIsFixed(false)
     })
 
     mm.add(`(min-width: 1780px) and (max-width: 2120px)`, () => {
-      setNumOfItems(22)
+      setNumOfItems(9) //19
       setCurrent(0)
       setLeftMost(0)
       setIsFixed(true)
@@ -92,14 +90,14 @@ const MobileImageMenu = ({ imagesData }) => {
     })
 
     mm.add(`(min-width: 1400px) and (max-width: 1779px)`, () => {
-      setNumOfItems(22)
+      setNumOfItems(9) //19
       setCurrent(0)
       setLeftMost(0)
       setIsFixed(false)
     })
 
     mm.add(`(min-width: ${(13 / 3.5) * 200}px) and (max-width: 1399px)`, () => {
-      setNumOfItems(12)
+      setNumOfItems(9)
       setCurrent(0)
       setLeftMost(0)
       setIsFixed(true)
@@ -110,18 +108,17 @@ const MobileImageMenu = ({ imagesData }) => {
       let min = (index / 3.5) * 200,
         max = ((index + 1) / 3.5) * 200 - 1
 
-      console.log(min, max)
       mm.add(`(min-width: ${min}px) and (max-width: ${max}px)`, () => {
         console.log('MQ', index)
-        setNumOfItems(index)
+        setNumOfItems(index - 3)
         setCurrent(0)
         setLeftMost(0)
         setIsFixed(false)
       })
     }
     mm.add(`(max-width: 399px)`, () => {
-      console.log('MQ', 6)
-      setNumOfItems(6) // 6 narrow widths
+      console.log('MQ', 3)
+      setNumOfItems(3) // 6 narrow widths
       setCurrent(0)
       setLeftMost(0)
       setIsFixed(false)
@@ -132,43 +129,50 @@ const MobileImageMenu = ({ imagesData }) => {
     }
   }
 
+  // viewport for images should be no more than 9 items
   function setUp(numOfItems) {
     const result = {}
 
-    const width = 100 / numOfItems
+    const narrow = 4.4
+    const wide = 20
+    const height = 32
+
+    const total = (numOfItems - 1) * narrow + 1 * wide
+    const x = 100 / total
+
     if (isFixed) {
-      const pixWidth = (width * windowWidth.current) / 100
-      result.width = `${numOfItems * pixWidth}px`
-      result.height = `${pixWidth * 6.5}px`
-      result.padding = `${pixWidth / 50}px`
+      const pixWidth = (x * windowWidth.current) / 100
+      result.width = `${total * pixWidth}px`
+      result.height = `${pixWidth * height}px`
+      result.padding = `${pixWidth / 15}px`
       result.left = `-${leftMost * pixWidth}px`
 
       // set each item's widths (wide and narrow)
-      result.narrow = `${pixWidth}px`
-      result.wide = `${pixWidth * 4}px`
+      result.narrow = `${pixWidth * narrow}px`
+      result.wide = `${pixWidth * wide}px`
 
       // set width of button container
       result.linkContainerWidth =
         images.length + 3 < numOfItems
-          ? `${(images.length + 3) * pixWidth}px`
-          : `${numOfItems * pixWidth}px`
+          ? `${(images.length - 1) * narrow * pixWidth + 1 * wide * pixWidth}px`
+          : `${total * pixWidth}px`
     } else {
       // outer container width - fixed 100vw
-      result.width = `${numOfItems * width}vw`
-      result.height = `${width * 6.5}vw`
-      result.padding = `${width / 50}vw`
+      result.width = `${total}vw`
+      result.height = `${x * height}vw`
+      result.padding = `${x / 13}vw`
 
-      result.left = `-${leftMost * width}vw`
+      console.log(leftMost)
+      result.left = `-${leftMost}vw`
 
       // set each item's widths (wide and narrow)
-      result.narrow = `${width}vw`
-      result.wide = `${width * 4}vw`
+      result.narrow = `${x * narrow}vw`
+      result.wide = `${x * wide}vw`
 
       // set width of button container
-      result.linkContainerWidth =
-        images.length + 3 < numOfItems
-          ? `${(images.length + 3) * width}vw`
-          : `${numOfItems * width}vw`
+      // result.linkContainerWidth =
+      // let n = Math.min(numOfItems, itemsTotal - leftMost)
+      // let width = (n - 1) * narrow + wide
     }
     return result
   }
@@ -198,7 +202,7 @@ const MobileImageMenu = ({ imagesData }) => {
 
       // Work out items not in view
       const itemsTotal = images.length
-      const idLastInView = Math.min(leftMost + numOfItems - 3, itemsTotal) - 1
+      const idLastInView = Math.min(leftMost + numOfItems, itemsTotal) - 1
       const itemsOutside = itemsTotal - (idLastInView + 1)
 
       // get difference to travel
@@ -206,7 +210,7 @@ const MobileImageMenu = ({ imagesData }) => {
       newLeft = leftMost + diff
     } else {
       // INVERSE
-      const last = leftMost + (numOfItems - 4)
+      const last = leftMost + numOfItems
       const pen = last - 1
       const itemsOutside = leftMost
 

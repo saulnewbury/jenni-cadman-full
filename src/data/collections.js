@@ -145,6 +145,21 @@ export const collections = [
             mount: 'Mounted in tray frame.',
             price: 'NFS'
           }
+        },
+        {
+          id: 2,
+          title: 'Veronica II',
+          imagePath: 'veronica-ii',
+          imageMain: 'veronica-2',
+          imageDetail: 'veronica-2-detail',
+          altText: 'portrait of veronica 2',
+          desc: {
+            year: 2021,
+            medium: 'Rayon and cotton threads on linen.',
+            size: '41 x 31 x 2cms',
+            mount: 'Stretched over a wooden frame.',
+            price: 'NFS'
+          }
         }
       ]
     }
