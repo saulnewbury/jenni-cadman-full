@@ -1,5 +1,5 @@
 .outer-container {
-  width: 100vw;
+  // width: 100vw;
   height: max-content;
   left: 0;
   position: relative;
@@ -22,36 +22,42 @@
     }
   }
 
-  .view-artpiece-button {
+  .artpiece-link-container {
     position: absolute;
-    display: inline-block;
-    text-decoration: none;
-    color: rgb(71, 71, 71);
-    background-color: rgb(255, 255, 255);
-    border-radius: 50%;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.344);
-    width: 14vw;
-    height: 18vw;
-    bottom: 10vw;
-    right: 5.5vw;
-    transform: rotate(90deg);
-    z-index: 1;
+    bottom: 0;
+    height: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 
-    .arrow {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 6vw;
-      height: 6vw;
-      transform: translate(-50%, -50%) rotate(-80deg);
+    .artpiece-link {
+      display: inline-block;
+      text-decoration: none;
+      color: rgb(71, 71, 71);
+      background-color: rgb(255, 255, 255);
+      border-radius: 50%;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.344);
+      width: 14vw;
+      height: 18vw;
+      margin-right: 3%;
+      transform: rotate(90deg);
+      z-index: 1;
+
+      .arrow {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 6vw;
+        height: 6vw;
+        transform: translate(-50%, -50%) rotate(-80deg);
+      }
     }
   }
 
   .mobile-image-menu {
-    overflow: hidden;
     position: absolute;
-    width: 100%;
-    margin-left: 10vw;
+    display: flex;
+    flex-flow: row no-wrap;
 
     .image-item {
       padding-left: 0.1vw;
@@ -69,7 +75,7 @@
         padding-left: 0.1vw;
         padding-right: 0.1vw;
         position: absolute;
-        height: 80%;
+        height: 30%;
         pointer-events: none;
         left: 0;
         z-index: 2;
@@ -90,48 +96,8 @@
 
 .image-item {
   display: inline-block;
-  // padding-left: 0.2vw;
-  // padding-right: 0.2vw;
   height: 100%;
   width: 7.1428571429%;
-}
-
-@media screen and (max-width: 1145px) {
-  .outer-container {
-    .mobile-image-menu {
-      margin-left: 8vw;
-    }
-
-    .mobile-menu-item-title-container {
-      margin-left: 10.5vw;
-    }
-  }
-}
-@media screen and (max-width: 930px) {
-  .outer-container {
-    .mobile-image-menu {
-      margin-left: 4vw;
-    }
-
-    .mobile-menu-item-title-container {
-      margin-left: 6.5vw;
-    }
-  }
-}
-@media screen and (max-width: 830px) {
-  .outer-container {
-    .mobile-image-menu {
-      margin-left: 3vw;
-    }
-  }
-}
-
-@media screen and (max-width: 741px) {
-  .outer-container {
-    .mobile-image-menu {
-      margin-left: 0;
-    }
-  }
 }
 
 // *******************
@@ -149,10 +115,8 @@
         font-size: 12vw;
       }
     }
-    .view-artpiece-button {
+    .artpiece-link {
       font-size: 4.1vw;
-      // top: 55vw;
-      bottom: 4vw;
     }
   }
 }
@@ -169,9 +133,16 @@
         font-size: 9vw;
       }
     }
-    .view-artpiece-button {
-      font-size: 3.7vw;
-      bottom: 1.4vw;
+    .artpiece-link-container {
+      .artpiece-link {
+        width: 56px;
+        height: 72px;
+        font-size: 3.7vw;
+        .arrow {
+          width: 27.3px;
+          height: 27.3px;
+        }
+      }
     }
   }
 }
@@ -189,15 +160,17 @@
       }
     }
 
-    .view-artpiece-button {
-      // font-size: 3.2vw; no text
-      width: 63px;
-      height: 81px;
-      .arrow {
-        width: 27.3px;
-        height: 27.3px;
-      }
-    }
+    // .artpiece-link-container {
+    //   .artpiece-link {
+    //     // font-size: 3.2vw; no text
+    //     width: 63px;
+    //     height: 81px;
+    //     .arrow {
+    //       width: 27.3px;
+    //       height: 27.3px;
+    //     }
+    //   }
+    // }
   }
 }
 
@@ -205,14 +178,10 @@
 @media screen and (min-width: 514px) {
   .outer-container {
     .mobile-menu-item-title-container {
-      // width: 82vw;
-
       .mobile-menu-item-title {
-        // font-size: 9vw;
       }
     }
-    .view-artpiece-button {
-      // font-size: 2.8vw; no text
+    .artpiece-link {
       width: 63px;
       height: 81px;
     }
@@ -230,9 +199,6 @@
         font-size: 46px;
       }
     }
-    .view-artpiece-button {
-      font-size: 2.5vw;
-    }
   }
 }
 
@@ -246,10 +212,7 @@
         font-size: 8vw;
       }
     }
-    .view-artpiece-button {
-      font-size: 2.3vw;
-      bottom: 1.3vw;
-      left: 4vw;
+    .artpiece-link {
     }
   }
 }
@@ -263,11 +226,6 @@
         font-size: 6.5vw;
       }
     }
-    .view-artpiece-button {
-      font-size: 2.1vw;
-      bottom: 1.3vw;
-      left: 2.8vw;
-    }
   }
 }
 
@@ -275,12 +233,14 @@
 @media screen and (min-width: 742px) {
   .outer-container {
     .mobile-menu-item-title-container {
-      margin-left: 5vw;
+      margin-left: 22px;
+      top: 30px;
+      .mobile-menu-item-title {
+        font-size: 50px;
+      }
     }
-    .view-artpiece-button {
+    .artpiece-link {
       font-size: 2vw;
-      bottom: 1vw;
-      left: 6vw;
     }
   }
 }
@@ -292,71 +252,34 @@
       width: 55vw;
 
       .mobile-menu-item-title {
-        font-size: 6vw;
+        font-size: 50px;
       }
     }
 
-    .view-artpiece-button {
-      font-size: 1.9vw;
+    .artpiece-link {
       bottom: 0.8vw;
-      left: 5vw;
     }
   }
 }
 
 @media screen and (min-width: 831px) {
   .outer-container {
-    .mobile-menu-item-title-container {
-      margin-left: 6vw;
-    }
-    .view-artpiece-button {
-      font-size: 1.8vw;
-      bottom: 0.9vw;
-      left: 6vw;
-    }
+    margin-left: 4vw;
   }
 }
 
 @media screen and (min-width: 931px) {
   .outer-container {
+    margin-left: 8vw;
     .mobile-menu-item-title-container {
-      margin-left: 10vw;
-      font-size: 55.86px;
       width: 520px;
-    }
-    .view-artpiece-button {
-      font-size: 16px;
-      bottom: 10px;
-      left: 10vw;
     }
   }
 }
 
-// 17 narrow widths
-// @media screen and (min-width: 971px) {
-//   .outer-container {
-//     .mobile-menu-item-title-container {
-//       width: 54vw;
-
-//       .mobile-menu-item-title {
-//         font-size: 5.8vw;
-//       }
-//     }
-//     .mobile-image-menu {
-//       .image-item[data-size='narrow'] {
-//         width: 66.5px;
-//       }
-//       .image-item[data-size='wide'] {
-//         width: 265.992px;
-//       }
-//     }
-//   }
-// }
-
 @media screen and (min-width: 1146px) {
   .outer-container {
     .mobile-menu-item-title-container {
-      margin-left: 12vw;
     }
   }
 }

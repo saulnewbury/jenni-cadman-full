@@ -123,9 +123,12 @@ const MobileImageMenu = ({ imagesData }) => {
     // if viewable items is less than images.length then viewable items else images .length + 3
 
     if (isFixed) {
+      // outer container width
+      // Num of items * pixWidth (px)
+
       const pixWidth = (width * 914.2857142857142) / 100
       result.container = {
-        width: `${width * 14}%`,
+        width: `${numOfItems * pixWidth}%`,
         height: `${pixWidth * 6.5}px`
       }
       result.padding = `${pixWidth / 50}px`
@@ -137,6 +140,10 @@ const MobileImageMenu = ({ imagesData }) => {
       result.wide = `${pixWidth * 4}px`
     } else {
       // reset container position to 0, width to 14 one-hundredths, and height
+
+      // outer container width
+      // fixed 100vw
+
       result.container = {
         width: `${width * 14}%`,
         height: `${width * 6.5}vw`
@@ -217,8 +224,7 @@ const MobileImageMenu = ({ imagesData }) => {
         className="mobile-image-menu"
         style={{
           left: calcValues.left,
-          height: calcValues.container.height,
-          width: calcValues.container.width
+          height: calcValues.container.height
         }}
       >
         {images.map((image, idx) => (
