@@ -10,7 +10,11 @@ const MobileImageMenu = ({ imagesData }) => {
   const [numOfItems, setNumOfItems] = useState(1)
   const [current, setCurrent] = useState(0)
   const [leftMost, setLeftMost] = useState(0)
-  const [isFixed, setIsFixed] = useState(false)
+  const [scaleType, setScaleType] = useState('a')
+  // ScaleType communicates the switch between three conditions
+  // 'a' vw units with viewport width of 100vw
+  // 'b' fixed px units with viewport width that's also in px units
+  // 'c' vw units with viewport width in vw units but less than 100 vw
 
   const outerContainer = useRef()
   const container = useRef()
@@ -78,14 +82,14 @@ const MobileImageMenu = ({ imagesData }) => {
       setNumOfItems(9) // 23
       setCurrent(0)
       setLeftMost(0)
-      setIsFixed(false)
+      setScaleType('c')
     })
 
     mm.add(`(min-width: 1780px) and (max-width: 2120px)`, () => {
       setNumOfItems(9) //19
       setCurrent(0)
       setLeftMost(0)
-      setIsFixed(true)
+      setScaleType('b')
       windowWidth.current = 1780
     })
 
@@ -93,14 +97,15 @@ const MobileImageMenu = ({ imagesData }) => {
       setNumOfItems(9) //19
       setCurrent(0)
       setLeftMost(0)
-      setIsFixed(false)
+      setScaleType('c')
+      windowWidth.current = 1400
     })
 
     mm.add(`(min-width: ${(13 / 3.5) * 200}px) and (max-width: 1399px)`, () => {
       setNumOfItems(9)
       setCurrent(0)
       setLeftMost(0)
-      setIsFixed(true)
+      setScaleType('b')
       windowWidth.current = (13 / 3.5) * 200
     })
 
@@ -113,7 +118,7 @@ const MobileImageMenu = ({ imagesData }) => {
         setNumOfItems(index - 3)
         setCurrent(0)
         setLeftMost(0)
-        setIsFixed(false)
+        setScaleType('a')
       })
     }
     mm.add(`(max-width: 399px)`, () => {
@@ -121,7 +126,7 @@ const MobileImageMenu = ({ imagesData }) => {
       setNumOfItems(3) // 6 narrow widths
       setCurrent(0)
       setLeftMost(0)
-      setIsFixed(false)
+      setScaleType('a')
     })
 
     return () => {
@@ -140,25 +145,13 @@ const MobileImageMenu = ({ imagesData }) => {
     const total = (numOfItems - 1) * narrow + 1 * wide
     const x = 100 / total
 
-    if (isFixed) {
-      const pixWidth = (x * windowWidth.current) / 100
-      result.width = `${total * pixWidth}px`
-      result.height = `${pixWidth * height}px`
-      result.padding = `${pixWidth / 15}px`
-      result.left = `-${leftMost * pixWidth}px`
+    // narrow and wide items combined
+    const n = Math.min(numOfItems, images.length - leftMost)
+    const width = (n - 1) * narrow + wide
+    const pixWidth = (x * windowWidth.current) / 100
 
-      // set each item's widths (wide and narrow)
-      result.narrow = `${pixWidth * narrow}px`
-      result.wide = `${pixWidth * wide}px`
-
-      // set width of button container
-      result.linkContainerWidth =
-        images.length + 3 < numOfItems
-          ? `${(images.length - 1) * narrow * pixWidth + 1 * wide * pixWidth}px`
-          : `${total * pixWidth}px`
-    } else {
-      // outer container width - fixed 100vw
-      result.width = `${total}vw`
+    if (scaleType === 'a') {
+      result.width = `${width * x}vw`
       result.height = `${x * height}vw`
       result.padding = `${x / 13}vw`
 
@@ -170,9 +163,38 @@ const MobileImageMenu = ({ imagesData }) => {
       result.wide = `${x * wide}vw`
 
       // set width of button container
-      // result.linkContainerWidth =
-      // let n = Math.min(numOfItems, itemsTotal - leftMost)
-      // let width = (n - 1) * narrow + wide
+      result.linkContainerWidth = `${width * x}vw`
+    } else if (scaleType === 'b') {
+      result.width = `${total * pixWidth}px`
+      result.height = `${pixWidth * height}px`
+      result.padding = `${pixWidth / 15}px`
+      result.left = `-${leftMost * pixWidth}px`
+
+      // set each item's widths (wide and narrow)
+      result.narrow = `${pixWidth * narrow}px`
+      result.wide = `${pixWidth * wide}px`
+
+      // set width of button container
+      result.linkContainerWidth = `${width * pixWidth}px`
+    } else if (scaleType === 'c') {
+      // view width is less than 100vw
+      const viewportWidth = (742.857 / windowWidth.current) * 100
+      const newRange = (windowWidth.current / viewportWidth) * 100
+      console.log(scaleType)
+      result.width = `${(742.857 / newRange) * 100 * x}vw`
+      result.height = `${(430.642 / newRange) * 100 * x}vw`
+      result.padding = `${(0.89717 / newRange) * 100 * x}vw`
+
+      result.left = `-${leftMost}vw`
+
+      // set each item's widths (wide and narrow)
+      result.narrow = `${(59 / newRange) * 100 * x}vw`
+      result.wide = `${(269 / newRange) * 100 * x}vw`
+
+      const px = ((x * wide) / windowWidth.current) * 100
+
+      // set width of button container
+      result.linkContainerWidth = `${(px / newRange) * 100 * x}vw`
     }
     return result
   }
@@ -210,7 +232,7 @@ const MobileImageMenu = ({ imagesData }) => {
       newLeft = leftMost + diff
     } else {
       // INVERSE
-      const last = leftMost + numOfItems
+      const last = leftMost + numOfItems - 1
       const pen = last - 1
       const itemsOutside = leftMost
 
@@ -295,7 +317,7 @@ const MobileImageMenu = ({ imagesData }) => {
 
 export default MobileImageMenu
 
-// console.log(`isFixed: ${isFixed}, numOfItems: ${numOfItems}`)
+// console.log(`scaleType: ${scaleType}, numOfItems: ${numOfItems}`)
 //       // vw / viewport total width x 100 (wv is width * 14)
 // result.container = {
 //   width: `${width * 14}%`,
