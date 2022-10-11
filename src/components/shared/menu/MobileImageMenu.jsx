@@ -10,17 +10,16 @@ const MobileImageMenu = ({ imagesData }) => {
   const [numOfItems, setNumOfItems] = useState(1)
   const [current, setCurrent] = useState(0)
   const [leftMost, setLeftMost] = useState(0)
-  const [scaleType, setScaleType] = useState('a')
-  // ScaleType communicates the switch between three conditions
-  // 'a' vw units with viewport width of 100vw
-  // 'b' fixed px units with viewport width that's also in px units
-  // 'c' vw units with viewport width in vw units but less than 100 vw
+  const [menuWidth, setMenuWidth] = useState('100vw')
+  // menuWidth is set (in conjunction with numOfItems) by the various
+  // media queries. The units (vw or px) communicates the switch between
+  // 'fixed' and 'scaled' sizing for image items, and the numeric value
+  // gives the required outer container width in those units.
 
   const outerContainer = useRef()
   const container = useRef()
   const lastCurrent = useRef(current)
   const lastLeft = useRef(leftMost)
-  const windowWidth = useRef(0)
 
   const calcValues = setUp(numOfItems)
 
@@ -75,6 +74,28 @@ const MobileImageMenu = ({ imagesData }) => {
     }
   })
 
+  //-------------------------------------------------------------------------
+  // mediaQueries
+  //    This function is run as a 'componentDidMount' effect - i.e. after the
+  // first render. It adds a number of GSAP media query handlers to achieve
+  // the following effect by screen/device width:
+  //
+  //    up to 399 px        3 items visible; menu fills width (100vw)
+  //    400 - 741 px        4 - 9 items visible, increasing at 57px steps;
+  //                            viewport fills width (100vw)
+  //    742 - 1399 px       9 items visible; menu width fixed at 742px
+  //   1400 - 1779 px       9 items visible; menu width scales at 53vw
+  //   1780 - 2120 px       9 items visible; menu fixed at 943px
+  //   2021 & above         9 items visible; menu scales at 46.67vw
+  //
+  // Those menu widths are calculated to give a 'smooth' transition from
+  // the previous sizing:
+  //    742px = 100vw at a screen width of 742 px
+  //    53vw = 742px at a screen width of 1400 px
+  //    943px = 53vw at a screen width of 1780 px and
+  //    46.67vw = 943px at a screen width of 2021 px.
+  //-------------------------------------------------------------------------
+
   function mediaQueries() {
     let mm = gsap.matchMedia()
 
@@ -82,51 +103,47 @@ const MobileImageMenu = ({ imagesData }) => {
       setNumOfItems(9) // 23
       setCurrent(0)
       setLeftMost(0)
-      setScaleType('c')
+      setMenuWidth('46.67vw')
     })
 
     mm.add(`(min-width: 1780px) and (max-width: 2120px)`, () => {
       setNumOfItems(9) //19
       setCurrent(0)
       setLeftMost(0)
-      setScaleType('b')
-      windowWidth.current = 1780
+      setMenuWidth('943px')
     })
 
     mm.add(`(min-width: 1400px) and (max-width: 1779px)`, () => {
       setNumOfItems(9) //19
       setCurrent(0)
       setLeftMost(0)
-      setScaleType('c')
-      windowWidth.current = 1400
+      setMenuWidth('53vw')
     })
 
-    mm.add(`(min-width: ${(13 / 3.5) * 200}px) and (max-width: 1399px)`, () => {
+    mm.add(`(min-width: 742px) and (max-width: 1399px)`, () => {
       setNumOfItems(9)
       setCurrent(0)
       setLeftMost(0)
-      setScaleType('b')
-      windowWidth.current = (13 / 3.5) * 200
+      setMenuWidth('742px')
     })
 
     for (let index = 7; index <= 12; index++) {
-      let min = (index / 3.5) * 200,
-        max = ((index + 1) / 3.5) * 200 - 1
+      let min = Math.floor(index * 200 / 3.5),            // 400px ... 685px
+          max = Math.floor((index + 1) * 200 / 3.5) - 1   // 456px ... 741px
 
       mm.add(`(min-width: ${min}px) and (max-width: ${max}px)`, () => {
-        console.log('MQ', index)
         setNumOfItems(index - 3)
         setCurrent(0)
         setLeftMost(0)
-        setScaleType('a')
+        setMenuWidth('100vw')
       })
     }
+
     mm.add(`(max-width: 399px)`, () => {
-      console.log('MQ', 3)
       setNumOfItems(3) // 6 narrow widths
       setCurrent(0)
       setLeftMost(0)
-      setScaleType('a')
+      setMenuWidth('100vw')
     })
 
     return () => {
@@ -134,70 +151,64 @@ const MobileImageMenu = ({ imagesData }) => {
     }
   }
 
-  // viewport for images should be no more than 9 items
+  //-------------------------------------------------------------------------
+  // setup
+  //    Called on each render, to calculate the (possibly new) widths and
+  // heights of the menu containers and items. The latter can be either
+  // 'narrow' or 'wide' with the proportions given below (4.4 or 20 x 32).
+  //-------------------------------------------------------------------------
+
   function setUp(numOfItems) {
     const result = {}
 
+    // These numbers are arbitrary: it is the proportional ratio between them
+    // that defines the menu appearance. Let's call them 'logical scale units'
     const narrow = 4.4
     const wide = 20
     const height = 32
 
+    const units = menuWidth.slice(-2).toLowerCase()
+    const basis = parseInt(menuWidth.slice(0, -2), 10)
+
+    // Calculate the width of the menu in 'logical scale units' - one 'wide'
+    // and the rest 'narrow'.
     const total = (numOfItems - 1) * narrow + 1 * wide
-    const x = 100 / total
 
-    // narrow and wide items combined
-    const n = Math.min(numOfItems, images.length - leftMost)
-    const width = (n - 1) * narrow + wide
-    const pixWidth = (x * windowWidth.current) / 100
+    // Set 'x' to a scaling factor that represents 1 'logical scale unit' in
+    // the current real width units.
+    const x = basis / total
 
-    if (scaleType === 'a') {
-      result.width = `${width * x}vw`
-      result.height = `${x * height}vw`
-      result.padding = `${x / 13}vw`
+    // Now we can compute the real sizes of menu items and containers:
+    result.narrow = `${x * narrow}${units}`
+    result.wide = `${x * wide}${units}`
+    result.height = `${x * height}${units}`
 
-      console.log(leftMost)
-      result.left = `-${leftMost}vw`
+    // We also want to know the real width of all visible items combined. This
+    // number may be less than the _allowed_ number.
+    const numVisible = Math.min(numOfItems, images.length - leftMost)
+    const visibleWidth = (numVisible - 1) * narrow + wide
 
-      // set each item's widths (wide and narrow)
-      result.narrow = `${x * narrow}vw`
-      result.wide = `${x * wide}vw`
+    result.linkContainerWidth = `${x * visibleWidth}${units}`
 
-      // set width of button container
-      result.linkContainerWidth = `${width * x}vw`
-    } else if (scaleType === 'b') {
-      result.width = `${total * pixWidth}px`
-      result.height = `${pixWidth * height}px`
-      result.padding = `${pixWidth / 15}px`
-      result.left = `-${leftMost * pixWidth}px`
+    // Ditto the left offset of the inner container, relative to the outer,
+    // which should be (negative) 'leftMost' times the narrow width.
 
-      // set each item's widths (wide and narrow)
-      result.narrow = `${pixWidth * narrow}px`
-      result.wide = `${pixWidth * wide}px`
+    result.left = `-${leftMost * x * narrow}${units}`
 
-      // set width of button container
-      result.linkContainerWidth = `${width * pixWidth}px`
-    } else if (scaleType === 'c') {
-      // view width is less than 100vw
-      const viewportWidth = (742.857 / windowWidth.current) * 100
-      const newRange = (windowWidth.current / viewportWidth) * 100
-      console.log(scaleType)
-      result.width = `${(742.857 / newRange) * 100 * x}vw`
-      result.height = `${(430.642 / newRange) * 100 * x}vw`
-      result.padding = `${(0.89717 / newRange) * 100 * x}vw`
+    // Finally, add some padding to every menu item to separate them ever so
+    // slightly.
 
-      result.left = `-${leftMost}vw`
+    result.padding = '1px'
 
-      // set each item's widths (wide and narrow)
-      result.narrow = `${(59 / newRange) * 100 * x}vw`
-      result.wide = `${(269 / newRange) * 100 * x}vw`
-
-      const px = ((x * wide) / windowWidth.current) * 100
-
-      // set width of button container
-      result.linkContainerWidth = `${(px / newRange) * 100 * x}vw`
-    }
     return result
   }
+
+  //-------------------------------------------------------------------------
+  // handleClick
+  //    Attached to each menu item as a 'click' event handler. Makes the
+  // selected item the new 'current', which will trigger (via GSAP animation)
+  // width and opacity changes.
+  //-------------------------------------------------------------------------
 
   function handleClick(e) {
     e.preventDefault()
@@ -214,7 +225,15 @@ const MobileImageMenu = ({ imagesData }) => {
     containerPosition(targetId, isInverse)
   }
 
-  // POSITIONING
+  //-------------------------------------------------------------------------
+  // containerPosition
+  //    Called after changing the 'current' item, to try to scroll it into
+  // either the 2nd position [moving forwards from previous current] or the
+  // penultimate position [moving backwards] - or as close as we can achieve,
+  // given the number of items available, versus the number that can fit in
+  // the current scroll-port (outer container).
+  //-------------------------------------------------------------------------
+
   function containerPosition(targetId, isInverse) {
     let newLeft = leftMost
     // FORWARD
@@ -244,11 +263,15 @@ const MobileImageMenu = ({ imagesData }) => {
     setLeftMost(newLeft)
   }
 
+  //-------------------------------------------------------------------------
+  //  Render [JSX]
+  //-------------------------------------------------------------------------
+
   return (
     <div
       ref={outerContainer}
       className="outer-container"
-      style={{ height: calcValues.height, width: calcValues.width }}
+      style={{ height: calcValues.height, width: menuWidth }}
     >
       <div className="mobile-menu-item-title-container">
         <p className="mobile-menu-item-title">{images[current].title}</p>
