@@ -85,28 +85,28 @@ const MobileImageMenu = ({ imagesData }) => {
   //                            viewport fills width (100vw)
   //    742 - 1399 px       9 items visible; menu width fixed at 742px
   //   1400 - 1779 px       9 items visible; menu width scales at 53vw
-  //   1780 - 2120 px       9 items visible; menu fixed at 943px
-  //   2021 & above         9 items visible; menu scales at 46.67vw
+  //   1780 - 2320 px       9 items visible; menu fixed at 943px
+  //   2321 & above         9 items visible; menu scales at 44.46vw
   //
   // Those menu widths are calculated to give a 'smooth' transition from
   // the previous sizing:
   //    742px = 100vw at a screen width of 742 px
   //    53vw = 742px at a screen width of 1400 px
   //    943px = 53vw at a screen width of 1780 px and
-  //    46.67vw = 943px at a screen width of 2021 px.
+  //    44.46vw = 943px at a screen width of 2321 px.
   //-------------------------------------------------------------------------
 
   function mediaQueries() {
     let mm = gsap.matchMedia()
 
-    mm.add(`(min-width: 2121px)`, () => {
+    mm.add(`(min-width: 2321px)`, () => {
       setNumOfItems(9) // 23
       setCurrent(0)
       setLeftMost(0)
-      setMenuWidth('46.67vw')
+      setMenuWidth('40.46vw')
     })
 
-    mm.add(`(min-width: 1780px) and (max-width: 2120px)`, () => {
+    mm.add(`(min-width: 1780px) and (max-width: 2320px)`, () => {
       setNumOfItems(9) //19
       setCurrent(0)
       setLeftMost(0)
@@ -128,8 +128,8 @@ const MobileImageMenu = ({ imagesData }) => {
     })
 
     for (let index = 7; index <= 12; index++) {
-      let min = Math.floor(index * 200 / 3.5),            // 400px ... 685px
-          max = Math.floor((index + 1) * 200 / 3.5) - 1   // 456px ... 741px
+      let min = Math.floor((index * 200) / 3.5), // 400px ... 685px
+        max = Math.floor(((index + 1) * 200) / 3.5) - 1 // 456px ... 741px
 
       mm.add(`(min-width: ${min}px) and (max-width: ${max}px)`, () => {
         setNumOfItems(index - 3)
@@ -168,7 +168,7 @@ const MobileImageMenu = ({ imagesData }) => {
     const height = 32
 
     const units = menuWidth.slice(-2).toLowerCase()
-    const basis = parseInt(menuWidth.slice(0, -2), 10)
+    const basis = parseFloat(menuWidth.slice(0, -2))
 
     // Calculate the width of the menu in 'logical scale units' - one 'wide'
     // and the rest 'narrow'.
