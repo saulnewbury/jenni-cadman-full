@@ -2,9 +2,9 @@ import React from 'react'
 
 const Counter = ({ id, length }) => {
   return (
-    <p className="counter">
+    <span>
       {id + 1}/{length}
-    </p>
+    </span>
   )
 }
 

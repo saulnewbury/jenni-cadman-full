@@ -23,44 +23,19 @@
     }
   }
 
-  .bottom-right {
+  .counter {
     position: absolute;
     bottom: 0;
-    height: 15%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     z-index: 2;
     pointer-events: none;
 
-    p {
+    span {
+      position: absolute;
+      right: 0.8em;
+      bottom: 0.5em;
       color: white;
       text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
-      font-size: 25px;
-      margin-right: 22px;
-    }
-
-    .artpiece-link {
-      display: inline-block;
-      text-decoration: none;
-      color: rgb(71, 71, 71);
-      background-color: rgb(255, 255, 255);
-      border-radius: 50%;
-      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.344);
-      width: 14vw;
-      height: 18vw;
-      margin-right: 3%;
-      transform: rotate(90deg);
-      z-index: 1;
-
-      .arrow {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 6vw;
-        height: 6vw;
-        transform: translate(-50%, -50%) rotate(-80deg);
-      }
+      font-size: 28px;
     }
   }
 
@@ -106,17 +81,22 @@
         display: flex;
         align-items: center;
         position: absolute;
-        bottom: 0.8em;
+        bottom: 0.5em;
         left: 0.8em;
-        font-size: 30px;
+        font-size: 28px;
         font-weight: 500;
         text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
         text-decoration: none;
         color: white;
+        transition: left 0.25s ease;
 
-        .arrow-right {
-          text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
-        }
+        // &:hover {
+        //   left: 1em;
+        // }
+
+        // .arrow-right {
+        //   box-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
+        // }
       }
     }
   }
@@ -159,17 +139,6 @@
 
       p {
         font-size: 9vw;
-      }
-    }
-    .bottom-right {
-      .artpiece-link {
-        width: 56px;
-        height: 72px;
-        font-size: 3.7vw;
-        .arrow {
-          width: 27.3px;
-          height: 27.3px;
-        }
       }
     }
   }
@@ -296,7 +265,7 @@
         font-size: 59px;
       }
     }
-    .bottom-right {
+    .counter {
       p {
         font-size: calc(59px / 2);
       }
@@ -313,7 +282,7 @@
         font-size: 4.214vw;
       }
     }
-    .bottom-right {
+    .counter {
       p {
         font-size: calc(4.214vw / 2);
         margin-right: 1.571vw;
@@ -331,7 +300,7 @@
         font-size: 75px;
       }
     }
-    .bottom-right {
+    .counter {
       p {
         font-size: calc(75px / 2);
         margin-right: 28px;
@@ -349,7 +318,7 @@
         font-size: 3.1vw;
       }
     }
-    .bottom-right {
+    .counter {
       p {
         font-size: calc(3.231vw / 2);
         margin-right: 1.206vw;

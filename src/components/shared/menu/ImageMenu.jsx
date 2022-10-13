@@ -64,14 +64,14 @@ const ImageMenu = ({ imagesData }) => {
       reveal.current?.pause().kill()
       reveal.current = gsap.fromTo(
         c('.view'),
-        { opacity: 0, yPercent: 20 },
-        { opacity: 1.0, yPercent: 0, delay: 0.2, duration: 0.2 }
+        { opacity: 0, yPercent: 45 },
+        { opacity: 1.0, yPercent: 0, delay: 0.5, duration: 0.5 }
       )
       // hide.current?.pause().kill()
       hide.current = gsap.fromTo(
         p('.view'),
         { yPercent: 0 },
-        { yPercent: 20, delay: 0.3 }
+        { yPercent: 45, delay: 0.3 }
       )
       gsap.fromTo(p('.view'), { opacity: 1.0 }, { opacity: 0, duration: 0.2 })
       lastCurrent.current = current
@@ -229,9 +229,13 @@ const ImageMenu = ({ imagesData }) => {
   //-------------------------------------------------------------------------
 
   function handleClick(e) {
-    e.preventDefault()
     const target = e.currentTarget
     const targetId = +target.dataset.id
+
+    // Prevent default only when initially selecting the item
+    if (targetId !== current) {
+      e.preventDefault()
+    }
 
     // exit function if clicking on item already selected
     if (targetId === current) return
@@ -294,19 +298,8 @@ const ImageMenu = ({ imagesData }) => {
       <div className="image-title-container">
         <p>{images[current].title}</p>
       </div>
-      <div
-        className="bottom-right"
-        style={{ width: calcValues.linkContainerWidth }}
-      >
+      <div className="counter" style={{ width: calcValues.linkContainerWidth }}>
         <Counter id={current} length={images.length} />
-        {/* <Link
-          to={`/work/${images[current].title
-            .replace(/\s+/g, '-')
-            .toLowerCase()}`}
-          className="artpiece-link"
-        >
-          <BsArrowUpRight className="arrow" />
-        </Link> */}
       </div>
       <div
         ref={container}
@@ -317,7 +310,10 @@ const ImageMenu = ({ imagesData }) => {
         }}
       >
         {images.map((image, idx) => (
-          <div
+          <Link
+            to={`/work/${images[current].title
+              .replace(/\s+/g, '-')
+              .toLowerCase()}`}
             className="image-item"
             style={{
               paddingLeft: calcValues.padding,
@@ -350,7 +346,7 @@ const ImageMenu = ({ imagesData }) => {
                 opacity: idx === current ? 1.0 : 0.7
               }}
             />
-            <Link
+            <span
               className="view"
               to={`/work/${images[current].title
                 .replace(/\s+/g, '-')
@@ -358,16 +354,13 @@ const ImageMenu = ({ imagesData }) => {
               style={{
                 opacity: idx === current ? 1.0 : 0,
                 pointerEvents: idx === current ? 'auto' : 'none',
-                transform: idx === current ? 'translateY(0)' : 'translateY(20%)'
+                transform:
+                  idx === current ? 'translateY(0)' : 'translateY(-45%)'
               }}
             >
-              <span>View</span>
-              <AiOutlineArrowRight
-                className="arrow-right"
-                style={{ dropShadow: '1px 1px 8px hsla(0, 0%, 20%, 1)' }}
-              />
-            </Link>
-          </div>
+              View &gt;
+            </span>
+          </Link>
         ))}
       </div>
     </div>
