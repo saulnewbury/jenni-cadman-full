@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { collections } from '../data/collections'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import Menu from '../components/shared/menu/Menu'
+import ImageMenu from '../components/shared/menu/ImageMenu'
 import AnimatePage from '../components/shared/AnimatePage'
 // import gsap from 'gsap'
 import './artpiece.scss'
@@ -17,7 +17,7 @@ const ArtPiece = () => {
 
   const obj = cln[0].imagesData.images.filter(obj => obj.imagePath === slug)
 
-  const { subFolder, title: clnTitle, imagesData } = cln[0]
+  const { subFolder, imagesData } = cln[0]
   const { title, imageDetail, imageMain, altText, desc } = obj[0]
 
   return (
@@ -54,8 +54,7 @@ const ArtPiece = () => {
             <AiOutlineArrowLeft className="icon" />
             <p>Back to WORK</p>
           </Link>
-          {/* <h2>Conversations With My Mother</h2> */}
-          <Menu imagesData={imagesData} />
+          <ImageMenu imagesData={imagesData} />
         </div>
       </main>
     </AnimatePage>
@@ -63,43 +62,3 @@ const ArtPiece = () => {
 }
 
 export default ArtPiece
-
-// const [dimensions, setDimensions] = useState({
-//   height: window.innerHeight,
-//   width: window.innerWidth
-// })
-
-// useEffect(() => {
-//   let resizeId
-//   function doneResizing() {
-//     setDimensions({
-//       height: window.innerHeight,
-//       width: window.innerWidth
-//     })
-//   }
-
-//   function resize() {
-//     clearTimeout(resizeId)
-//     resizeId = setTimeout(doneResizing, 300)
-//   }
-
-//   window.addEventListener('resize', resize)
-
-//   return () => {
-//     window.addEventListener('resize', resize)
-//   }
-// }, [])
-
-// if (dimensions.width > dimensions.height) {
-//   gsap.to('.container', {
-//     marginLeft: '12vw',
-//     marginRight: '12vw',
-//     duration: 0.2
-//   })
-// } else {
-//   gsap.to('.container', {
-//     marginLeft: '-2vh',
-//     marginRight: '2vh',
-//     duration: 0.2
-//   })
-// }

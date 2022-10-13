@@ -6,7 +6,7 @@
   position: relative;
   margin-bottom: 10vw;
 
-  .mobile-menu-item-title-container {
+  .image-title-container {
     width: max-content;
     position: absolute;
     margin-left: 11.5vw;
@@ -23,13 +23,22 @@
     }
   }
 
-  .artpiece-link-container {
+  .bottom-right {
     position: absolute;
     bottom: 0;
-    height: 20%;
+    height: 15%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    z-index: 2;
+    pointer-events: none;
+
+    p {
+      color: white;
+      text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
+      font-size: 25px;
+      margin-right: 22px;
+    }
 
     .artpiece-link {
       display: inline-block;
@@ -55,7 +64,7 @@
     }
   }
 
-  .mobile-image-menu {
+  .image-menu {
     position: absolute;
     display: flex;
     flex-flow: row no-wrap;
@@ -64,6 +73,7 @@
       padding-left: 0.1vw;
       padding-right: 0.1vw;
       position: relative;
+      cursor: pointer;
 
       img {
         width: 100%;
@@ -91,6 +101,23 @@
           );
         }
       }
+
+      .view {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 0.8em;
+        left: 0.8em;
+        font-size: 30px;
+        font-weight: 500;
+        text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
+        text-decoration: none;
+        color: white;
+
+        .arrow-right {
+          text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
+        }
+      }
     }
   }
 }
@@ -108,11 +135,11 @@
 // 6 narrow widths
 @media screen and (min-width: 0px) {
   .outer-container {
-    .mobile-menu-item-title-container {
+    .image-title-container {
       margin-left: 4vw;
       top: 8vw;
       width: 90vw;
-      .mobile-menu-item-title {
+      p {
         font-size: 12vw;
       }
     }
@@ -125,16 +152,16 @@
 // 7 narrow widths
 @media screen and (min-width: 400px) {
   .outer-container {
-    .mobile-menu-item-title-container {
+    .image-title-container {
       top: 4vw;
       width: 90vw;
       margin-left: 3vw;
 
-      .mobile-menu-item-title {
+      p {
         font-size: 9vw;
       }
     }
-    .artpiece-link-container {
+    .bottom-right {
       .artpiece-link {
         width: 56px;
         height: 72px;
@@ -151,37 +178,21 @@
 // 8 narrow widths
 @media screen and (min-width: 457px) {
   .outer-container {
-    .mobile-menu-item-title-container {
+    .image-title-container {
       width: 91vw;
       width: 416.773px;
 
-      .mobile-menu-item-title {
+      p {
         font-size: 9vw;
         font-size: 43px;
       }
     }
-
-    // .artpiece-link-container {
-    //   .artpiece-link {
-    //     // font-size: 3.2vw; no text
-    //     width: 63px;
-    //     height: 81px;
-    //     .arrow {
-    //       width: 27.3px;
-    //       height: 27.3px;
-    //     }
-    //   }
-    // }
   }
 }
 
 // 9 narrow widths
 @media screen and (min-width: 514px) {
   .outer-container {
-    .mobile-menu-item-title-container {
-      .mobile-menu-item-title {
-      }
-    }
     .artpiece-link {
       width: 63px;
       height: 81px;
@@ -193,10 +204,10 @@
 @media screen and (min-width: 571px) {
   .outer-container {
     width: unset;
-    .mobile-menu-item-title-container {
+    .image-title-container {
       width: 74vw;
 
-      .mobile-menu-item-title {
+      p {
         font-size: 46px;
       }
     }
@@ -206,10 +217,10 @@
 // 11 narrow widths
 @media screen and (min-width: 628px) {
   .outer-container {
-    .mobile-menu-item-title-container {
+    .image-title-container {
       width: 65vw;
 
-      .mobile-menu-item-title {
+      p {
         font-size: 8vw;
       }
     }
@@ -220,10 +231,10 @@
 
 @media screen and (min-width: 685px) {
   .outer-container {
-    .mobile-menu-item-title-container {
+    .image-title-container {
       width: 65vw;
 
-      .mobile-menu-item-title {
+      p {
         font-size: 6.5vw;
       }
     }
@@ -233,15 +244,12 @@
 // 13 narrow widths
 @media screen and (min-width: 742px) {
   .outer-container {
-    .mobile-menu-item-title-container {
+    .image-title-container {
       margin-left: 22px;
       top: 30px;
-      .mobile-menu-item-title {
+      p {
         font-size: 50px;
       }
-    }
-    .artpiece-link {
-      font-size: 2vw;
     }
   }
 }
@@ -249,16 +257,12 @@
 // 14 narrow widths
 @media screen and (min-width: 800px) {
   .outer-container {
-    .mobile-menu-item-title-container {
+    .image-title-container {
       width: 55vw;
 
-      .mobile-menu-item-title {
+      p {
         font-size: 50px;
       }
-    }
-
-    .artpiece-link {
-      bottom: 0.8vw;
     }
   }
 }
@@ -272,7 +276,7 @@
 @media screen and (min-width: 931px) {
   .outer-container {
     margin-left: 8vw;
-    .mobile-menu-item-title-container {
+    .image-title-container {
       width: 520px;
     }
   }
@@ -283,13 +287,72 @@
     margin-left: 10vw;
   }
 }
+
 @media screen and (min-width: 1200px) {
   .outer-container {
-    .mobile-menu-item-title-container {
+    .image-title-container {
       width: 539px;
-
-      .mobile-menu-item-title {
+      p {
         font-size: 59px;
+      }
+    }
+    .bottom-right {
+      p {
+        font-size: calc(59px / 2);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .outer-container {
+    .image-title-container {
+      width: 38.5vw;
+      margin-left: 1.571vw;
+      p {
+        font-size: 4.214vw;
+      }
+    }
+    .bottom-right {
+      p {
+        font-size: calc(4.214vw / 2);
+        margin-right: 1.571vw;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1780px) {
+  .outer-container {
+    .image-title-container {
+      width: 685px;
+      margin-left: 28px;
+      p {
+        font-size: 75px;
+      }
+    }
+    .bottom-right {
+      p {
+        font-size: calc(75px / 2);
+        margin-right: 28px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 2321px) {
+  .outer-container {
+    .image-title-container {
+      width: 28.33vw;
+      margin-left: 1.206vw;
+
+      p {
+        font-size: 3.1vw;
+      }
+    }
+    .bottom-right {
+      p {
+        font-size: calc(3.231vw / 2);
+        margin-right: 1.206vw;
       }
     }
   }

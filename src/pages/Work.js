@@ -2,27 +2,12 @@ import React, { useEffect, useState } from 'react'
 import gsap from 'gsap'
 import { collections } from '../data/collections'
 import './work.scss'
-import Menu from '../components/shared/menu/Menu'
-import MobileImageMenu from '../components/shared/menu/MobileImageMenu'
+import ImageMenu from '../components/shared/menu/ImageMenu'
 import AnimatePage from '../components/shared/AnimatePage'
 
 // import { BsArrowDown } from 'react-icons/bs'
 
 const Work = () => {
-  const [isHoverDevice, setIsHoverDevice] = useState(false)
-
-  useEffect(() => {
-    let mm = gsap.matchMedia()
-
-    mm.add('(hover: hover)', () => {
-      setIsHoverDevice(true)
-    })
-
-    return () => {
-      mm.kill()
-    }
-  }, [])
-
   return (
     <AnimatePage>
       {collections.map(cln => {
@@ -55,11 +40,7 @@ const Work = () => {
               </div>
             </div>
             {/* Menu */}
-            {isHoverDevice ? (
-              <Menu imagesData={imagesData} />
-            ) : (
-              <MobileImageMenu imagesData={imagesData} />
-            )}
+            <ImageMenu imagesData={imagesData} />
           </div>
         )
       })}
@@ -68,3 +49,18 @@ const Work = () => {
 }
 
 export default Work
+
+// Use following if for conditional rendering of image menus - hoverable vs touch
+// const [isHoverDevice, setIsHoverDevice] = useState(false)
+
+//   useEffect(() => {
+//     let mm = gsap.matchMedia()
+
+//     mm.add('(hover: hover)', () => {
+//       setIsHoverDevice(true)
+//     })
+
+//     return () => {
+//       mm.kill()
+//     }
+//   }, [])

@@ -1,8 +1,8 @@
 import React from 'react'
-import MobileImageMenu from '../components/shared/menu/MobileImageMenu'
+import ImageMenu from '../components/shared/menu/ImageMenu'
 
 const Test = () => {
-  return <MobileImageMenu />
+  return <ImageMenu />
 }
 
 export default Test

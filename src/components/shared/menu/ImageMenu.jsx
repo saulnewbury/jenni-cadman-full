@@ -1,10 +1,13 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './mobileImageMenu.scss'
-import gsap from 'gsap'
 import { BsArrowUpRight } from 'react-icons/bs'
+import { AiOutlineArrowRight } from 'react-icons/ai'
+import { IconContext } from 'react-icons'
+import './imageMenu.scss'
+import gsap from 'gsap'
+import Counter from '../Counter'
 
-const MobileImageMenu = ({ imagesData }) => {
+const ImageMenu = ({ imagesData }) => {
   const { subFolder, images } = imagesData
 
   const [numOfItems, setNumOfItems] = useState(1)
@@ -20,6 +23,8 @@ const MobileImageMenu = ({ imagesData }) => {
   const container = useRef()
   const lastCurrent = useRef(current)
   const lastLeft = useRef(leftMost)
+  const reveal = useRef()
+  const hide = useRef()
 
   const calcValues = setUp(numOfItems)
 
@@ -31,7 +36,7 @@ const MobileImageMenu = ({ imagesData }) => {
     if (current !== lastCurrent.current) {
       const prevTarget = container.current.children[lastCurrent.current]
       const newTarget = container.current.children[current]
-      const n = gsap.utils.selector(newTarget)
+      const c = gsap.utils.selector(newTarget)
       const p = gsap.utils.selector(prevTarget)
 
       gsap.fromTo(
@@ -50,12 +55,25 @@ const MobileImageMenu = ({ imagesData }) => {
         { width: `${calcValues.narrow}` },
         { width: `${calcValues.wide}` }
       )
-      gsap.fromTo(n('img'), { opacity: 0.7 }, { opacity: 1.0 })
+      gsap.fromTo(c('img'), { opacity: 0.7 }, { opacity: 1.0 })
       gsap.fromTo(
-        n('.overlay-container'),
+        c('.overlay-container'),
         { width: `${calcValues.narrow}` },
         { width: `${calcValues.wide}` }
       )
+      reveal.current?.pause().kill()
+      reveal.current = gsap.fromTo(
+        c('.view'),
+        { opacity: 0, yPercent: 20 },
+        { opacity: 1.0, yPercent: 0, delay: 0.2, duration: 0.2 }
+      )
+      // hide.current?.pause().kill()
+      hide.current = gsap.fromTo(
+        p('.view'),
+        { yPercent: 0 },
+        { yPercent: 20, delay: 0.3 }
+      )
+      gsap.fromTo(p('.view'), { opacity: 1.0 }, { opacity: 0, duration: 0.2 })
       lastCurrent.current = current
     }
   })
@@ -273,25 +291,26 @@ const MobileImageMenu = ({ imagesData }) => {
       className="outer-container"
       style={{ height: calcValues.height, width: menuWidth }}
     >
-      <div className="mobile-menu-item-title-container">
-        <p className="mobile-menu-item-title">{images[current].title}</p>
+      <div className="image-title-container">
+        <p>{images[current].title}</p>
       </div>
       <div
-        className="artpiece-link-container"
+        className="bottom-right"
         style={{ width: calcValues.linkContainerWidth }}
       >
-        <Link
+        <Counter id={current} length={images.length} />
+        {/* <Link
           to={`/work/${images[current].title
             .replace(/\s+/g, '-')
             .toLowerCase()}`}
           className="artpiece-link"
         >
           <BsArrowUpRight className="arrow" />
-        </Link>
+        </Link> */}
       </div>
       <div
         ref={container}
-        className="mobile-image-menu"
+        className="image-menu"
         style={{
           left: calcValues.left,
           height: calcValues.height
@@ -331,6 +350,23 @@ const MobileImageMenu = ({ imagesData }) => {
                 opacity: idx === current ? 1.0 : 0.7
               }}
             />
+            <Link
+              className="view"
+              to={`/work/${images[current].title
+                .replace(/\s+/g, '-')
+                .toLowerCase()}`}
+              style={{
+                opacity: idx === current ? 1.0 : 0,
+                pointerEvents: idx === current ? 'auto' : 'none',
+                transform: idx === current ? 'translateY(0)' : 'translateY(20%)'
+              }}
+            >
+              <span>View</span>
+              <AiOutlineArrowRight
+                className="arrow-right"
+                style={{ dropShadow: '1px 1px 8px hsla(0, 0%, 20%, 1)' }}
+              />
+            </Link>
           </div>
         ))}
       </div>
@@ -338,7 +374,7 @@ const MobileImageMenu = ({ imagesData }) => {
   )
 }
 
-export default MobileImageMenu
+export default ImageMenu
 
 // console.log(`scaleType: ${scaleType}, numOfItems: ${numOfItems}`)
 //       // vw / viewport total width x 100 (wv is width * 14)
