@@ -1,13 +1,10 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BsArrowUpRight } from 'react-icons/bs'
-import { AiOutlineArrowRight } from 'react-icons/ai'
-import { IconContext } from 'react-icons'
 import './imageMenu.scss'
 import gsap from 'gsap'
 import Counter from '../Counter'
 
-const ImageMenu = ({ imagesData }) => {
+const ImageMenu = ({ imagesData, id }) => {
   const { subFolder, images } = imagesData
 
   const [numOfItems, setNumOfItems] = useState(1)
@@ -64,15 +61,16 @@ const ImageMenu = ({ imagesData }) => {
       reveal.current?.pause().kill()
       reveal.current = gsap.fromTo(
         c('.view'),
-        { opacity: 0, yPercent: 45 },
-        { opacity: 1.0, yPercent: 0, delay: 0.5, duration: 0.5 }
+        { opacity: 0, translate: '5% 0px' },
+        { opacity: 1.0, translate: '0px 0px', delay: 0.2 }
       )
       // hide.current?.pause().kill()
       hide.current = gsap.fromTo(
         p('.view'),
-        { yPercent: 0 },
-        { yPercent: 45, delay: 0.3 }
+        { translate: '0px 0px' },
+        { translate: '5% 0px', delay: 0.3, duration: 0.01 }
       )
+
       gsap.fromTo(p('.view'), { opacity: 1.0 }, { opacity: 0, duration: 0.2 })
       lastCurrent.current = current
     }
@@ -119,28 +117,28 @@ const ImageMenu = ({ imagesData }) => {
 
     mm.add(`(min-width: 2321px)`, () => {
       setNumOfItems(9) // 23
-      setCurrent(0)
+      setCurrent(id || 0)
       setLeftMost(0)
       setMenuWidth('40.46vw')
     })
 
     mm.add(`(min-width: 1780px) and (max-width: 2320px)`, () => {
       setNumOfItems(9) //19
-      setCurrent(0)
+      setCurrent(id || 0)
       setLeftMost(0)
       setMenuWidth('943px')
     })
 
     mm.add(`(min-width: 1400px) and (max-width: 1779px)`, () => {
       setNumOfItems(9) //19
-      setCurrent(0)
+      setCurrent(id || 0)
       setLeftMost(0)
       setMenuWidth('53vw')
     })
 
     mm.add(`(min-width: 742px) and (max-width: 1399px)`, () => {
       setNumOfItems(9)
-      setCurrent(0)
+      setCurrent(id || 0)
       setLeftMost(0)
       setMenuWidth('742px')
     })
@@ -151,7 +149,7 @@ const ImageMenu = ({ imagesData }) => {
 
       mm.add(`(min-width: ${min}px) and (max-width: ${max}px)`, () => {
         setNumOfItems(index - 3)
-        setCurrent(0)
+        setCurrent(id || 0)
         setLeftMost(0)
         setMenuWidth('100vw')
       })
@@ -159,7 +157,7 @@ const ImageMenu = ({ imagesData }) => {
 
     mm.add(`(max-width: 399px)`, () => {
       setNumOfItems(3) // 6 narrow widths
-      setCurrent(0)
+      setCurrent(id || 0)
       setLeftMost(0)
       setMenuWidth('100vw')
     })
@@ -354,8 +352,7 @@ const ImageMenu = ({ imagesData }) => {
               style={{
                 opacity: idx === current ? 1.0 : 0,
                 pointerEvents: idx === current ? 'auto' : 'none',
-                transform:
-                  idx === current ? 'translateY(0)' : 'translateY(-45%)'
+                translate: idx === current ? '0px 0px' : '5% 0px'
               }}
             >
               View &gt;
@@ -368,17 +365,3 @@ const ImageMenu = ({ imagesData }) => {
 }
 
 export default ImageMenu
-
-// console.log(`scaleType: ${scaleType}, numOfItems: ${numOfItems}`)
-//       // vw / viewport total width x 100 (wv is width * 14)
-// result.container = {
-//   width: `${width * 14}%`,
-//   height: `${((width * 6.5) / 931) * 100}px`
-// }
-// result.padding = `${((width * 50) / 931) * 100}px`
-
-// result.left = `-${((leftMost * width) / 931) * 100}px`
-
-// // set each item's widths (wide and narrow)
-// result.narrow = `${(width / 931) * 100}px`
-// result.wide = `${((width * 4) / 931) * 100}px`

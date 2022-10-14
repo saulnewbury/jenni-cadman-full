@@ -19,3 +19,10 @@
     url('../fonts/AvenirNext-DemiBold.woff') format('woff');
   font-weight: 600;
 }
+
+/* @font-face {
+  font-family: 'Avenir';
+  src: url('../fonts/Avenir-Medium.woff2') format('woff2'),
+    url('../fonts/Avenir-Medium.woff') format('woff');
+  font-weight: 500;
+} */

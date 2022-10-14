@@ -17,8 +17,9 @@ const ArtPiece = () => {
 
   const obj = cln[0].imagesData.images.filter(obj => obj.imagePath === slug)
 
+  console.log(obj)
   const { subFolder, imagesData } = cln[0]
-  const { title, imageDetail, imageMain, altText, desc } = obj[0]
+  const { id, title, imageDetail, imageMain, altText, desc } = obj[0]
 
   return (
     <AnimatePage>
@@ -54,7 +55,7 @@ const ArtPiece = () => {
             <AiOutlineArrowLeft className="icon" />
             <p>Back to WORK</p>
           </Link>
-          <ImageMenu imagesData={imagesData} />
+          <ImageMenu imagesData={imagesData} id={id - 1} />
         </div>
       </main>
     </AnimatePage>

@@ -186,7 +186,25 @@
     }
   }
 }
+@media screen and (min-width: 931px) {
+  .art-piece {
+    .art-piece-menu-container {
+      .back-to-work {
+        margin-left: 8vw;
+      }
+    }
+  }
+}
 
+@media screen and (min-width: 1146px) {
+  .art-piece {
+    .art-piece-menu-container {
+      .back-to-work {
+        margin-left: 10vw;
+      }
+    }
+  }
+}
 @media screen and (min-width: 2148px) {
   // 90.216
   .art-piece {

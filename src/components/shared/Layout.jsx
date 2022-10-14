@@ -1,15 +1,21 @@
 import React from 'react'
-import styles from './layout.module.scss'
+import './layout.scss'
+import Footer from './Footer'
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      <div className={styles.topbar}>
-        <span>Jenni Cadman</span>
-        <span>Work</span>
+    <>
+      <div>
+        <main>
+          <div className="topbar">
+            <span>Jenni Cadman</span>
+            <span>Work</span>
+          </div>
+          {children}
+        </main>
+        <Footer className="footer" />
       </div>
-      <main>{children}</main>
-    </div>
+    </>
   )
 }
 

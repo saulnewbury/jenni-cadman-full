@@ -1,7 +1,7 @@
 .topbar {
   margin-left: 4vw;
   margin-right: 4vw;
-  margin-top: 2.6vw;
+  padding-top: 2.6vw;
   margin-bottom: 2.9vw;
   font-size: 1.25rem;
   font-weight: 100;
@@ -11,6 +11,12 @@
 
 .topbar * {
   font-weight: 500;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  background-color: white;
 }
 
 @media screen and (max-width: 1799px) {
@@ -32,7 +38,7 @@
 
 @media screen and (max-width: 975px) {
   .topbar {
-    margin-top: 25.35px;
+    padding-top: 25.35px;
     // margin-bottom: 28.275px;
     // font-size: 1rem;
   }

@@ -1,0 +1,214 @@
+footer {
+  background-color: rgb(215, 215, 215);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  // min-height: 100vh;
+  max-height: max-content;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.9;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  $f-font-weight: 500;
+  $f-text-color: hsl(0 0% 35%);
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8vw;
+    margin-right: 8vw;
+    margin-top: 12vw;
+    margin-bottom: 12vw;
+    max-width: 350px;
+
+    h2 {
+      font-size: 4rem;
+      margin-bottom: 0.7em;
+    }
+
+    .one {
+      .stay-informed {
+        form {
+          display: flex;
+          flex-direction: column;
+          min-width: 200px;
+          max-width: 500px;
+          margin-bottom: 3em;
+
+          label {
+            color: $f-text-color;
+            margin-bottom: 1em;
+            font-weight: $f-font-weight;
+            line-height: 1.9;
+          }
+
+          input {
+            font-size: inherit;
+            color: $f-text-color;
+            background: none;
+            border: none;
+            border-bottom: solid $f-text-color 2px;
+            padding-bottom: 5px;
+            margin-bottom: 4px;
+            max-width: 70vw;
+
+            &:focus-visible {
+              outline: green;
+            }
+
+            &::placeholder {
+              color: hsl(0, 0%, 65%);
+            }
+          }
+
+          button {
+            padding: 2px;
+            align-self: flex-start;
+            background: none;
+            border: none;
+            font-size: inherit;
+            font-weight: $f-font-weight;
+            color: $f-text-color;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            span {
+              margin-right: 4px;
+            }
+            .arrow-right {
+              height: auto;
+              width: 1.2em;
+              transition: 0.25s ease;
+            }
+
+            &:hover .arrow-right {
+              transform: translateX(30%);
+            }
+          }
+        }
+      }
+      .socials {
+        margin-bottom: 3em;
+
+        a {
+          text-decoration: none;
+          color: $f-text-color;
+          font-weight: $f-font-weight;
+          line-height: 1.9;
+          position: relative;
+          padding: 6px 6px 6px 0;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            height: 2px;
+            width: 0px;
+            background-color: $f-text-color;
+            transition: width 0.25s ease;
+          }
+          &:hover::before {
+            width: 80px;
+          }
+        }
+      }
+    }
+    .two {
+      color: $f-text-color;
+      .enquiries {
+        line-height: 1.9;
+        margin-bottom: 3em;
+        a {
+          text-decoration: underline;
+          color: $f-text-color;
+        }
+      }
+      .copyright {
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 730px) {
+  footer {
+    .container {
+      max-width: unset;
+      width: 100%;
+      h2 {
+      }
+      .one {
+        display: flex;
+        .stay-informed {
+          flex-basis: 0;
+          flex-grow: 1;
+          form {
+            width: 70%;
+            max-width: 20em;
+            label {
+              input {
+                font-size: inherit;
+              }
+            }
+          }
+        }
+        .socials {
+          padding-left: 8vw;
+          flex-basis: 0;
+          flex-grow: 1;
+        }
+      }
+      .two {
+        display: flex;
+        align-items: flex-end;
+        .enquiries {
+          flex-grow: 1;
+          flex-basis: 0;
+          margin-bottom: 0;
+        }
+        .copyright {
+          padding-left: 8vw;
+          flex-grow: 1;
+          flex-basis: 0;
+          line-height: 1.9;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 1146px) {
+  footer {
+    font-size: 1.4vw;
+    .container {
+      h2 {
+      }
+      .one {
+        .stay-informed {
+          form {
+            label {
+            }
+            input {
+              font-size: inherit;
+              border-width: 0.175vw;
+            }
+          }
+        }
+        .socials {
+          a {
+            &:before {
+              top: 2.18vw;
+              height: 0.175vw;
+            }
+            &:hover::before {
+              width: 6.98vw;
+              width: 8.98vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
