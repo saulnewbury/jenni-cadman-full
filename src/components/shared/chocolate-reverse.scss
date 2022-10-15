@@ -1,0 +1,238 @@
+// animation-play-state
+// itentifier / duration / ease / animation-fill-mode / animation-iteration-count [inc. infinate]/ delay
+
+// ----------------------------------------------------
+// Animate inwards the Corner blocks
+// ----------------------------------------------------
+
+.chocolate .b0.navClose {
+  animation: from-top-left-reverse 0.4s step-end reverse forwards;
+}
+.chocolate .b2.navClose {
+  animation: from-top-right-reverse 0.4s step-end reverse forwards;
+}
+.chocolate .b6.navClose {
+  animation: from-bottom-left-reverse 0.4s step-end reverse forwards;
+}
+.chocolate .b8.navClose {
+  animation: from-bottom-right-reverse 0.4s step-end reverse forwards;
+}
+
+@keyframes from-top-left-reverse {
+  20% {
+    transform: translate(18%, 18%);
+  }
+  35% {
+    transform: translate(25%, 25%);
+  }
+  50% {
+    transform: translate(38%, 38%);
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+    transform: translate(15%, 15%);
+  }
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+@keyframes from-top-right-reverse {
+  20% {
+    transform: translate(-18%, 18%);
+  }
+  35% {
+    transform: translate(-25%, 25%);
+  }
+  50% {
+    transform: translate(-38%, 38%);
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+    transform: translate(-15%, 15%);
+  }
+  100% {
+    transform: translate(-0%, 0%);
+  }
+}
+
+@keyframes from-bottom-left-reverse {
+  20% {
+    transform: translate(18%, -18%);
+  }
+  35% {
+    transform: translate(25%, -25%);
+  }
+  50% {
+    transform: translate(38%, -38%);
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+    transform: translate(15%, -15%);
+  }
+  100% {
+    transform: translate(0%, -0%);
+  }
+}
+
+@keyframes from-bottom-right-reverse {
+  20% {
+    transform: translate(-18%, -18%);
+  }
+  35% {
+    transform: translate(-25%, -25%);
+  }
+  50% {
+    transform: translate(-38%, -38%);
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+    transform: translate(-15%, -15%);
+  }
+  100% {
+    transform: translate(-0%, -0%);
+  }
+}
+
+// ----------------------------------------------------
+// Animate the blocks in-between on the outer files
+// ----------------------------------------------------
+
+.chocolate .b1.navClose {
+  animation: from-top-middle-reverse 0.4s step-end reverse forwards;
+}
+.chocolate .b3.navClose {
+  animation: from-left-middle-reverse 0.4s step-end reverse forwards;
+}
+.chocolate .b5.navClose {
+  animation: from-right-middle-reverse 0.4s step-end reverse forwards;
+}
+.chocolate .b7.navClose {
+  animation: from-bottom-middle-reverse 0.4s step-end reverse forwards;
+}
+
+@keyframes from-top-middle-reverse {
+  35% {
+    translate: 8% 8%;
+  }
+  50% {
+    translate: 12% 12%;
+  }
+  65% {
+    translate: 29% 30%;
+  }
+  75% {
+    translate: 46% 40%;
+  }
+  90% {
+    translate: 54% 46%;
+  }
+  100% {
+    translate: 54% 46%;
+  }
+}
+
+@keyframes from-left-middle-reverse {
+  35% {
+    translate: 8% -8%;
+  }
+  50% {
+    translate: 12% -12%;
+  }
+  65% {
+    translate: 30% -29%;
+  }
+  75% {
+    translate: 40% -46%;
+  }
+  90% {
+    translate: 46% -54%;
+  }
+  100% {
+    translate: 46% -54%;
+  }
+}
+
+@keyframes from-right-middle-reverse {
+  35% {
+    translate: -8% 8%;
+  }
+  50% {
+    translate: -12% 12%;
+  }
+  65% {
+    translate: -29% 30%;
+  }
+  75% {
+    translate: -40% 46%;
+  }
+  90% {
+    translate: -46% 54%;
+  }
+  100% {
+    translate: -46% 54%;
+  }
+}
+
+@keyframes from-bottom-middle-reverse {
+  35% {
+    translate: -8% -8%;
+  }
+  50% {
+    translate: -12% -12%;
+  }
+  65% {
+    translate: -30% -29%;
+  }
+  75% {
+    translate: -46% -40%;
+  }
+  90% {
+    translate: -54% -46%;
+  }
+
+  100% {
+    translate: -54% -46%;
+  }
+}
+
+// ----------------------------------------------------
+// Expand the size of the middle one at 28%
+// ----------------------------------------------------
+
+.chocolate .b4.navClose {
+  animation: scale-center-block-reverse 0.4s step-end reverse forwards;
+}
+@keyframes scale-center-block-reverse {
+  0% {
+    padding: 9.5%;
+  }
+  20% {
+    padding: 9.5%;
+  }
+  65% {
+    padding: 5%;
+  }
+  75% {
+    padding: 9.5%;
+  }
+  100% {
+    padding: 9.5%;
+  }
+}

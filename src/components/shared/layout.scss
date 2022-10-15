@@ -1,12 +1,24 @@
 .topbar {
-  margin-left: 4vw;
-  margin-right: 4vw;
+  position: sticky;
+  top: 0;
+  width: 100vw;
   padding-top: 2.6vw;
   margin-bottom: 2.9vw;
   font-size: 1.25rem;
   font-weight: 100;
-  display: flex;
-  justify-content: space-between;
+  z-index: 100;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 4vw;
+    padding-right: 4vw;
+
+    span {
+      position: relative;
+      z-index: 100;
+    }
+  }
 }
 
 .topbar * {

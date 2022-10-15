@@ -112,7 +112,7 @@ footer {
             transition: width 0.25s ease;
           }
           &:hover::before {
-            width: 80px;
+            width: 120%;
           }
         }
       }
@@ -201,10 +201,6 @@ footer {
             &:before {
               top: 2.18vw;
               height: 0.175vw;
-            }
-            &:hover::before {
-              width: 6.98vw;
-              width: 8.98vw;
             }
           }
         }

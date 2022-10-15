@@ -1,0 +1,48 @@
+.mobile-menu {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  width: 0vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  z-index: 99;
+  transition: width 0.4s ease;
+
+  .container {
+    opacity: 0;
+    // pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease;
+
+    .link {
+      text-decoration: none;
+      margin-bottom: 50px;
+    }
+  }
+}
+
+.mobile-menu.open {
+  width: 100vw;
+
+  .container {
+    // pointer-events: none;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .link {
+      text-decoration: none;
+      margin-bottom: 50px;
+    }
+  }
+}
