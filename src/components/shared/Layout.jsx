@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import gsap from 'gsap'
 import './layout.scss'
 import './chocolate-forward.scss'
 import './chocolate-reverse.scss'
@@ -8,6 +9,11 @@ import ChocolateButton from './ChocolateButton'
 
 const Layout = ({ children }) => {
   const [navIsOpen, setNavIsOpen] = useState(false)
+  // Disable scroll while modal is open
+  useEffect(() => {
+    if (navIsOpen) gsap.set('body', { overflow: 'hidden' })
+    if (!navIsOpen) gsap.set('body', { overflow: 'unset' })
+  }, [navIsOpen])
 
   function handleClick() {
     console.log('object')

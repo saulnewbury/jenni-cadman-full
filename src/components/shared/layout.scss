@@ -2,17 +2,17 @@
   position: sticky;
   top: 0;
   width: 100vw;
-  padding-top: 2.6vw;
-  margin-bottom: 2.9vw;
-  font-size: 1.25rem;
-  font-weight: 100;
+  padding-top: 50px;
+  margin-bottom: 80px;
+  font-size: 1.5rem;
+  font-weight: 400;
   z-index: 100;
 
   .container {
     display: flex;
     justify-content: space-between;
-    padding-left: 4vw;
-    padding-right: 4vw;
+    padding-left: 60px;
+    padding-right: 60px;
 
     span {
       position: relative;
@@ -21,9 +21,9 @@
   }
 }
 
-.topbar * {
-  font-weight: 500;
-}
+// .topbar * {
+//   font-weight: 500;
+// }
 
 main {
   position: relative;
@@ -32,9 +32,9 @@ main {
 }
 
 @media screen and (max-width: 1799px) {
-  .topbar {
-    font-size: 22.5px;
-  }
+  // .topbar {
+  //   font-size: 22.5px;
+  // }
 }
 
 @media screen and (max-width: 1500px) {
@@ -42,11 +42,11 @@ main {
     margin-bottom: 43.5px;
   }
 }
-@media screen and (max-width: 1266px) {
-  .topbar {
-    font-size: 20px;
-  }
-}
+// @media screen and (max-width: 1266px) {
+//   .topbar {
+//     font-size: 20px;
+//   }
+// }
 
 @media screen and (max-width: 975px) {
   .topbar {
@@ -57,7 +57,7 @@ main {
 }
 
 @media screen and (min-width: 1800px) {
-  .topbar {
-    font-size: 1.25vw;
-  }
+  // .topbar {
+  //   font-size: 1.25vw;
+  // }
 }

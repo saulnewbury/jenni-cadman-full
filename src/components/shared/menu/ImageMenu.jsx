@@ -4,7 +4,7 @@ import './imageMenu.scss'
 import gsap from 'gsap'
 import Counter from '../Counter'
 
-const ImageMenu = ({ imagesData, id }) => {
+const ImageMenu = ({ imagesData, collectionId, id }) => {
   const { subFolder, images } = imagesData
 
   const [numOfItems, setNumOfItems] = useState(1)
@@ -61,14 +61,13 @@ const ImageMenu = ({ imagesData, id }) => {
       reveal.current?.pause().kill()
       reveal.current = gsap.fromTo(
         c('.view'),
-        { opacity: 0, translate: '5% 0px' },
-        { opacity: 1.0, translate: '0px 0px', delay: 0.2 }
+        { opacity: 0, translate: '0px 2%' },
+        { opacity: 1.0, translate: '0px 0px', delay: 0.5, duration: 0.5 }
       )
-      // hide.current?.pause().kill()
       hide.current = gsap.fromTo(
         p('.view'),
         { translate: '0px 0px' },
-        { translate: '5% 0px', delay: 0.3, duration: 0.01 }
+        { translate: '0px 2%', delay: 0.3, duration: 0.01 }
       )
 
       gsap.fromTo(p('.view'), { opacity: 1.0 }, { opacity: 0, duration: 0.2 })
@@ -309,7 +308,7 @@ const ImageMenu = ({ imagesData, id }) => {
       >
         {images.map((image, idx) => (
           <Link
-            to={`/work/${images[current].title
+            to={`/${collectionId}/${images[current].title
               .replace(/\s+/g, '-')
               .toLowerCase()}`}
             className="image-item"
@@ -352,10 +351,10 @@ const ImageMenu = ({ imagesData, id }) => {
               style={{
                 opacity: idx === current ? 1.0 : 0,
                 pointerEvents: idx === current ? 'auto' : 'none',
-                translate: idx === current ? '0px 0px' : '5% 0px'
+                translate: idx === current ? '0px 0px' : '0px 2%'
               }}
             >
-              View &gt;
+              View
             </span>
           </Link>
         ))}

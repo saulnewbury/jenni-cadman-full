@@ -83,20 +83,19 @@
         position: absolute;
         bottom: 0.5em;
         left: 0.8em;
-        font-size: 28px;
+        font-size: 20px;
+        font-size: 0.8rem;
         font-weight: 500;
-        text-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
         text-decoration: none;
-        color: white;
+        color: rgb(30, 30, 30);
+        background: white;
+        border-radius: 1000px;
+        padding: 0.8em 1em;
         transition: left 0.25s ease;
 
         &:hover {
           left: 1em;
         }
-
-        // .arrow-right {
-        //   box-shadow: 1px 1px 8px hsla(0, 0%, 20%, 1);
-        // }
       }
     }
   }
@@ -270,7 +269,7 @@
 
 @media screen and (min-width: 1146px) {
   .outer-container {
-    margin-left: 10vw;
+    margin-left: 20vw;
   }
 }
 

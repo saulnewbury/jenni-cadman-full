@@ -25,7 +25,7 @@ const MobileMenu = ({ navIsOpen, handleClick }) => {
           Work
         </Link>
         <Link
-          to="/work"
+          to="/cv"
           className="link"
           onClick={() => {
             handleClick()

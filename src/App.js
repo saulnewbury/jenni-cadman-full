@@ -1,9 +1,10 @@
 import './App.css'
-import Work from './pages/Work'
+import Collection from './pages/Collection'
 import NotFound from './pages/NotFound'
 import ArtPiece from './pages/ArtPiece'
 import Layout from './components/shared/Layout'
 import Home from './pages/Home'
+import CV from './pages/CV'
 import Test from './pages/Test'
 import { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
@@ -31,8 +32,9 @@ function App() {
           {/* These each set up a matcher between a location and the component to show where that component is at. They tell Routes which component to inject when a certain route is active */}
           <Route path="/" element={<Home />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/work/:slug" element={<ArtPiece />} />
+          <Route path="/:id" element={<Collection />} />
+          <Route path="/cv" element={<CV />} />
+          <Route path="/:d/:slug" element={<ArtPiece />} />
           <Route path="*" element={<NotFound />} />
           {/* if not other routs match */}
         </Routes>

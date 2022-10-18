@@ -4,12 +4,20 @@ export const collections = [
     subFolder: 'veronica',
     date: 2021,
     featuredImage: {
-      name: 'collection-conversations-with-my-mother',
-      // name: 'veronica-3-detail',
+      // name: 'collection-conversations-with-my-mother',
+      name: 'veronica-3-detail',
       altText: 'portrait of veronica 3'
     },
     title: 'Conversations With My Mother',
-    desc: 'Jenni Cadman is a British artist who draws and paints with threads. Working in harmony with her sewing machine she creates artworks infused with colour, texture and bold graphic lines. Observations and memories of the landscape and the natural world have been her constant source of inspiration. However, in 2021, a new direction has emerged in the form of a project "Conversations With My Mother" making her mother the subject and focus of new work.',
+    desc: [
+      'This collection of work forms part of an ongoing project to celebrate and honour my brave Mother, Veronica, who died in November 2020 shortly after her 87th birthday.',
+
+      'Based on photographs from her archives, these monotypes and embroideries capture her likeness frozen in time, while others explore a more expressive and playful way of image making.',
+
+      'This project has become my way to deal with her death, a form of grieving. It is about love, loss, time and memories. The creative process of thinking, seeing and making has enabled me to become emotionally absorbed in her and her life.',
+
+      'While I print, or stitch, I become aware she is looking directly at me from the work. It is a two-way confrontation where I have been able to talk to her, out loud and internally. There is much to say. Death is often about regret, or guilt, but on the whole the “conversations” are good.'
+    ],
     imagesData: {
       subFolder: 'veronica',
       images: [

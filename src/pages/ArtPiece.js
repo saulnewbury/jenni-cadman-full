@@ -8,7 +8,7 @@ import AnimatePage from '../components/shared/AnimatePage'
 import './artpiece.scss'
 
 const ArtPiece = () => {
-  const { slug } = useParams()
+  const { slug, id } = useParams()
 
   // get collection which includes a title that is the same as slug.
   const cln = collections.filter(cln => {
@@ -19,13 +19,19 @@ const ArtPiece = () => {
 
   console.log(obj)
   const { subFolder, imagesData } = cln[0]
-  const { id, title, imageDetail, imageMain, altText, desc } = obj[0]
+  const {
+    id: artpieceId,
+    title,
+    imageDetail,
+    imageMain,
+    altText,
+    desc
+  } = obj[0]
 
   return (
     <AnimatePage>
       <main className="art-piece">
         <div className="container">
-          {/* <h2 className="collection-title">{clnTitle}</h2> */}
           <h1 className="art-piece-title">{title}</h1>
           <div className="full-image">
             <img
@@ -51,11 +57,11 @@ const ArtPiece = () => {
           </div>
         </div>
         <div className="art-piece-menu-container">
-          <Link className="back-to-work" to="/work">
+          <Link className="back-to-work" to={`/${id}/`}>
             <AiOutlineArrowLeft className="icon" />
-            <p>Back to WORK</p>
+            <p>Back to collection</p>
           </Link>
-          <ImageMenu imagesData={imagesData} id={id - 1} />
+          <ImageMenu imagesData={imagesData} id={artpieceId - 1} />
         </div>
       </main>
     </AnimatePage>

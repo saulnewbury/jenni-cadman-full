@@ -21,6 +21,9 @@ const Footer = () => {
           </div>
           <div className="socials">
             <p>
+              <a href="https://www.axisweb.org/p/jennicadman/">Axis</a>
+            </p>
+            <p>
               <a href="https://www.flickr.com/photos/jencad/">Flicker</a>
             </p>
             <p>
