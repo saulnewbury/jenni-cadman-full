@@ -10,9 +10,7 @@ export const collections = [
     },
     title: 'Conversations With My Mother',
     desc: [
-      'This collection of work forms part of an ongoing project to celebrate and honour my brave Mother, Veronica, who died in November 2020 shortly after her 87th birthday.',
-
-      'Based on photographs from her archives, these monotypes and embroideries capture her likeness frozen in time, while others explore a more expressive and playful way of image making.',
+      'This collection of work forms part of an ongoing project to celebrate and honour my brave Mother, Veronica, who died in November 2020 shortly after her 87th birthday. Based on photographs from her archives, these monotypes and embroideries capture her likeness frozen in time, while others explore a more expressive and playful way of image making.',
 
       'This project has become my way to deal with her death, a form of grieving. It is about love, loss, time and memories. The creative process of thinking, seeing and making has enabled me to become emotionally absorbed in her and her life.',
 
@@ -181,7 +179,9 @@ export const collections = [
       altText: 'Composition of elements'
     },
     title: 'Deer Park I',
-    desc: 'This series of embroidered textile panels, wallhangings and pictures are based around a daily walk to my studio when I lived in Evershot, West Dorset. Walking the seven mile round trip every day took me through Melbury Park, a centuries old landscape of woods and grazing land for sheep, deer and horses with a central landscape of cultivated gardens, lakes and magnificent trees located around Melbury House.',
+    desc: [
+      'This series of embroidered textile panels, wallhangings and pictures are based around a daily walk to my studio when I lived in Evershot, West Dorset. Walking the seven mile round trip every day took me through Melbury Park, a centuries old landscape of woods and grazing land for sheep, deer and horses with a central landscape of cultivated gardens, lakes and magnificent trees located around Melbury House.'
+    ],
     imagesData: {
       subFolder: 'deer-park-1',
       images: [
@@ -278,5 +278,7 @@ export const collections = [
         }
       ]
     }
-  }
+  },
+  {},
+  {}
 ]

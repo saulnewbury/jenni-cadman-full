@@ -1,24 +1,3 @@
-.chocolate {
-  height: 40px;
-  width: 40px;
-  position: relative;
-  z-index: 100;
-  cursor: pointer;
-}
-
-.block {
-  width: 33.3333%;
-  height: 33.3333%;
-  padding: 9.5%;
-  position: absolute;
-
-  .color {
-    height: 100%;
-    width: 100%;
-    background-color: black;
-  }
-}
-
 // X Axis
 .b0,
 .b3,

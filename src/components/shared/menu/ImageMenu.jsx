@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './imageMenu.scss'
+import './image-menu.scss'
 import gsap from 'gsap'
 import Counter from '../Counter'
 

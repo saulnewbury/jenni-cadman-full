@@ -12,10 +12,10 @@ const ArtPiece = () => {
 
   // get collection which includes a title that is the same as slug.
   const cln = collections.filter(cln => {
-    return cln.imagesData.images.some(obj => obj.imagePath === slug)
+    return cln.imagesData?.images.some(obj => obj.imagePath === slug)
   })
 
-  const obj = cln[0].imagesData.images.filter(obj => obj.imagePath === slug)
+  const obj = cln[0].imagesData?.images.filter(obj => obj.imagePath === slug)
 
   console.log(obj)
   const { subFolder, imagesData } = cln[0]

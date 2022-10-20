@@ -1,0 +1,94 @@
+.contact-info {
+  position: absolute;
+  bottom: 120px;
+  right: 120px;
+  z-index: 90;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  display: none;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      padding: 1.5rem 0;
+    }
+
+    input {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid hsl(0, 0%, 35%);
+      font-size: 1rem;
+      padding: 0;
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.4rem;
+
+      &:focus-visible {
+        outline: none;
+      }
+      &::placeholder {
+        color: rgb(179, 179, 179);
+      }
+    }
+
+    button {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      text-align: left;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      width: max-content;
+
+      .arrow-right {
+        transform: translateX(0%);
+        transition: transform 0.2s ease;
+      }
+
+      span {
+        margin-right: 0.3rem;
+      }
+
+      &:hover .arrow-right {
+        transform: translateX(20%);
+      }
+    }
+  }
+
+  .enquiries {
+    padding: 1.5rem 0 2.3rem;
+    text-align: right;
+
+    span {
+      text-decoration: underline;
+    }
+  }
+  .socials {
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      a {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 20px;
+          width: 0%;
+          height: 1px;
+          background-color: hsl(0, 0%, 35%);
+          transition: width 0.25s;
+        }
+
+        &:hover::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

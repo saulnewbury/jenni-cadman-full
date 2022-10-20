@@ -2,28 +2,47 @@
   position: sticky;
   top: 0;
   width: 100vw;
-  padding-top: 50px;
-  margin-bottom: 80px;
-  font-size: 1.5rem;
+  padding-top: 26px;
+  margin-bottom: 43.5px;
+  font-size: 1.2rem;
   font-weight: 400;
   z-index: 100;
 
   .container {
     display: flex;
     justify-content: space-between;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 2.7vw;
+    padding-right: 2.7vw;
 
     span {
       position: relative;
       z-index: 100;
     }
+
+    .chocolate {
+      height: 40px;
+      width: 40px;
+      height: 30px;
+      width: 30px;
+      position: relative;
+      z-index: 100;
+      cursor: pointer;
+    }
+
+    .block {
+      width: 33.3333%;
+      height: 33.3333%;
+      padding: 9.5%;
+      position: absolute;
+
+      .color {
+        height: 100%;
+        width: 100%;
+        background-color: black;
+      }
+    }
   }
 }
-
-// .topbar * {
-//   font-weight: 500;
-// }
 
 main {
   position: relative;
@@ -31,33 +50,36 @@ main {
   background-color: white;
 }
 
-@media screen and (max-width: 1799px) {
-  // .topbar {
-  //   font-size: 22.5px;
-  // }
-}
-
-@media screen and (max-width: 1500px) {
+@media screen and (min-width: 1200px) {
   .topbar {
-    margin-bottom: 43.5px;
-  }
-}
-// @media screen and (max-width: 1266px) {
-//   .topbar {
-//     font-size: 20px;
-//   }
-// }
-
-@media screen and (max-width: 975px) {
-  .topbar {
-    padding-top: 25.35px;
-    // margin-bottom: 28.275px;
-    // font-size: 1rem;
+    .container {
+      .chocolate {
+        height: 32px;
+        width: 32px;
+      }
+    }
   }
 }
 
-@media screen and (min-width: 1800px) {
-  // .topbar {
-  //   font-size: 1.25vw;
-  // }
+@media screen and (min-width: 1441px) {
+  .topbar {
+    .container {
+      .chocolate {
+        height: 34px;
+        width: 34px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .topbar {
+    margin-bottom: 80px;
+    padding-top: 32px;
+
+    .container {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+  }
 }

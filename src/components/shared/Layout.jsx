@@ -6,6 +6,7 @@ import './chocolate-reverse.scss'
 import Footer from './Footer'
 import MobileMenu from './MobileMenu'
 import ChocolateButton from './ChocolateButton'
+import CollectionMenu from './CollectionMenu'
 
 const Layout = ({ children }) => {
   const [navIsOpen, setNavIsOpen] = useState(false)
@@ -21,24 +22,20 @@ const Layout = ({ children }) => {
   }
 
   return (
-    <>
-      <div>
-        <main>
-          <div className="topbar">
-            <div className="container">
-              <span>Jenni Cadman</span>
-              <ChocolateButton
-                handleClick={handleClick}
-                navIsOpen={navIsOpen}
-              />
-            </div>
-            <MobileMenu navIsOpen={navIsOpen} handleClick={handleClick} />
+    <div>
+      <main>
+        <CollectionMenu />
+        <div className="topbar">
+          <div className="container">
+            <span>Jenni Cadman</span>
+            <ChocolateButton handleClick={handleClick} navIsOpen={navIsOpen} />
           </div>
-          {children}
-        </main>
-        <Footer className="footer" />
-      </div>
-    </>
+          <MobileMenu navIsOpen={navIsOpen} handleClick={handleClick} />
+        </div>
+        {children}
+      </main>
+      {/* <Footer className="footer" /> */}
+    </div>
   )
 }
 

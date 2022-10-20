@@ -13,6 +13,7 @@ import { AnimatePresence } from 'framer-motion'
 function App() {
   const location = useLocation()
   const lastPos = useRef(new Map()) // persists accross renders hense useRef
+  console.log(location.pathname)
 
   useEffect(() => {
     const savePos = ev => {
@@ -34,7 +35,7 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/:id" element={<Collection />} />
           <Route path="/cv" element={<CV />} />
-          <Route path="/:d/:slug" element={<ArtPiece />} />
+          <Route path="/:id/:slug" element={<ArtPiece />} />
           <Route path="*" element={<NotFound />} />
           {/* if not other routs match */}
         </Routes>

@@ -1,23 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './collection-menu.scss'
+import { collections } from '../../data/collections'
+import { useParams } from 'react-router-dom'
 
 const CollectionMenu = () => {
+  const { id } = useParams()
+  console.log(id)
+
   return (
     <div>
       <div className="collection-menu">
-        <Link to="/01" className="link">
-          01
-        </Link>
-        <Link to="/02" className="link">
-          02
-        </Link>
-        <Link to="/03" className="link">
-          03
-        </Link>
-        <Link to="/04" className="link">
-          04
-        </Link>
+        {collections.map((col, idx) => {
+          return (
+            <span key={idx}>
+              <Link to={`/0${idx + 1}/`} className={`link`}>
+                {`0${idx + 1}`}
+              </Link>
+            </span>
+          )
+        })}
       </div>
     </div>
   )

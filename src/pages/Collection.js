@@ -2,16 +2,14 @@ import React from 'react'
 import { collections } from '../data/collections'
 import './collection.scss'
 import ImageMenu from '../components/shared/menu/ImageMenu'
-import CollectionMenu from '../components/shared/CollectionMenu'
 import AnimatePage from '../components/shared/AnimatePage'
 import { useParams } from 'react-router-dom'
+import { AiOutlineArrowDown } from 'react-icons/ai'
 
 const Collection = () => {
   const { id } = useParams()
-  const { subFolder, date, desc, featuredImage, imagesData, title } =
+  const { subFolder, desc, featuredImage, imagesData, title } =
     collections[id - 1]
-
-  console.log(collections[id - 1])
 
   return (
     <AnimatePage>
@@ -19,7 +17,6 @@ const Collection = () => {
         <div>
           <div className="collection">
             <div className="header">
-              <CollectionMenu />
               <div className="image-container">
                 <img
                   width="2000"
@@ -28,14 +25,19 @@ const Collection = () => {
                   alt={featuredImage.altText}
                 />
               </div>
-              <div className="title-info">
+              <div className="info">
                 <div className="wrapper">
-                  <h4 className="date">{date}</h4>
                   <h2 className="title">{title}</h2>
-                  <div className="description">
+                  <div className="description a">
                     {desc.map((p, idx) => {
                       return <p key={idx}>{p}</p>
                     })}
+                  </div>
+                </div>
+                <div className="scroll-prompt">
+                  <div className="wrapper">
+                    <span>SCROLL</span>
+                    <AiOutlineArrowDown className="arrow-down" />
                   </div>
                 </div>
               </div>

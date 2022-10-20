@@ -1,14 +1,61 @@
 .collection-menu {
+  position: fixed;
+  top: 40px;
+  left: 4.5vw;
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: 190px;
   justify-content: space-between;
   margin-top: 100px;
-  width: 250px;
-  .link {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-weight: 400;
+  z-index: 900;
+  font-size: 1rem;
+  visibility: hidden;
+
+  span {
+    position: relative;
+    display: inline-block;
+    height: 2.2em;
+    width: 2.2em;
+
+    .link {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-decoration: none;
+      color: black;
+      font-size: 0.9em;
+      font-weight: 400;
+      margin: unset;
+    }
+
+    .link.selected {
+      font-size: 22px;
+      font-size: 1.2em;
+      font-weight: 500;
+    }
+  }
+}
+@media screen and (min-width: 1100px) {
+  .collection-menu {
+    visibility: visible;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .collection-menu {
+    left: 5vw;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .collection-menu {
+    left: 8vw;
+  }
+}
+
+@media screen and (min-width: 2200px) {
+  .collection-menu {
+    left: 10vw;
   }
 }
