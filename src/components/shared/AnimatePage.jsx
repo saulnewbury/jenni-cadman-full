@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import './animate-page.scss'
 
 const animations = {
   // On mount we'll animates from initial to animate

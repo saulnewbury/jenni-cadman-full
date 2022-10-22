@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './image-menu.scss'
 import gsap from 'gsap'
 import Counter from '../Counter'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 const ImageMenu = ({ imagesData, collectionId, id }) => {
   const { subFolder, images } = imagesData
@@ -287,11 +288,16 @@ const ImageMenu = ({ imagesData, collectionId, id }) => {
   //-------------------------------------------------------------------------
 
   return (
+    // <div>
     <div
       ref={outerContainer}
       className="outer-container"
       style={{ height: calcValues.height, width: menuWidth }}
     >
+      <Link className="back-to-collection" to={`/${id}/`}>
+        <AiOutlineArrowLeft className="icon" />
+        <p>Back to collection</p>
+      </Link>
       <div className="image-title-container">
         <p>{images[current].title}</p>
       </div>
@@ -360,6 +366,7 @@ const ImageMenu = ({ imagesData, collectionId, id }) => {
         ))}
       </div>
     </div>
+    // </div>
   )
 }
 

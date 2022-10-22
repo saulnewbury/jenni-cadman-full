@@ -1,24 +1,44 @@
 .cv {
   .wrapper {
-    margin-left: 18vw;
-    margin-right: 8vw;
-    padding-bottom: 50px;
+    margin: auto;
+    margin-top: 150px;
+    padding-bottom: 300px;
     max-width: 800px;
+    margin-left: 2.7vw;
+    margin-right: 2.7vw;
+    h1 {
+      margin-bottom: 50px;
+    }
     h2 {
       margin-bottom: 20px;
+      // border-bottom: 1px rgb(232, 232, 232) solid;
     }
 
     ul {
       list-style-type: none;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
       padding: 0;
       li {
+        display: block;
         line-height: 1.6;
+
+        &:not(:last-child) {
+          margin-bottom: 0.6em;
+        }
+
         span {
           color: rgb(139, 139, 139);
           font-style: italic;
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .cv {
+    .wrapper {
+      margin: 150px auto 0;
     }
   }
 }

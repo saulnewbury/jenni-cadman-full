@@ -1,9 +1,17 @@
 .outer-container {
   overflow: hidden;
+  overflow-y: visible;
   height: max-content;
   left: 0;
   position: relative;
   margin-bottom: 20vw;
+
+  .back-to-collection {
+    display: block;
+    position: absolute;
+    top: -50px;
+    z-index: 900;
+  }
 
   .image-title-container {
     width: max-content;
@@ -42,6 +50,7 @@
     position: absolute;
     display: flex;
     flex-flow: row no-wrap;
+    overflow-y: visible;
 
     .image-item {
       padding-left: 0.1vw;
@@ -104,6 +113,9 @@
   display: inline-block;
   height: 100%;
   width: 7.1428571429%;
+}
+
+@media screen and (min-width: 900px) {
 }
 
 @media screen and (min-width: 2222px) {

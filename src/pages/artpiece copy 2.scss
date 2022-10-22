@@ -1,0 +1,226 @@
+.art-piece {
+  margin: auto;
+  margin-top: 90px;
+  margin-bottom: 5vw;
+
+  .container {
+    // width: max-content;
+    // margin: auto;
+    // margin-left: 10vw;
+
+    .title {
+      width: 400px;
+      font-size: 9vw;
+      margin: 0px 2.7vw 3vw;
+      margin-bottom: 3vw;
+    }
+
+    .full-image {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+
+      img {
+        // height: auto;
+        max-height: 92vh;
+        // max-width: 50vw;
+        object-fit: contain;
+      }
+
+      .info {
+        font-size: 1.4vw;
+        margin-top: 11%;
+        padding-left: 2.7vw;
+        // width: 30vw;
+      }
+    }
+
+    .detail-image {
+      margin-top: 10vw;
+      margin-bottom: 2vw;
+      margin-right: 2.7vw;
+      display: flex;
+      justify-content: flex-end;
+      // max-width: 80vw;
+
+      .wrapper {
+        max-width: 80%;
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+          margin-bottom: 1.2vw;
+        }
+        img {
+          // height: auto;
+          max-height: 92vh;
+          max-width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .art-piece-menu-container {
+    margin-top: 8vw;
+
+    .back-to-work {
+      margin-bottom: 2vw;
+      margin-left: 10vw;
+      text-decoration: none;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+
+      .icon {
+        width: 1.5vw;
+        height: auto;
+        margin-right: 0.6vw;
+      }
+
+      p {
+        font-size: 1.4vw;
+        // font-size: calc(1rem + 1vw);
+      }
+    }
+    h2 {
+      margin-left: 5vw;
+      margin-bottom: 1vw;
+      font-weight: 500;
+      font-size: 4vw;
+      // font-style: italic;
+    }
+  }
+}
+
+// Tablet
+
+@media screen and (min-width: 480px) {
+  @media screen and (min-width: 480px) {
+    .art-piece {
+      .container {
+        .title {
+          font-size: 2.7em;
+        }
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 1360px) and (min-height: 919px) {
+//   .art-piece {
+//     .container {
+//       .full-image {
+//         img {
+//           max-height: 75vw;
+//           width: 74%;
+//         }
+//       }
+
+//       .detail-image {
+//         .wrapper {
+//           img {
+//             max-height: 75vw;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 1145px) {
+//   .art-piece {
+//     .art-piece-menu-container {
+//       .back-to-work {
+//         margin-left: 5vw;
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 1143px) {
+//   .art-piece {
+//     .container {
+//       .full-image {
+//         .info {
+//           font-size: 1rem;
+//           max-width: 40%;
+//         }
+//       }
+//     }
+//     .art-piece-menu-container {
+//       .back-to-work {
+//         .icon {
+//           width: 17.14px;
+//         }
+//         p {
+//           font-size: 1rem;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 900px) {
+//   .art-piece {
+//     .container {
+//       width: 80vw;
+//       // margin-left: 5vw;
+//       // margin-right: 5vw;
+//       .title {
+//         font-size: 37.842px;
+//       }
+//       .full-image {
+//         flex-direction: column;
+
+//         img {
+//           max-height: unset;
+//           max-width: unset;
+//           width: 100%;
+//         }
+//         .info {
+//           width: 100%;
+//           max-width: unset;
+//         }
+//       }
+//       .detail-image {
+//         max-width: unset;
+//         .wrapper {
+//           max-width: unset;
+//           img {
+//             // width: 60vw;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// @media screen and (min-width: 931px) {
+//   .art-piece {
+//     .art-piece-menu-container {
+//       .back-to-work {
+//         margin-left: 8vw;
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (min-width: 1146px) {
+//   .art-piece {
+//     .art-piece-menu-container {
+//       .back-to-work {
+//         margin-left: 10vw;
+//       }
+//     }
+//   }
+// }
+// @media screen and (min-width: 2148px) {
+//   // 90.216
+//   .art-piece {
+//     .container {
+//       .title {
+//         font-size: 90.216px;
+//       }
+//     }
+//   }
+// }

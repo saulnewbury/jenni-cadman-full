@@ -6,6 +6,7 @@ const CV = () => {
   return (
     <div className="cv">
       <div className="wrapper">
+        <h1>C.V.</h1>
         {resumeEntries.map((obj, idx) => {
           return (
             <div key={idx.toString()}>

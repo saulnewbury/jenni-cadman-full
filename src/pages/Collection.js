@@ -13,40 +13,36 @@ const Collection = () => {
 
   return (
     <AnimatePage>
-      <div className="page-wrapper">
-        <div>
-          <div className="collection">
-            <div className="header">
-              <div className="image-container">
-                <img
-                  width="2000"
-                  height="3008"
-                  src={`images/${subFolder}/${featuredImage.name}.jpg`}
-                  alt={featuredImage.altText}
-                />
+      <div className="collection">
+        <div className="container">
+          <div className="image">
+            <img
+              width="2000"
+              height="3008"
+              src={`images/${subFolder}/${featuredImage.name}.jpg`}
+              alt={featuredImage.altText}
+            />
+          </div>
+          <div className="info">
+            <div className="wrapper">
+              <h2 className="title">{title}</h2>
+              <div className="description">
+                {desc.map((p, idx) => {
+                  return <p key={idx}>{p}</p>
+                })}
               </div>
-              <div className="info">
-                <div className="wrapper">
-                  <h2 className="title">{title}</h2>
-                  <div className="description a">
-                    {desc.map((p, idx) => {
-                      return <p key={idx}>{p}</p>
-                    })}
-                  </div>
-                </div>
-                <div className="scroll-prompt">
-                  <div className="wrapper">
-                    <span>SCROLL</span>
-                    <AiOutlineArrowDown className="arrow-down" />
-                  </div>
-                </div>
+            </div>
+            <div className="scroll-prompt">
+              <div className="wrapper">
+                <span>SCROLL</span>
+                <AiOutlineArrowDown className="arrow-down" />
               </div>
             </div>
           </div>
-          {/* Menu */}
-          <ImageMenu imagesData={imagesData} collectionId={id} />
         </div>
       </div>
+      {/* Menu */}
+      <ImageMenu imagesData={imagesData} collectionId={id} />
     </AnimatePage>
   )
 }

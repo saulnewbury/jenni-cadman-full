@@ -1,0 +1,50 @@
+.socials {
+  display: flex;
+  display: none;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 2%;
+  right: 0;
+  width: 100%;
+
+  .wrapper {
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 400px;
+    padding: 0 2.7vw;
+    display: flex;
+    z-index: 500;
+    justify-content: space-between;
+
+    span {
+      &:not(a:last-child) {
+        margin-bottom: 1em;
+      }
+      a {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 20px;
+          width: 0%;
+          height: 1px;
+          background-color: hsl(0, 0%, 35%);
+          transition: width 0.25s;
+        }
+
+        &:hover::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .socials {
+    justify-content: flex-end;
+    .wrapper {
+    }
+  }
+}

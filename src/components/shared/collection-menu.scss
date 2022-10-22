@@ -9,7 +9,7 @@
   margin-top: 100px;
   z-index: 900;
   font-size: 1rem;
-  visibility: hidden;
+  display: none;
 
   span {
     position: relative;
@@ -36,6 +36,7 @@
     }
   }
 }
+
 @media screen and (min-width: 1100px) {
   .collection-menu {
     visibility: visible;
@@ -57,5 +58,7 @@
 @media screen and (min-width: 2200px) {
   .collection-menu {
     left: 10vw;
+    height: 230px;
+    font-size: 1.2em;
   }
 }

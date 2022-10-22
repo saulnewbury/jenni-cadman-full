@@ -3,7 +3,6 @@ import gsap from 'gsap'
 import './layout.scss'
 import './chocolate-forward.scss'
 import './chocolate-reverse.scss'
-import Footer from './Footer'
 import MobileMenu from './MobileMenu'
 import ChocolateButton from './ChocolateButton'
 import CollectionMenu from './CollectionMenu'
@@ -34,7 +33,6 @@ const Layout = ({ children }) => {
         </div>
         {children}
       </main>
-      {/* <Footer className="footer" /> */}
     </div>
   )
 }

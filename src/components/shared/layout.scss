@@ -1,16 +1,18 @@
 .topbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100vw;
-  padding-top: 26px;
-  margin-bottom: 43.5px;
+  padding: 16px 0;
+  margin-bottom: 27.5px;
   font-size: 1.2rem;
   font-weight: 400;
+  background-color: white;
   z-index: 100;
 
   .container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-left: 2.7vw;
     padding-right: 2.7vw;
 
@@ -61,6 +63,13 @@ main {
   }
 }
 
+@media screen and (min-width: 900px) {
+  .topbar {
+    padding: 22px 0;
+    background-color: unset;
+  }
+}
+
 @media screen and (min-width: 1441px) {
   .topbar {
     .container {
@@ -74,7 +83,6 @@ main {
 
 @media screen and (min-width: 1500px) {
   .topbar {
-    margin-bottom: 80px;
     padding-top: 32px;
 
     .container {

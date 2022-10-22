@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { collections } from '../data/collections'
-// import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import ImageMenu from '../components/shared/menu/ImageMenu'
 import AnimatePage from '../components/shared/AnimatePage'
 // import gsap from 'gsap'
@@ -32,33 +32,23 @@ const ArtPiece = () => {
     <AnimatePage>
       <div className="art-piece">
         <div className="container">
-          <h1 className="title top">{title}</h1>
-          <div className="main">
-            <div className="image">
-              <img
-                src={`../images/${subFolder}/${imageMain}.jpg`}
-                alt={altText}
-              />
-            </div>
+          <h1 className="title">{title}</h1>
+          <div className="full-image">
+            <img
+              src={`../images/${subFolder}/${imageMain}.jpg`}
+              alt={altText}
+            />
             <div className="info">
-              <div className="wrapper">
-                <h1 className="title side">{title}</h1>
-                <p className="collection-date">{desc.year}</p>
-                <p className="medium">{desc.medium}</p>
-                <p className="size">{desc.size}</p>
-                {desc.mount && <p className="mount">{desc.mount}</p>}
-                <p className="price">{desc.price}</p>
-              </div>
+              <p className="collection-date">{desc.year}</p>
+              <p className="medium">{desc.medium}</p>
+              <p className="size">{desc.size}</p>
+              {desc.mount && <p className="mount">{desc.mount}</p>}
+              <p className="price">{desc.price}</p>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="detail">
-        <div className="container">
-          <div className="spacer"></div>
-          <div className="wrapper">
-            <h4>(Detail)</h4>
-            <div className="image">
+          <div className="detail-image">
+            <div className="wrapper">
+              <h4>(Detail)</h4>
               <img
                 src={`../images/${subFolder}/${imageDetail}.jpg`}
                 alt={altText}
@@ -66,9 +56,13 @@ const ArtPiece = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="image-menu-container">
-        <ImageMenu imagesData={imagesData} id={artpieceId - 1} />
+        <div className="art-piece-menu-container">
+          <Link className="back-to-work" to={`/${id}/`}>
+            <AiOutlineArrowLeft className="icon" />
+            <p>Back to collection</p>
+          </Link>
+          <ImageMenu imagesData={imagesData} id={artpieceId - 1} />
+        </div>
       </div>
     </AnimatePage>
   )
