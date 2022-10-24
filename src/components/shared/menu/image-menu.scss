@@ -1,5 +1,5 @@
 .outer-container {
-  overflow: hidden;
+  overflow-x: clip;
   overflow-y: visible;
   height: max-content;
   left: 0;
@@ -9,8 +9,19 @@
   .back-to-collection {
     display: block;
     position: absolute;
-    top: -50px;
+    bottom: -35px;
     z-index: 900;
+    text-decoration: none;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+
+    .icon {
+      margin-right: 0.3em;
+    }
+    p {
+      color: black;
+    }
   }
 
   .image-title-container {

@@ -10,6 +10,8 @@ import './artpiece.scss'
 const ArtPiece = () => {
   const { slug, id } = useParams()
 
+  console.log(id)
+
   // get collection which includes a title that is the same as slug.
   const cln = collections.filter(cln => {
     return cln.imagesData?.images.some(obj => obj.imagePath === slug)
@@ -17,7 +19,6 @@ const ArtPiece = () => {
 
   const obj = cln[0].imagesData?.images.filter(obj => obj.imagePath === slug)
 
-  console.log(obj)
   const { subFolder, imagesData } = cln[0]
   const {
     id: artpieceId,
@@ -68,7 +69,11 @@ const ArtPiece = () => {
         </div>
       </div>
       <div className="image-menu-container">
-        <ImageMenu imagesData={imagesData} id={artpieceId - 1} />
+        <ImageMenu
+          imagesData={imagesData}
+          id={artpieceId - 1}
+          collectionId={id}
+        />
       </div>
     </AnimatePage>
   )

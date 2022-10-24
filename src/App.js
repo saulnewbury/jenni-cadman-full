@@ -13,7 +13,6 @@ import { AnimatePresence } from 'framer-motion'
 function App() {
   const location = useLocation()
   const lastPos = useRef(new Map()) // persists accross renders hense useRef
-  console.log(location.pathname)
 
   useEffect(() => {
     const savePos = ev => {

@@ -8,6 +8,8 @@ import { AiOutlineArrowLeft } from 'react-icons/ai'
 const ImageMenu = ({ imagesData, collectionId, id }) => {
   const { subFolder, images } = imagesData
 
+  console.log(collectionId)
+
   const [numOfItems, setNumOfItems] = useState(1)
   const [current, setCurrent] = useState(0)
   const [leftMost, setLeftMost] = useState(0)
@@ -294,7 +296,7 @@ const ImageMenu = ({ imagesData, collectionId, id }) => {
       className="outer-container"
       style={{ height: calcValues.height, width: menuWidth }}
     >
-      <Link className="back-to-collection" to={`/${id}/`}>
+      <Link className="back-to-collection" to={`/${collectionId}/`}>
         <AiOutlineArrowLeft className="icon" />
         <p>Back to collection</p>
       </Link>
