@@ -184,6 +184,16 @@
           width: 68%;
         }
       }
+      .info {
+        .wrapper {
+          .title {
+            font-size: 2.6em;
+          }
+          .description {
+            font-size: 1.1em;
+          }
+        }
+      }
     }
   }
 }
@@ -194,7 +204,7 @@
       .info {
         .wrapper {
           .title {
-            font-size: 2.6em;
+            font-size: 3em;
           }
           .description {
             font-size: 1.1em;
@@ -217,7 +227,7 @@
       .info {
         .wrapper {
           .title {
-            font-size: 3em;
+            font-size: 3.5em;
           }
         }
       }

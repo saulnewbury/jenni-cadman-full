@@ -38,7 +38,15 @@
 @media screen and (min-width: 900px) {
   .cv {
     .wrapper {
-      margin: 150px auto 0;
+      margin: 200px 10vw 0;
+    }
+  }
+}
+
+@media screen and (min-width: 2200px) {
+  .cv {
+    .wrapper {
+      margin: 200px 13vw 0;
     }
   }
 }

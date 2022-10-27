@@ -70,24 +70,13 @@ main {
   }
 }
 
-@media screen and (min-width: 1441px) {
+@media screen and (min-width: 1350px) {
   .topbar {
     .container {
       .chocolate {
         height: 34px;
         width: 34px;
       }
-    }
-  }
-}
-
-@media screen and (min-width: 1500px) {
-  .topbar {
-    padding-top: 32px;
-
-    .container {
-      padding-left: 60px;
-      padding-right: 60px;
     }
   }
 }

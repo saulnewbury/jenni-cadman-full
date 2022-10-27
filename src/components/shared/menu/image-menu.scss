@@ -1,3 +1,13 @@
+.image-menu-container {
+  h2 {
+    margin-left: 5vw;
+    margin-bottom: 1vw;
+    font-weight: 500;
+    font-size: 4vw;
+    // font-style: italic;
+  }
+}
+
 .outer-container {
   overflow-x: clip;
   overflow-y: visible;
@@ -38,6 +48,7 @@
       margin: 0;
       line-height: 1;
       font-size: 4.6vw;
+      font-size: 9vw;
     }
   }
 
@@ -126,7 +137,14 @@
   width: 7.1428571429%;
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 480px) {
+  .outer-container {
+    .image-title-container {
+      p {
+        font-size: 2.7em;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 2222px) {
@@ -146,9 +164,9 @@
       margin-left: 4vw;
       top: 8vw;
       width: 90vw;
-      p {
-        font-size: 12vw;
-      }
+      // p {
+      //   font-size: 12vw;
+      // }
     }
     .counter {
       span {
@@ -175,9 +193,9 @@
       width: 90vw;
       margin-left: 3vw;
 
-      p {
-        font-size: 9vw;
-      }
+      // p {
+      //   font-size: 9vw;
+      // }
     }
   }
 }
@@ -189,9 +207,9 @@
       width: 91vw;
       width: 416.773px;
 
-      p {
-        font-size: 43px;
-      }
+      // p {
+      //   font-size: 43px;
+      // }
     }
   }
 }
@@ -209,9 +227,9 @@
     .image-title-container {
       width: 74vw;
 
-      p {
-        font-size: 46px;
-      }
+      // p {
+      //   font-size: 46px;
+      // }
     }
   }
 }
@@ -222,9 +240,9 @@
     .image-title-container {
       width: 65vw;
 
-      p {
-        font-size: 8vw;
-      }
+      // p {
+      //   font-size: 8vw;
+      // }
     }
     .counter {
       span {
@@ -247,10 +265,6 @@
   .outer-container {
     .image-title-container {
       width: 65vw;
-
-      p {
-        font-size: 6.5vw;
-      }
     }
   }
 }
@@ -262,9 +276,6 @@
     .image-title-container {
       margin-left: 22px;
       top: 30px;
-      p {
-        font-size: 50px;
-      }
     }
   }
 }
@@ -281,9 +292,6 @@
   .outer-container {
     .image-title-container {
       width: 55vw;
-      p {
-        font-size: 50px;
-      }
     }
   }
 }
@@ -313,9 +321,6 @@
   .outer-container {
     .image-title-container {
       width: 539px;
-      p {
-        font-size: 60px;
-      }
     }
   }
 }
@@ -326,7 +331,7 @@
       width: 38.5vw;
       margin-left: 1.571vw;
       p {
-        font-size: 4.214vw;
+        font-size: 3vw;
       }
     }
     .counter {
@@ -344,7 +349,7 @@
       width: 685px;
       margin-left: 28px;
       p {
-        font-size: 75px;
+        font-size: 65px;
       }
     }
     .counter {

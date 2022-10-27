@@ -1,0 +1,63 @@
+* {
+  font-family: Avenir;
+  font-weight: 400;
+  line-height: 1.1em;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  --placeholder: hsl(0, 0%, 67%);
+  --primary-color: hsl(0, 0%, 24%);
+  --secondary-color: hsl(0, 0%, 21%);
+  --dark-bg: hsl(0, 0%, 30%);
+  /* --light-bg: hsl(0, 0%, 81%); */
+  --light-bg: hsl(0, 0%, 100%);
+
+  color: var(--primary-color);
+  background-color: var(--light-bg);
+
+  font-weight: 400;
+}
+
+img {
+  display: block;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+  cursor: pointer;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+/* Indent acts upon menu */
+.indent {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+@media screen and (max-width: 700px) {
+  .indent {
+    /* margin left corrosponds to value in Menu.jsx */
+    margin-left: 41.7969px;
+  }
+}
+
+.motion-div {
+  overflow: hidden;
+}

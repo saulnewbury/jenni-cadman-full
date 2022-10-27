@@ -1,0 +1,107 @@
+.work {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 10vw;
+
+  .links {
+    position: relative;
+    z-index: 5;
+    margin: 0 2.7vw;
+    & > div {
+      width: 9em;
+      .link {
+        display: inline-block;
+        width: 100%;
+        margin-left: unset;
+        .number {
+          font-size: 0.4em;
+        }
+        .title {
+          font-size: 1.1em;
+        }
+
+        &:hover {
+          color: rgb(127, 127, 127);
+        }
+      }
+    }
+    & > div:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+
+  .image {
+    display: flex;
+    height: 80vh;
+    // position: relative;
+    align-items: center;
+    justify-content: center;
+
+    .wrapper {
+      position: relative;
+      height: 80%;
+      width: 26vw;
+
+      &:not(:last-child) {
+        margin-bottom: 5vw;
+      }
+
+      img {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+      }
+
+      .cover {
+        opacity: 0;
+        background-color: rgb(255, 255, 255);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: right top;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .work {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .work {
+    .links {
+      margin: 0 3vw 0 10vw;
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .work {
+    .links {
+      & > div {
+        width: unset;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 2200px) {
+  .work {
+    font-size: 3.4rem;
+    .links {
+      margin: 0 3vw 0 13vw;
+    }
+  }
+}

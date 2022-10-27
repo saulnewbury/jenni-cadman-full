@@ -1,15 +1,9 @@
 .art-piece {
   margin: auto;
   margin-top: 90px;
-  // margin-bottom: 5vw;
 
   .container {
-    // width: max-content;
-    // margin: auto;
-    // margin-left: 10vw;
-
     .title {
-      // width: 400px;
       font-size: 9vw;
       margin: 0px 2.7vw 3vw;
       margin-bottom: 3vw;
@@ -35,8 +29,6 @@
         text-align: center;
         font-size: 1.4vw;
         margin: 12% 0;
-        // padding-left: 2.7vw;
-        // width: 30vw;
         .wrapper {
           .title.side {
             display: none;
@@ -50,7 +42,6 @@
 .detail {
   display: flex;
   justify-content: flex-end;
-  // max-width: 80vw;
 
   .wrapper {
     margin: 0 2.7vw 12%;
@@ -71,29 +62,8 @@
 }
 
 .image-menu-container {
-  // margin-top: 8vw;
-
-  // .back-to-collection {
-  // margin-bottom: 2vw;
-  // margin-left: 1.7vw;
-  // text-decoration: none;
-  // color: var(--primary-color);
-  // display: flex;
-  // align-items: center;
-
-  // .icon {
-  //   margin-right: 0.3em;
-  // }
-  // }
-
-  h2 {
-    margin-left: 5vw;
-    margin-bottom: 1vw;
-    font-weight: 500;
-    font-size: 4vw;
-    // font-style: italic;
-  }
 }
+
 // TABLETS
 
 @media screen and (min-width: 480px) {
@@ -156,6 +126,8 @@
           display: flex;
           align-items: center;
           font-size: 0.7rem;
+          font-size: 1.25vw;
+          max-width: max-content;
 
           .wrapper .title.side {
             display: block;
@@ -205,121 +177,3 @@
     }
   }
 }
-
-// @media screen and (max-width: 1360px) and (min-height: 919px) {
-//   .art-piece {
-//     .container {
-//       .main {
-//         img {
-//           max-height: 75vw;
-//           width: 74%;
-//         }
-//       }
-
-//       .detail {
-//         .wrapper {
-//           img {
-//             max-height: 75vw;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 1145px) {
-//   .art-piece {
-//     .image-menu-container {
-//       .back-to-collection {
-//         margin-left: 5vw;
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 1143px) {
-//   .art-piece {
-//     .container {
-//       .main {
-//         .info {
-//           font-size: 1rem;
-//           max-width: 40%;
-//         }
-//       }
-//     }
-//     .image-menu-container {
-//       .back-to-collection {
-//         .icon {
-//           width: 17.14px;
-//         }
-//         p {
-//           font-size: 1rem;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 900px) {
-//   .art-piece {
-//     .container {
-//       width: 80vw;
-//       // margin-left: 5vw;
-//       // margin-right: 5vw;
-//       .title {
-//         font-size: 37.842px;
-//       }
-//       .main {
-//         flex-direction: column;
-
-//         img {
-//           max-height: unset;
-//           max-width: unset;
-//           width: 100%;
-//         }
-//         .info {
-//           width: 100%;
-//           max-width: unset;
-//         }
-//       }
-//       .detail {
-//         max-width: unset;
-//         .wrapper {
-//           max-width: unset;
-//           img {
-//             // width: 60vw;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// @media screen and (min-width: 931px) {
-//   .art-piece {
-//     .image-menu-container {
-//       .back-to-collection {
-//         margin-left: 8vw;
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (min-width: 1146px) {
-//   .art-piece {
-//     .image-menu-container {
-//       .back-to-collection {
-//         margin-left: 10vw;
-//       }
-//     }
-//   }
-// }
-// @media screen and (min-width: 2148px) {
-//   // 90.216
-//   .art-piece {
-//     .container {
-//       .title {
-//         font-size: 90.216px;
-//       }
-//     }
-//   }
-// }

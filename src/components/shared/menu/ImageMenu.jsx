@@ -8,7 +8,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai'
 const ImageMenu = ({ imagesData, collectionId, id }) => {
   const { subFolder, images } = imagesData
 
-  console.log(collectionId)
+  console.log(id)
 
   const [numOfItems, setNumOfItems] = useState(1)
   const [current, setCurrent] = useState(0)
@@ -290,85 +290,92 @@ const ImageMenu = ({ imagesData, collectionId, id }) => {
   //-------------------------------------------------------------------------
 
   return (
-    // <div>
-    <div
-      ref={outerContainer}
-      className="outer-container"
-      style={{ height: calcValues.height, width: menuWidth }}
-    >
-      <Link className="back-to-collection" to={`/${collectionId}/`}>
-        <AiOutlineArrowLeft className="icon" />
-        <p>Back to collection</p>
-      </Link>
-      <div className="image-title-container">
-        <p>{images[current].title}</p>
-      </div>
-      <div className="counter" style={{ width: calcValues.linkContainerWidth }}>
-        <Counter id={current} length={images.length} />
-      </div>
+    <div className="image-menu-container">
       <div
-        ref={container}
-        className="image-menu"
-        style={{
-          left: calcValues.left,
-          height: calcValues.height
-        }}
+        ref={outerContainer}
+        className="outer-container"
+        style={{ height: calcValues.height, width: menuWidth }}
       >
-        {images.map((image, idx) => (
-          <Link
-            to={`/${collectionId}/${images[current].title
-              .replace(/\s+/g, '-')
-              .toLowerCase()}`}
-            className="image-item"
-            style={{
-              paddingLeft: calcValues.padding,
-              paddingRight: calcValues.padding,
-              height: calcValues.height,
-              width: `${idx === current ? calcValues.wide : calcValues.narrow}`
-            }}
-            data-title={image.title}
-            data-size={idx === current ? 'wide' : 'narrow'}
-            data-id={idx}
-            onClick={e => {
-              handleClick(e)
-            }}
-            key={idx}
-          >
-            <div
-              className="overlay-container"
+        {id && (
+          <Link className="back-to-collection" to={`/${collectionId}/`}>
+            <AiOutlineArrowLeft className="icon" />
+            <p>Back to collection</p>
+          </Link>
+        )}
+        <div className="image-title-container">
+          <p>{images[current].title}</p>
+        </div>
+        <div
+          className="counter"
+          style={{ width: calcValues.linkContainerWidth }}
+        >
+          <Counter id={current} length={images.length} />
+        </div>
+        <div
+          ref={container}
+          className="image-menu"
+          style={{
+            left: calcValues.left,
+            height: calcValues.height
+          }}
+        >
+          {images.map((image, idx) => (
+            <Link
+              to={`/${collectionId}/${images[current].title
+                .replace(/\s+/g, '-')
+                .toLowerCase()}`}
+              className="image-item"
               style={{
                 paddingLeft: calcValues.padding,
                 paddingRight: calcValues.padding,
-                width: idx === current ? calcValues.wide : calcValues.narrow
+                height: calcValues.height,
+                width: `${
+                  idx === current ? calcValues.wide : calcValues.narrow
+                }`
               }}
+              data-title={image.title}
+              data-size={idx === current ? 'wide' : 'narrow'}
+              data-id={idx}
+              onClick={e => {
+                handleClick(e)
+              }}
+              key={idx}
             >
-              <div className="overlay"></div>
-            </div>
-            <img
-              src={`/images/${subFolder}/${image.imageDetail}.jpg`}
-              alt={image.alt}
-              style={{
-                opacity: idx === current ? 1.0 : 0.7
-              }}
-            />
-            <span
-              className="view"
-              to={`/work/${images[current].title
-                .replace(/\s+/g, '-')
-                .toLowerCase()}`}
-              style={{
-                opacity: idx === current ? 1.0 : 0,
-                pointerEvents: idx === current ? 'auto' : 'none',
-                translate: idx === current ? '0px 0px' : '0px 2%'
-              }}
-            >
-              View
-            </span>
-          </Link>
-        ))}
+              <div
+                className="overlay-container"
+                style={{
+                  paddingLeft: calcValues.padding,
+                  paddingRight: calcValues.padding,
+                  width: idx === current ? calcValues.wide : calcValues.narrow
+                }}
+              >
+                <div className="overlay"></div>
+              </div>
+              <img
+                src={`/images/${subFolder}/${image.imageDetail}.jpg`}
+                alt={image.alt}
+                style={{
+                  opacity: idx === current ? 1.0 : 0.7
+                }}
+              />
+              <span
+                className="view"
+                to={`/work/${images[current].title
+                  .replace(/\s+/g, '-')
+                  .toLowerCase()}`}
+                style={{
+                  opacity: idx === current ? 1.0 : 0,
+                  pointerEvents: idx === current ? 'auto' : 'none',
+                  translate: idx === current ? '0px 0px' : '0px 2%'
+                }}
+              >
+                View
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
-    // </div>
   )
 }
 

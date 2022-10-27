@@ -4,6 +4,7 @@ import NotFound from './pages/NotFound'
 import ArtPiece from './pages/ArtPiece'
 import Layout from './components/shared/Layout'
 import Home from './pages/Home'
+import Work from './pages/Work'
 import CV from './pages/CV'
 import Test from './pages/Test'
 import { useEffect, useRef } from 'react'
@@ -30,7 +31,8 @@ function App() {
       <AnimatePresence exitBeforeEnter onExitComplete={goToLast}>
         <Routes key={location.pathname} location={location}>
           {/* These each set up a matcher between a location and the component to show where that component is at. They tell Routes which component to inject when a certain route is active */}
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<Work />} />
           <Route path="/test" element={<Test />} />
           <Route path="/:id" element={<Collection />} />
           <Route path="/cv" element={<CV />} />

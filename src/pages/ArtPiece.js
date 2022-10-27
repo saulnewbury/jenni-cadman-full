@@ -68,13 +68,11 @@ const ArtPiece = () => {
           </div>
         </div>
       </div>
-      <div className="image-menu-container">
-        <ImageMenu
-          imagesData={imagesData}
-          id={artpieceId - 1}
-          collectionId={id}
-        />
-      </div>
+      <ImageMenu
+        imagesData={imagesData}
+        id={artpieceId - 1}
+        collectionId={id}
+      />
     </AnimatePage>
   )
 }

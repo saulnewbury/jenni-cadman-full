@@ -20,7 +20,7 @@ const MobileMenu = ({ navIsOpen, handleClick }) => {
           Bio
         </Link>
         <Link
-          to="/work"
+          to="/"
           className="link"
           onClick={() => {
             handleClick()
