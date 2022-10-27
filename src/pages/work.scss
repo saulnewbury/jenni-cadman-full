@@ -9,15 +9,21 @@
     position: relative;
     z-index: 5;
     margin: 0 2.7vw;
+
     & > div {
       width: 9em;
+      // margin-bottom: 10px;
+
       .link {
         display: inline-block;
         width: 100%;
         margin-left: unset;
+        padding: 0.5em 0;
+
         .number {
           font-size: 0.4em;
         }
+
         .title {
           font-size: 1.1em;
         }
@@ -26,9 +32,6 @@
           color: rgb(127, 127, 127);
         }
       }
-    }
-    & > div:not(:last-child) {
-      margin-bottom: 1em;
     }
   }
 
