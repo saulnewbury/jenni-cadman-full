@@ -14,7 +14,7 @@
   height: max-content;
   left: 0;
   position: relative;
-  margin-bottom: 20vw;
+  margin-bottom: 110px;
 
   .back-to-collection {
     display: block;
@@ -272,7 +272,8 @@
 // 13 narrow widths
 @media screen and (min-width: 742px) {
   .outer-container {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     .image-title-container {
       margin-left: 22px;
       top: 30px;
@@ -300,6 +301,12 @@
   .outer-container {
     // margin-left: 4vw;
     margin-left: 8vw;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .outer-container {
+    margin: auto;
   }
 }
 
