@@ -6,9 +6,17 @@ const Bio = () => {
   return (
     <div className="bio">
       <div className="container">
-        <h1>Biography</h1>
+        <div className="image">
+          <div className="wrapper">
+            <img
+              src="/images/other/jenni-cadman-textileartist-portrait.jpg"
+              alt=""
+            />
+          </div>
+        </div>
         <div className="info">
           <div className="wrapper">
+            <h1>Bio</h1>
             <p>
               Jenni Cadman is textile artist based in Dorset, UK who creates
               hangings, panels and artworks using free-machine embroidery.
@@ -58,12 +66,3 @@ const Bio = () => {
 }
 
 export default Bio
-
-// <div className="image">
-// <div className="wrapper">
-//   <img
-//     src="/images/other/jenni-cadman-textileartist-portrait.jpg"
-//     alt=""
-//   />
-// </div>
-// </div>

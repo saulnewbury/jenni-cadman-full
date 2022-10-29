@@ -11,15 +11,6 @@ const MobileMenu = ({ navIsOpen, handleClick }) => {
       <div className={`mobile-menu-bg`}></div>
       <div className={`nav-links ${navIsOpen ? 'open' : ''}`}>
         <Link
-          to="/bio"
-          className="link"
-          onClick={() => {
-            handleClick()
-          }}
-        >
-          Bio
-        </Link>
-        <Link
           to="/"
           className="link"
           onClick={() => {
@@ -27,6 +18,15 @@ const MobileMenu = ({ navIsOpen, handleClick }) => {
           }}
         >
           Work
+        </Link>
+        <Link
+          to="/bio"
+          className="link"
+          onClick={() => {
+            handleClick()
+          }}
+        >
+          Bio
         </Link>
         <Link
           to="/cv"
