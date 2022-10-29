@@ -1,15 +1,58 @@
 .bio {
   .container {
-    margin: auto;
-    margin-top: 30vh;
+    margin-top: 20vh;
     padding-bottom: 300px;
-    max-width: 800px;
     margin-left: 2.7vw;
     margin-right: 2.7vw;
+    width: 94.5vw;
 
     h1 {
-      font-size: 130px;
+      font-size: 15vw;
       margin-bottom: 50px;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+
+      .info {
+        .view-cv {
+          padding: 0 2.7 0 0vw;
+          padding-top: 40px;
+
+          .link {
+            padding: 0.5em 1.5em;
+            border-radius: 1000px;
+            border: 1px solid black;
+            background-color: rgb(226, 226, 226);
+          }
+        }
+      }
+
+      .image {
+        margin-bottom: 30px;
+        height: 55vw;
+        img {
+          height: 100%;
+          width: 100%;
+          filter: grayscale(1);
+          object-fit: cover;
+          object-position: bottom;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .bio {
+    .container {
+      margin: 14vh 10vw 0;
+      width: 80vw;
+
+      h1 {
+        font-size: 90px;
+      }
     }
   }
 }
@@ -17,7 +60,67 @@
 @media screen and (min-width: 900px) {
   .bio {
     .container {
-      margin: 30vh 10vw 0;
+      margin: 14vh 10vw 0;
+      width: 80vw;
+
+      h1 {
+        font-size: 100px;
+      }
+
+      .wrapper {
+        .info {
+          width: 80vw;
+          height: auto;
+        }
+
+        .image {
+          img {
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .bio {
+    .container {
+      .wrapper {
+        flex-direction: row-reverse;
+        justify-content: center;
+
+        .info {
+          display: flex;
+          align-items: center;
+          width: 40%;
+          max-width: 800px;
+          padding-left: 30px;
+        }
+        .image {
+          width: 37%;
+          height: 37%;
+          // min-width: 520px;
+          // min-height: 520px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .bio {
+    .container {
+      margin: 20vh 10vw 0;
+      h1 {
+        font-size: 110px;
+      }
+      .wrapper {
+        .image {
+          min-width: 520px;
+          min-height: 520px;
+        }
+      }
     }
   }
 }
@@ -25,7 +128,13 @@
 @media screen and (min-width: 2200px) {
   .bio {
     .container {
-      margin: 30vh 13vw 0;
+      h1 {
+        font-size: 130px;
+      }
+      .wrapper {
+        .info {
+        }
+      }
     }
   }
 }

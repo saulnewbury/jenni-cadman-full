@@ -35,7 +35,7 @@ const MobileMenu = ({ navIsOpen, handleClick }) => {
             handleClick()
           }}
         >
-          CV
+          C.V.
         </Link>
       </div>
       <Socials />

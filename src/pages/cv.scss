@@ -1,19 +1,18 @@
 .cv {
   .wrapper {
     margin: auto;
-    margin-top: 30vh;
+    margin-top: 20vh;
     padding-bottom: 300px;
     max-width: 800px;
     margin-left: 2.7vw;
     margin-right: 2.7vw;
 
     h1 {
-      font-size: 130px;
+      font-size: 15vw;
       margin-bottom: 50px;
     }
     h2 {
       margin-bottom: 20px;
-      // border-bottom: 1px rgb(232, 232, 232) solid;
     }
 
     ul {
@@ -37,10 +36,36 @@
   }
 }
 
+@media screen and (min-width: 650px) {
+  .cv {
+    .wrapper {
+      h1 {
+        font-size: 90px;
+        margin-bottom: 50px;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 900px) {
   .cv {
     .wrapper {
-      margin: 30vh 10vw 0;
+      margin: 14vh 10vw 0;
+
+      h1 {
+        font-size: 100px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .cv {
+    .wrapper {
+      margin: 20vh 10vw 0;
+      h1 {
+        font-size: 110px;
+      }
     }
   }
 }
@@ -48,7 +73,11 @@
 @media screen and (min-width: 2200px) {
   .cv {
     .wrapper {
-      margin: 30vh 13vw 0;
+      margin: 20vh 13vw 0;
+
+      h1 {
+        font-size: 130px;
+      }
     }
   }
 }
