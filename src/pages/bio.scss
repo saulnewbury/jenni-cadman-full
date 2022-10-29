@@ -1,6 +1,6 @@
 .bio {
   .container {
-    margin-top: 20vh;
+    margin-top: 14vh;
     padding-bottom: 300px;
     margin-left: 2.7vw;
     margin-right: 2.7vw;
@@ -98,10 +98,10 @@
           padding-left: 30px;
         }
         .image {
-          width: 37%;
-          height: 37%;
-          // min-width: 520px;
-          // min-height: 520px;
+          width: 42%;
+          height: 42%;
+          max-width: 750px;
+          max-height: 750px;
         }
       }
     }

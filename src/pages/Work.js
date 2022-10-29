@@ -34,14 +34,15 @@ const Work = () => {
     const remaining = images.filter(img => img !== current)
 
     const fadeIn = gsap.to(current, { opacity: 1, duration: 1.5 })
+    const fadeOutRemaining = gsap.to(remaining, { opacity: 0, duration: 1.5 })
 
     if (isHovering) {
       fadeIn.play()
-      gsap.to(remaining, { opacity: 0, duration: 1.5 })
+      fadeOutRemaining.play()
       // gsap.to(q('.cover'), { scaleX: 0 })
     } else {
-      fadeIn.pause().kill()
-      gsap.to(images, { opacity: 0, duration: 1.5 })
+      fadeIn.kill()
+      gsap.to(images, { opacity: 0, duration: 0.5 })
       // gsap.to(q('.cover'), { scaleX: 1 })
     }
   }
