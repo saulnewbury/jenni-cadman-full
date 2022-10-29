@@ -28,21 +28,17 @@ const Work = () => {
 
   const q = gsap.utils.selector(imageContainer)
 
-  const changeImage = (id, isHovering) => {
+  function changeImage(id, isHovering) {
     const images = [...imageContainer.current.querySelectorAll('img')]
     const current = images.find(img => img.dataset.id === id)
     const remaining = images.filter(img => img !== current)
 
-    const fadeIn = gsap.to(current, { opacity: 1, duration: 1.5 })
-    const fadeOutRemaining = gsap.to(remaining, { opacity: 0, duration: 1.5 })
-
     if (isHovering) {
-      fadeIn.play()
-      fadeOutRemaining.play()
+      gsap.to(current, { opacity: 1, duration: 1.5 })
+      gsap.to(remaining, { opacity: 0, duration: 1.5 })
       // gsap.to(q('.cover'), { scaleX: 0 })
     } else {
-      fadeIn.kill()
-      gsap.to(images, { opacity: 0, duration: 0.5 })
+      gsap.to(images, { opacity: 0, duration: 0.5, overwrite: true })
       // gsap.to(q('.cover'), { scaleX: 1 })
     }
   }
