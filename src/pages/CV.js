@@ -9,7 +9,10 @@ const CV = () => {
         <h1>C.V.</h1>
         {resumeEntries.map((obj, idx) => {
           return (
-            <div key={idx.toString()}>
+            <div
+              key={idx.toString()}
+              className={`category ${idx % 2 === 0 ? '' : 'fill'}`}
+            >
               <h2>{obj.title}</h2>
               <ul>
                 {obj.entries.map((entry, idx) => {

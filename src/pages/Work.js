@@ -34,8 +34,8 @@ const Work = () => {
     const remaining = images.filter(img => img !== current)
 
     if (isHovering) {
-      gsap.to(current, { opacity: 1, duration: 1.5 })
-      gsap.to(remaining, { opacity: 0, duration: 1.5 })
+      gsap.to(current, { opacity: 1, duration: 1.5, overwrite: true })
+      gsap.to(remaining, { opacity: 0, duration: 1.5, overwrite: true })
       // gsap.to(q('.cover'), { scaleX: 0 })
     } else {
       gsap.to(images, { opacity: 0, duration: 0.5, overwrite: true })

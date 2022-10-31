@@ -6,7 +6,7 @@ const Bio = () => {
   return (
     <div className="bio">
       <div className="container">
-        <h1>Biography</h1>
+        <h1>Jenni Cadman</h1>
         <div className="flex-wrapper">
           <div className="wrapper">
             <div className="info">

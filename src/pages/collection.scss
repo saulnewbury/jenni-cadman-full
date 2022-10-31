@@ -17,12 +17,12 @@
         height: 100%;
         object-fit: cover;
         object-position: 50% 50%;
-        object-position: bottom;
+        // object-position: bottom;
       }
     }
 
     .info {
-      margin: 41px 2.7vw 0;
+      margin: 41px 5vw 0;
       position: relative;
 
       .wrapper {
@@ -38,6 +38,7 @@
           p {
             text-align: justify;
             font-size: 0.9em;
+            font-size: 1em;
             color: var(--secondary-color);
             margin-bottom: 1.2em;
           }
